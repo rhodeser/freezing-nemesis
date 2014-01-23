@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=C:\Users\rhodesej\Documents\PSU\540\ece540_proj1\xilinx\Nexys3fpga.ncd
+OUTFILE=C:\Users\rhodesej\Documents\PSU\540\ece540_proj1\xilinx\Nexys3fpga.bit
+FAMILY=Spartan6
+PART=xc6slx16-3csg324
+WORKINGDIR=C:\Users\rhodesej\Documents\PSU\540\ece540_proj1\xilinx
+LICENSE=WebPack
+USER_INFO=210842216_0_0_872

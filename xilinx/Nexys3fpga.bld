@@ -1,0 +1,49 @@
+Release 14.7 ngdbuild P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Command Line: D:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\ngdbuild.exe -filter
+iseconfig/filter.filter -intstyle ise -dd _ngo -nt timestamp -uc
+C:/Users/rhodesej/Documents/PSU/540/ece540_proj1/nexys3fpga.ucf -p
+xc6slx16-csg324-3 Nexys3fpga.ngc Nexys3fpga.ngd
+
+Reading NGO file
+"C:/Users/rhodesej/Documents/PSU/540/ece540_proj1/xilinx/Nexys3fpga.ngc" ...
+Loading design module
+"C:\Users\rhodesej\Documents\PSU\540\ece540_proj1\xilinx/world_map.ngc"...
+Gathering constraint information from source properties...
+Done.
+
+Annotating constraints to design from ucf file
+"C:/Users/rhodesej/Documents/PSU/540/ece540_proj1/nexys3fpga.ucf" ...
+Resolving constraint associations...
+Checking Constraint Associations...
+Done...
+
+Checking expanded design ...
+WARNING:NgdBuild:443 - SFF primitive 'bot1/BOTSIMCPU/read_strobe_flop' has
+   unconnected output pin
+WARNING:NgdBuild:443 - SFF primitive 'bot1/BOTSIMCPU/k_write_strobe_flop' has
+   unconnected output pin
+WARNING:NgdBuild:440 - FF primitive 'bot1/BOTSIMCPU/interrupt_ack_flop' has
+   unconnected output pin
+WARNING:NgdBuild:443 - SFF primitive 'PSM/read_strobe_flop' has unconnected
+   output pin
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+NGDBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:   4
+
+Total memory usage is 192864 kilobytes
+
+Writing NGD file "Nexys3fpga.ngd" ...
+Total REAL time to NGDBUILD completion:  10 sec
+Total CPU time to NGDBUILD completion:   10 sec
+
+Writing NGDBUILD log file "Nexys3fpga.bld"...
