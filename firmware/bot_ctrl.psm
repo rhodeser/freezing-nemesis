@@ -615,7 +615,9 @@ next_loc:		LOAD	s0,		LocX				; Dig[3:2] gets X-coordinate
 next_step:		CALL	DEB_rdbtns					; Read the pushbuttons. buttons returned in s0
 				CALL	btn2mot						; and calculate new MotCtl - returned in s1
 				OUTPUT	s1,		PA_MOTCTL_IN		; tell Rojobot what to do
-				
+			
+;;NOTE:  TO REMOVE MODIFIED FUNCTIONALITY AND REVERT TO THE PROJ1DEMO, REMOVE THE FOLLOW COMMAND
+				CALL	test_state
 				;;store previous values and compare here?			
 				RETURN				
 

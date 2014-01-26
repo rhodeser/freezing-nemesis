@@ -539,6 +539,8 @@ init_btnluptbl: LOAD s0, SP_BTNBASE           ; s0 gets base of button translati
      next_step: CALL DEB_rdbtns               ; Read the pushbuttons. buttons returned in s0
                 CALL btn2mot                  ; and calculate new MotCtl - returned in s1
                 OUTPUT s1, PA_MOTCTL_IN       ; tell Rojobot what to do
+                ;;NOTE:  TO REMOVE MODIFIED FUNCTIONALITY AND REVERT TO THE PROJ1DEMO, REMOVE THE FOLLOW COMMAND
+                CALL test_state
                 ;;store previous values and compare here?
                 RETURN 
                 ;check which state we are in and call the appropriate function
