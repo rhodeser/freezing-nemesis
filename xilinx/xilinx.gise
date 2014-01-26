@@ -104,7 +104,7 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1390772030" xil_pn:in_ck="-5169611955299903179" xil_pn:name="TRANEXT_xstsynthesize_spartan6" xil_pn:prop_ck="-2617920056481832613" xil_pn:start_ts="1390772001">
+    <transform xil_pn:end_ts="1390777609" xil_pn:in_ck="232436272917565207" xil_pn:name="TRANEXT_xstsynthesize_spartan6" xil_pn:prop_ck="-2617920056481832613" xil_pn:start_ts="1390777574">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
@@ -122,11 +122,11 @@
       <outfile xil_pn:name="webtalk_pn.xml"/>
       <outfile xil_pn:name="xst"/>
     </transform>
-    <transform xil_pn:end_ts="1390543838" xil_pn:in_ck="-7738417583761229217" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="8766212930860649194" xil_pn:start_ts="1390543838">
+    <transform xil_pn:end_ts="1390776750" xil_pn:in_ck="-430118260167721585" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="8766212930860649194" xil_pn:start_ts="1390776750">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1390772332" xil_pn:in_ck="-15933040613897075" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="-3152908664370541331" xil_pn:start_ts="1390772318">
+    <transform xil_pn:end_ts="1390777640" xil_pn:in_ck="-6333253103822380099" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="-3152908664370541331" xil_pn:start_ts="1390777628">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
@@ -136,11 +136,9 @@
       <outfile xil_pn:name="_ngo"/>
       <outfile xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
     </transform>
-    <transform xil_pn:end_ts="1390772359" xil_pn:in_ck="-15933040613897074" xil_pn:name="TRANEXT_map_spartan6" xil_pn:prop_ck="1463976855095865663" xil_pn:start_ts="1390772332">
+    <transform xil_pn:end_ts="1390777666" xil_pn:in_ck="-6333253103822380098" xil_pn:name="TRANEXT_map_spartan6" xil_pn:prop_ck="1463976855095865663" xil_pn:start_ts="1390777640">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="Nexys3fpga.pcf"/>
       <outfile xil_pn:name="Nexys3fpga_map.map"/>
       <outfile xil_pn:name="Nexys3fpga_map.mrp"/>
@@ -151,7 +149,7 @@
       <outfile xil_pn:name="Nexys3fpga_usage.xml"/>
       <outfile xil_pn:name="_xmsgs/map.xmsgs"/>
     </transform>
-    <transform xil_pn:end_ts="1390772393" xil_pn:in_ck="-5861524308057607513" xil_pn:name="TRANEXT_par_spartan6" xil_pn:prop_ck="-1178055513630676559" xil_pn:start_ts="1390772359">
+    <transform xil_pn:end_ts="1390777704" xil_pn:in_ck="1569427379582099927" xil_pn:name="TRANEXT_par_spartan6" xil_pn:prop_ck="-1178055513630676559" xil_pn:start_ts="1390777666">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="Nexys3fpga.ncd"/>
@@ -165,7 +163,7 @@
       <outfile xil_pn:name="Nexys3fpga_par.xrpt"/>
       <outfile xil_pn:name="_xmsgs/par.xmsgs"/>
     </transform>
-    <transform xil_pn:end_ts="1390772432" xil_pn:in_ck="3748174043806603115" xil_pn:name="TRANEXT_bitFile_spartan6" xil_pn:prop_ck="396117104113915555" xil_pn:start_ts="1390772409">
+    <transform xil_pn:end_ts="1390777738" xil_pn:in_ck="3748174043806603115" xil_pn:name="TRANEXT_bitFile_spartan6" xil_pn:prop_ck="396117104113915555" xil_pn:start_ts="1390777716">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="Nexys3fpga.ut"/>
@@ -177,7 +175,7 @@
       <outfile xil_pn:name="webtalk.log"/>
       <outfile xil_pn:name="webtalk_pn.xml"/>
     </transform>
-    <transform xil_pn:end_ts="1390772471" xil_pn:in_ck="-5847929241958246059" xil_pn:name="TRAN_configureTargetDevice" xil_pn:prop_ck="8482462020707587906" xil_pn:start_ts="1390772469">
+    <transform xil_pn:end_ts="1390777759" xil_pn:in_ck="-5847929241958246059" xil_pn:name="TRAN_configureTargetDevice" xil_pn:prop_ck="8482462020707587906" xil_pn:start_ts="1390777758">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="_impact.cmd"/>
@@ -191,7 +189,7 @@
       <status xil_pn:value="InputChanged"/>
       <status xil_pn:value="InputRemoved"/>
     </transform>
-    <transform xil_pn:end_ts="1390772393" xil_pn:in_ck="-15933040613897206" xil_pn:name="TRAN_postRouteTrce" xil_pn:prop_ck="445577401284416185" xil_pn:start_ts="1390772382">
+    <transform xil_pn:end_ts="1390777704" xil_pn:in_ck="-6333253103822380230" xil_pn:name="TRAN_postRouteTrce" xil_pn:prop_ck="445577401284416185" xil_pn:start_ts="1390777692">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="Nexys3fpga.twr"/>

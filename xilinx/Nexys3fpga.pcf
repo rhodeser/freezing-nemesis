@@ -1,8 +1,11 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Sun Jan 26 13:39:17 2014
+// Written by: Map P.20131013 on Sun Jan 26 15:07:44 2014
 //! **************************************************************************
 
 SCHEMATIC START;
+COMP "vgaGreen<0>" LOCATE = SITE "P8" LEVEL 1;
+COMP "vgaGreen<1>" LOCATE = SITE "T6" LEVEL 1;
+COMP "vgaGreen<2>" LOCATE = SITE "V6" LEVEL 1;
 COMP "btnd" LOCATE = SITE "C9" LEVEL 1;
 COMP "btnl" LOCATE = SITE "C4" LEVEL 1;
 COMP "btnr" LOCATE = SITE "D9" LEVEL 1;
@@ -16,6 +19,8 @@ COMP "an<0>" LOCATE = SITE "N16" LEVEL 1;
 COMP "an<1>" LOCATE = SITE "N15" LEVEL 1;
 COMP "an<2>" LOCATE = SITE "P18" LEVEL 1;
 COMP "an<3>" LOCATE = SITE "P17" LEVEL 1;
+COMP "Hsync" LOCATE = SITE "N6" LEVEL 1;
+COMP "Vsync" LOCATE = SITE "P7" LEVEL 1;
 COMP "sw<0>" LOCATE = SITE "T10" LEVEL 1;
 COMP "sw<1>" LOCATE = SITE "T9" LEVEL 1;
 COMP "sw<2>" LOCATE = SITE "V9" LEVEL 1;
@@ -24,6 +29,9 @@ COMP "sw<4>" LOCATE = SITE "N8" LEVEL 1;
 COMP "sw<5>" LOCATE = SITE "U8" LEVEL 1;
 COMP "sw<6>" LOCATE = SITE "V8" LEVEL 1;
 COMP "sw<7>" LOCATE = SITE "T5" LEVEL 1;
+COMP "vgaRed<0>" LOCATE = SITE "U7" LEVEL 1;
+COMP "vgaRed<1>" LOCATE = SITE "V7" LEVEL 1;
+COMP "vgaRed<2>" LOCATE = SITE "N7" LEVEL 1;
 COMP "clk100" LOCATE = SITE "V10" LEVEL 1;
 COMP "led<0>" LOCATE = SITE "U16" LEVEL 1;
 COMP "led<1>" LOCATE = SITE "V16" LEVEL 1;
@@ -41,6 +49,8 @@ COMP "seg<4>" LOCATE = SITE "M14" LEVEL 1;
 COMP "seg<5>" LOCATE = SITE "N14" LEVEL 1;
 COMP "seg<6>" LOCATE = SITE "L14" LEVEL 1;
 COMP "seg<7>" LOCATE = SITE "M13" LEVEL 1;
+COMP "vgaBlue<0>" LOCATE = SITE "R7" LEVEL 1;
+COMP "vgaBlue<1>" LOCATE = SITE "T7" LEVEL 1;
 PIN bot1/BOTSIMPGM/kcpsm6_rom_pins<28> = BEL "bot1/BOTSIMPGM/kcpsm6_rom"
         PINNAME CLKA;
 PIN bot_ctrl/ram_1k_generate.s6.kcpsm6_rom_pins<28> = BEL
@@ -65,7 +75,10 @@ PIN
         = BEL
         "bot1/MAP/MAP/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram"
         PINNAME CLKB;
-TIMEGRP sys_clk_pin = BEL "DB/db_count_21" BEL "DB/db_count_20" BEL
+PIN SP6_INS_BUFIO2FB_DCM_ML_BUFIO2FB_1_pins<1> = BEL
+        "SP6_INS_BUFIO2FB_DCM_ML_BUFIO2FB_1" PINNAME O;
+PIN DCM_SP_inst_pins<2> = BEL "DCM_SP_inst" PINNAME CLKFB;
+TIMEGRP clk0_buf = BEL "DB/db_count_21" BEL "DB/db_count_20" BEL
         "DB/db_count_19" BEL "DB/db_count_18" BEL "DB/db_count_17" BEL
         "DB/db_count_16" BEL "DB/db_count_15" BEL "DB/db_count_14" BEL
         "DB/db_count_13" BEL "DB/db_count_12" BEL "DB/db_count_11" BEL
@@ -97,38 +110,134 @@ TIMEGRP sys_clk_pin = BEL "DB/db_count_21" BEL "DB/db_count_20" BEL
         "DB/swtch_db_6" BEL "DB/swtch_db_5" BEL "DB/swtch_db_4" BEL
         "DB/swtch_db_3" BEL "DB/swtch_db_2" BEL "DB/swtch_db_1" BEL
         "DB/swtch_db_0" BEL "DB/pbtn_db_4" BEL "DB/pbtn_db_3" BEL
-        "DB/pbtn_db_2" BEL "DB/pbtn_db_1" BEL "DB/pbtn_db_0" BEL
-        "bot1/WRLDIF/DataOut_7" BEL "bot1/WRLDIF/DataOut_6" BEL
-        "bot1/WRLDIF/DataOut_5" BEL "bot1/WRLDIF/DataOut_4" BEL
-        "bot1/WRLDIF/DataOut_3" BEL "bot1/WRLDIF/DataOut_2" BEL
-        "bot1/WRLDIF/DataOut_1" BEL "bot1/WRLDIF/DataOut_0" BEL
-        "bot1/WRLDIF/RMDist_7" BEL "bot1/WRLDIF/RMDist_6" BEL
-        "bot1/WRLDIF/RMDist_5" BEL "bot1/WRLDIF/RMDist_4" BEL
-        "bot1/WRLDIF/RMDist_3" BEL "bot1/WRLDIF/RMDist_2" BEL
-        "bot1/WRLDIF/RMDist_1" BEL "bot1/WRLDIF/RMDist_0" BEL
-        "bot1/WRLDIF/LMDist_7" BEL "bot1/WRLDIF/LMDist_6" BEL
-        "bot1/WRLDIF/LMDist_5" BEL "bot1/WRLDIF/LMDist_4" BEL
-        "bot1/WRLDIF/LMDist_3" BEL "bot1/WRLDIF/LMDist_2" BEL
-        "bot1/WRLDIF/LMDist_1" BEL "bot1/WRLDIF/LMDist_0" BEL
-        "bot1/WRLDIF/BotInfo_7" BEL "bot1/WRLDIF/BotInfo_6" BEL
-        "bot1/WRLDIF/BotInfo_5" BEL "bot1/WRLDIF/BotInfo_4" BEL
-        "bot1/WRLDIF/BotInfo_3" BEL "bot1/WRLDIF/BotInfo_2" BEL
-        "bot1/WRLDIF/BotInfo_1" BEL "bot1/WRLDIF/BotInfo_0" BEL
-        "bot1/WRLDIF/LocY_7" BEL "bot1/WRLDIF/LocY_6" BEL "bot1/WRLDIF/LocY_5"
-        BEL "bot1/WRLDIF/LocY_4" BEL "bot1/WRLDIF/LocY_3" BEL
-        "bot1/WRLDIF/LocY_2" BEL "bot1/WRLDIF/LocY_1" BEL "bot1/WRLDIF/LocY_0"
-        BEL "bot1/WRLDIF/LocX_7" BEL "bot1/WRLDIF/LocX_6" BEL
-        "bot1/WRLDIF/LocX_5" BEL "bot1/WRLDIF/LocX_4" BEL "bot1/WRLDIF/LocX_3"
-        BEL "bot1/WRLDIF/LocX_2" BEL "bot1/WRLDIF/LocX_1" BEL
-        "bot1/WRLDIF/LocX_0" BEL "bot1/WRLDIF/Sensors_7" BEL
-        "bot1/WRLDIF/Sensors_6" BEL "bot1/WRLDIF/Sensors_5" BEL
-        "bot1/WRLDIF/Sensors_4" BEL "bot1/WRLDIF/Sensors_3" BEL
-        "bot1/WRLDIF/Sensors_2" BEL "bot1/WRLDIF/Sensors_1" BEL
-        "bot1/WRLDIF/Sensors_0" BEL "bot1/WRLDIF/MapY_7" BEL
-        "bot1/WRLDIF/MapY_6" BEL "bot1/WRLDIF/MapY_5" BEL "bot1/WRLDIF/MapY_4"
-        BEL "bot1/WRLDIF/MapY_3" BEL "bot1/WRLDIF/MapY_2" BEL
-        "bot1/WRLDIF/MapY_1" BEL "bot1/WRLDIF/MapY_0" BEL
-        "bot1/WRLDIF/RMDist_int_7" BEL "bot1/WRLDIF/RMDist_int_6" BEL
+        "DB/pbtn_db_2" BEL "DB/pbtn_db_1" BEL "DB/pbtn_db_0" BEL "nex/dp_3"
+        BEL "nex/dp_2" BEL "nex/dp_1" BEL "nex/dp_0" BEL "nex/dig0_4" BEL
+        "nex/dig0_3" BEL "nex/dig0_2" BEL "nex/dig0_1" BEL "nex/dig0_0" BEL
+        "nex/dig1_4" BEL "nex/dig1_3" BEL "nex/dig1_2" BEL "nex/dig1_1" BEL
+        "nex/dig1_0" BEL "nex/dig2_4" BEL "nex/dig2_3" BEL "nex/dig2_2" BEL
+        "nex/dig2_1" BEL "nex/dig2_0" BEL "nex/dig3_4" BEL "nex/dig3_3" BEL
+        "nex/dig3_2" BEL "nex/dig3_1" BEL "nex/dig3_0" BEL "nex/motctl_7" BEL
+        "nex/motctl_6" BEL "nex/motctl_5" BEL "nex/motctl_4" BEL
+        "nex/motctl_3" BEL "nex/motctl_2" BEL "nex/motctl_1" BEL
+        "nex/motctl_0" BEL "nex/led_7" BEL "nex/led_6" BEL "nex/led_5" BEL
+        "nex/led_4" BEL "nex/led_3" BEL "nex/led_2" BEL "nex/led_1" BEL
+        "nex/led_0" BEL "nex/in_port_7" BEL "nex/in_port_6" BEL
+        "nex/in_port_5" BEL "nex/in_port_4" BEL "nex/in_port_3" BEL
+        "nex/in_port_2" BEL "nex/in_port_1" BEL "nex/in_port_0" BEL
+        "SSB/an_FSM_FFd1" BEL "SSB/an_FSM_FFd2" BEL "SSB/clk_cnt_17" BEL
+        "SSB/clk_cnt_16" BEL "SSB/clk_cnt_15" BEL "SSB/clk_cnt_14" BEL
+        "SSB/clk_cnt_13" BEL "SSB/clk_cnt_12" BEL "SSB/clk_cnt_11" BEL
+        "SSB/clk_cnt_10" BEL "SSB/clk_cnt_9" BEL "SSB/clk_cnt_8" BEL
+        "SSB/clk_cnt_7" BEL "SSB/clk_cnt_6" BEL "SSB/clk_cnt_5" BEL
+        "SSB/clk_cnt_4" BEL "SSB/clk_cnt_3" BEL "SSB/clk_cnt_2" BEL
+        "SSB/clk_cnt_1" BEL "SSB/clk_cnt_0" BEL "SSB/seg_7" BEL "SSB/seg_6"
+        BEL "SSB/seg_5" BEL "SSB/seg_4" BEL "SSB/seg_3" BEL "SSB/seg_2" BEL
+        "SSB/seg_1" BEL "SSB/seg_0" BEL "SSB/Digit3/seg_7" BEL
+        "SSB/Digit3/seg_6" BEL "SSB/Digit3/seg_5" BEL "SSB/Digit3/seg_4" BEL
+        "SSB/Digit3/seg_3" BEL "SSB/Digit3/seg_2" BEL "SSB/Digit3/seg_1" BEL
+        "SSB/Digit3/seg_0" BEL "SSB/Digit2/seg_7" BEL "SSB/Digit2/seg_6" BEL
+        "SSB/Digit2/seg_5" BEL "SSB/Digit2/seg_4" BEL "SSB/Digit2/seg_3" BEL
+        "SSB/Digit2/seg_2" BEL "SSB/Digit2/seg_1" BEL "SSB/Digit2/seg_0" BEL
+        "SSB/Digit1/seg_7" BEL "SSB/Digit1/seg_6" BEL "SSB/Digit1/seg_5" BEL
+        "SSB/Digit1/seg_4" BEL "SSB/Digit1/seg_3" BEL "SSB/Digit1/seg_2" BEL
+        "SSB/Digit1/seg_1" BEL "SSB/Digit1/seg_0" BEL "SSB/Digit0/seg_7" BEL
+        "SSB/Digit0/seg_6" BEL "SSB/Digit0/seg_5" BEL "SSB/Digit0/seg_4" BEL
+        "SSB/Digit0/seg_3" BEL "SSB/Digit0/seg_2" BEL "SSB/Digit0/seg_1" BEL
+        "SSB/Digit0/seg_0" BEL "PSM/data_path_loop[7].small_spm.spm_flop" BEL
+        "PSM/data_path_loop[7].low_hwbuild.shift_rotate_flop" BEL
+        "PSM/data_path_loop[7].arith_logical_flop" BEL
+        "PSM/data_path_loop[6].small_spm.spm_flop" BEL
+        "PSM/data_path_loop[6].low_hwbuild.shift_rotate_flop" BEL
+        "PSM/data_path_loop[6].arith_logical_flop" BEL
+        "PSM/data_path_loop[5].small_spm.spm_flop" BEL
+        "PSM/data_path_loop[5].low_hwbuild.shift_rotate_flop" BEL
+        "PSM/data_path_loop[5].arith_logical_flop" BEL
+        "PSM/data_path_loop[4].small_spm.spm_flop" BEL
+        "PSM/data_path_loop[4].low_hwbuild.shift_rotate_flop" BEL
+        "PSM/data_path_loop[4].arith_logical_flop" BEL
+        "PSM/data_path_loop[3].small_spm.spm_flop" BEL
+        "PSM/data_path_loop[3].low_hwbuild.shift_rotate_flop" BEL
+        "PSM/data_path_loop[3].arith_logical_flop" BEL
+        "PSM/data_path_loop[2].small_spm.spm_flop" BEL
+        "PSM/data_path_loop[2].low_hwbuild.shift_rotate_flop" BEL
+        "PSM/data_path_loop[2].arith_logical_flop" BEL
+        "PSM/data_path_loop[1].small_spm.spm_flop" BEL
+        "PSM/data_path_loop[1].low_hwbuild.shift_rotate_flop" BEL
+        "PSM/data_path_loop[1].arith_logical_flop" BEL
+        "PSM/data_path_loop[0].small_spm.spm_flop" BEL
+        "PSM/data_path_loop[0].low_hwbuild.shift_rotate_flop" BEL
+        "PSM/data_path_loop[0].arith_logical_flop" BEL
+        "PSM/stack_loop[4].upper_stack.pointer_flop" BEL
+        "PSM/stack_loop[3].upper_stack.pointer_flop" BEL
+        "PSM/stack_loop[2].upper_stack.pointer_flop" BEL
+        "PSM/stack_loop[1].upper_stack.pointer_flop" BEL
+        "PSM/stack_loop[0].lsb_stack.pointer_flop" BEL "PSM/stack_bit_flop"
+        BEL "PSM/shadow_bank_flop" BEL "PSM/shadow_zero_flag_flop" BEL
+        "PSM/stack_zero_flop" BEL "PSM/shadow_carry_flag_flop" BEL
+        "PSM/address_loop[11].pc_flop" BEL
+        "PSM/address_loop[11].return_vector_flop" BEL
+        "PSM/address_loop[10].pc_flop" BEL
+        "PSM/address_loop[10].return_vector_flop" BEL
+        "PSM/address_loop[9].pc_flop" BEL
+        "PSM/address_loop[9].return_vector_flop" BEL
+        "PSM/address_loop[8].pc_flop" BEL
+        "PSM/address_loop[8].return_vector_flop" BEL
+        "PSM/address_loop[7].pc_flop" BEL
+        "PSM/address_loop[7].return_vector_flop" BEL
+        "PSM/address_loop[6].pc_flop" BEL
+        "PSM/address_loop[6].return_vector_flop" BEL
+        "PSM/address_loop[5].pc_flop" BEL
+        "PSM/address_loop[5].return_vector_flop" BEL
+        "PSM/address_loop[4].pc_flop" BEL
+        "PSM/address_loop[4].return_vector_flop" BEL
+        "PSM/address_loop[3].pc_flop" BEL
+        "PSM/address_loop[3].return_vector_flop" BEL
+        "PSM/address_loop[2].pc_flop" BEL
+        "PSM/address_loop[2].return_vector_flop" BEL
+        "PSM/address_loop[1].pc_flop" BEL
+        "PSM/address_loop[1].return_vector_flop" BEL
+        "PSM/address_loop[0].pc_flop" BEL
+        "PSM/address_loop[0].return_vector_flop" BEL "PSM/zero_flag_flop" BEL
+        "PSM/use_zero_flag_flop" BEL "PSM/carry_flag_flop" BEL
+        "PSM/shift_carry_flop" BEL "PSM/arith_carry_flop" BEL
+        "PSM/sx_addr4_flop" BEL "PSM/bank_flop" BEL "PSM/write_strobe_flop"
+        BEL "PSM/spm_enable_flop" BEL "PSM/k_write_strobe_flop" BEL
+        "PSM/register_enable_flop" BEL "PSM/flag_enable_flop" BEL
+        "PSM/alu_mux_sel1_flop" BEL "PSM/alu_mux_sel0_flop" BEL
+        "PSM/interrupt_ack_flop" BEL "PSM/active_interrupt_flop" BEL
+        "PSM/interrupt_enable_flop" BEL "PSM/t_state2_flop" BEL
+        "PSM/t_state1_flop" BEL "PSM/internal_reset_flop" BEL "PSM/run_flop"
+        BEL "PSM/sync_interrupt_flop" BEL "bot1/WRLDIF/DataOut_7" BEL
+        "bot1/WRLDIF/DataOut_6" BEL "bot1/WRLDIF/DataOut_5" BEL
+        "bot1/WRLDIF/DataOut_4" BEL "bot1/WRLDIF/DataOut_3" BEL
+        "bot1/WRLDIF/DataOut_2" BEL "bot1/WRLDIF/DataOut_1" BEL
+        "bot1/WRLDIF/DataOut_0" BEL "bot1/WRLDIF/RMDist_7" BEL
+        "bot1/WRLDIF/RMDist_6" BEL "bot1/WRLDIF/RMDist_5" BEL
+        "bot1/WRLDIF/RMDist_4" BEL "bot1/WRLDIF/RMDist_3" BEL
+        "bot1/WRLDIF/RMDist_2" BEL "bot1/WRLDIF/RMDist_1" BEL
+        "bot1/WRLDIF/RMDist_0" BEL "bot1/WRLDIF/LMDist_7" BEL
+        "bot1/WRLDIF/LMDist_6" BEL "bot1/WRLDIF/LMDist_5" BEL
+        "bot1/WRLDIF/LMDist_4" BEL "bot1/WRLDIF/LMDist_3" BEL
+        "bot1/WRLDIF/LMDist_2" BEL "bot1/WRLDIF/LMDist_1" BEL
+        "bot1/WRLDIF/LMDist_0" BEL "bot1/WRLDIF/BotInfo_7" BEL
+        "bot1/WRLDIF/BotInfo_6" BEL "bot1/WRLDIF/BotInfo_5" BEL
+        "bot1/WRLDIF/BotInfo_4" BEL "bot1/WRLDIF/BotInfo_3" BEL
+        "bot1/WRLDIF/BotInfo_2" BEL "bot1/WRLDIF/BotInfo_1" BEL
+        "bot1/WRLDIF/BotInfo_0" BEL "bot1/WRLDIF/LocY_7" BEL
+        "bot1/WRLDIF/LocY_6" BEL "bot1/WRLDIF/LocY_5" BEL "bot1/WRLDIF/LocY_4"
+        BEL "bot1/WRLDIF/LocY_3" BEL "bot1/WRLDIF/LocY_2" BEL
+        "bot1/WRLDIF/LocY_1" BEL "bot1/WRLDIF/LocY_0" BEL "bot1/WRLDIF/LocX_7"
+        BEL "bot1/WRLDIF/LocX_6" BEL "bot1/WRLDIF/LocX_5" BEL
+        "bot1/WRLDIF/LocX_4" BEL "bot1/WRLDIF/LocX_3" BEL "bot1/WRLDIF/LocX_2"
+        BEL "bot1/WRLDIF/LocX_1" BEL "bot1/WRLDIF/LocX_0" BEL
+        "bot1/WRLDIF/Sensors_7" BEL "bot1/WRLDIF/Sensors_6" BEL
+        "bot1/WRLDIF/Sensors_5" BEL "bot1/WRLDIF/Sensors_4" BEL
+        "bot1/WRLDIF/Sensors_3" BEL "bot1/WRLDIF/Sensors_2" BEL
+        "bot1/WRLDIF/Sensors_1" BEL "bot1/WRLDIF/Sensors_0" BEL
+        "bot1/WRLDIF/MapY_7" BEL "bot1/WRLDIF/MapY_6" BEL "bot1/WRLDIF/MapY_5"
+        BEL "bot1/WRLDIF/MapY_4" BEL "bot1/WRLDIF/MapY_3" BEL
+        "bot1/WRLDIF/MapY_2" BEL "bot1/WRLDIF/MapY_1" BEL "bot1/WRLDIF/MapY_0"
+        BEL "bot1/WRLDIF/RMDist_int_7" BEL "bot1/WRLDIF/RMDist_int_6" BEL
         "bot1/WRLDIF/RMDist_int_5" BEL "bot1/WRLDIF/RMDist_int_4" BEL
         "bot1/WRLDIF/RMDist_int_3" BEL "bot1/WRLDIF/RMDist_int_2" BEL
         "bot1/WRLDIF/RMDist_int_1" BEL "bot1/WRLDIF/RMDist_int_0" BEL
@@ -240,105 +349,9 @@ TIMEGRP sys_clk_pin = BEL "DB/db_count_21" BEL "DB/db_count_20" BEL
         "bot1/BOTSIMCPU/interrupt_enable_flop" BEL
         "bot1/BOTSIMCPU/t_state2_flop" BEL "bot1/BOTSIMCPU/t_state1_flop" BEL
         "bot1/BOTSIMCPU/internal_reset_flop" BEL "bot1/BOTSIMCPU/run_flop" BEL
-        "SSB/an_FSM_FFd1" BEL "SSB/an_FSM_FFd2" BEL "SSB/clk_cnt_17" BEL
-        "SSB/clk_cnt_16" BEL "SSB/clk_cnt_15" BEL "SSB/clk_cnt_14" BEL
-        "SSB/clk_cnt_13" BEL "SSB/clk_cnt_12" BEL "SSB/clk_cnt_11" BEL
-        "SSB/clk_cnt_10" BEL "SSB/clk_cnt_9" BEL "SSB/clk_cnt_8" BEL
-        "SSB/clk_cnt_7" BEL "SSB/clk_cnt_6" BEL "SSB/clk_cnt_5" BEL
-        "SSB/clk_cnt_4" BEL "SSB/clk_cnt_3" BEL "SSB/clk_cnt_2" BEL
-        "SSB/clk_cnt_1" BEL "SSB/clk_cnt_0" BEL "SSB/seg_7" BEL "SSB/seg_6"
-        BEL "SSB/seg_5" BEL "SSB/seg_4" BEL "SSB/seg_3" BEL "SSB/seg_2" BEL
-        "SSB/seg_1" BEL "SSB/seg_0" BEL "SSB/Digit3/seg_7" BEL
-        "SSB/Digit3/seg_6" BEL "SSB/Digit3/seg_5" BEL "SSB/Digit3/seg_4" BEL
-        "SSB/Digit3/seg_3" BEL "SSB/Digit3/seg_2" BEL "SSB/Digit3/seg_1" BEL
-        "SSB/Digit3/seg_0" BEL "SSB/Digit2/seg_7" BEL "SSB/Digit2/seg_6" BEL
-        "SSB/Digit2/seg_5" BEL "SSB/Digit2/seg_4" BEL "SSB/Digit2/seg_3" BEL
-        "SSB/Digit2/seg_2" BEL "SSB/Digit2/seg_1" BEL "SSB/Digit2/seg_0" BEL
-        "SSB/Digit1/seg_7" BEL "SSB/Digit1/seg_6" BEL "SSB/Digit1/seg_5" BEL
-        "SSB/Digit1/seg_4" BEL "SSB/Digit1/seg_3" BEL "SSB/Digit1/seg_2" BEL
-        "SSB/Digit1/seg_1" BEL "SSB/Digit1/seg_0" BEL "SSB/Digit0/seg_7" BEL
-        "SSB/Digit0/seg_6" BEL "SSB/Digit0/seg_5" BEL "SSB/Digit0/seg_4" BEL
-        "SSB/Digit0/seg_3" BEL "SSB/Digit0/seg_2" BEL "SSB/Digit0/seg_1" BEL
-        "SSB/Digit0/seg_0" BEL "PSM/data_path_loop[7].small_spm.spm_flop" BEL
-        "PSM/data_path_loop[7].low_hwbuild.shift_rotate_flop" BEL
-        "PSM/data_path_loop[7].arith_logical_flop" BEL
-        "PSM/data_path_loop[6].small_spm.spm_flop" BEL
-        "PSM/data_path_loop[6].low_hwbuild.shift_rotate_flop" BEL
-        "PSM/data_path_loop[6].arith_logical_flop" BEL
-        "PSM/data_path_loop[5].small_spm.spm_flop" BEL
-        "PSM/data_path_loop[5].low_hwbuild.shift_rotate_flop" BEL
-        "PSM/data_path_loop[5].arith_logical_flop" BEL
-        "PSM/data_path_loop[4].small_spm.spm_flop" BEL
-        "PSM/data_path_loop[4].low_hwbuild.shift_rotate_flop" BEL
-        "PSM/data_path_loop[4].arith_logical_flop" BEL
-        "PSM/data_path_loop[3].small_spm.spm_flop" BEL
-        "PSM/data_path_loop[3].low_hwbuild.shift_rotate_flop" BEL
-        "PSM/data_path_loop[3].arith_logical_flop" BEL
-        "PSM/data_path_loop[2].small_spm.spm_flop" BEL
-        "PSM/data_path_loop[2].low_hwbuild.shift_rotate_flop" BEL
-        "PSM/data_path_loop[2].arith_logical_flop" BEL
-        "PSM/data_path_loop[1].small_spm.spm_flop" BEL
-        "PSM/data_path_loop[1].low_hwbuild.shift_rotate_flop" BEL
-        "PSM/data_path_loop[1].arith_logical_flop" BEL
-        "PSM/data_path_loop[0].small_spm.spm_flop" BEL
-        "PSM/data_path_loop[0].low_hwbuild.shift_rotate_flop" BEL
-        "PSM/data_path_loop[0].arith_logical_flop" BEL
-        "PSM/stack_loop[4].upper_stack.pointer_flop" BEL
-        "PSM/stack_loop[3].upper_stack.pointer_flop" BEL
-        "PSM/stack_loop[2].upper_stack.pointer_flop" BEL
-        "PSM/stack_loop[1].upper_stack.pointer_flop" BEL
-        "PSM/stack_loop[0].lsb_stack.pointer_flop" BEL "PSM/stack_bit_flop"
-        BEL "PSM/shadow_bank_flop" BEL "PSM/shadow_zero_flag_flop" BEL
-        "PSM/stack_zero_flop" BEL "PSM/shadow_carry_flag_flop" BEL
-        "PSM/address_loop[11].pc_flop" BEL
-        "PSM/address_loop[11].return_vector_flop" BEL
-        "PSM/address_loop[10].pc_flop" BEL
-        "PSM/address_loop[10].return_vector_flop" BEL
-        "PSM/address_loop[9].pc_flop" BEL
-        "PSM/address_loop[9].return_vector_flop" BEL
-        "PSM/address_loop[8].pc_flop" BEL
-        "PSM/address_loop[8].return_vector_flop" BEL
-        "PSM/address_loop[7].pc_flop" BEL
-        "PSM/address_loop[7].return_vector_flop" BEL
-        "PSM/address_loop[6].pc_flop" BEL
-        "PSM/address_loop[6].return_vector_flop" BEL
-        "PSM/address_loop[5].pc_flop" BEL
-        "PSM/address_loop[5].return_vector_flop" BEL
-        "PSM/address_loop[4].pc_flop" BEL
-        "PSM/address_loop[4].return_vector_flop" BEL
-        "PSM/address_loop[3].pc_flop" BEL
-        "PSM/address_loop[3].return_vector_flop" BEL
-        "PSM/address_loop[2].pc_flop" BEL
-        "PSM/address_loop[2].return_vector_flop" BEL
-        "PSM/address_loop[1].pc_flop" BEL
-        "PSM/address_loop[1].return_vector_flop" BEL
-        "PSM/address_loop[0].pc_flop" BEL
-        "PSM/address_loop[0].return_vector_flop" BEL "PSM/zero_flag_flop" BEL
-        "PSM/use_zero_flag_flop" BEL "PSM/carry_flag_flop" BEL
-        "PSM/shift_carry_flop" BEL "PSM/arith_carry_flop" BEL
-        "PSM/sx_addr4_flop" BEL "PSM/bank_flop" BEL "PSM/write_strobe_flop"
-        BEL "PSM/spm_enable_flop" BEL "PSM/k_write_strobe_flop" BEL
-        "PSM/register_enable_flop" BEL "PSM/flag_enable_flop" BEL
-        "PSM/alu_mux_sel1_flop" BEL "PSM/alu_mux_sel0_flop" BEL
-        "PSM/interrupt_ack_flop" BEL "PSM/active_interrupt_flop" BEL
-        "PSM/interrupt_enable_flop" BEL "PSM/t_state2_flop" BEL
-        "PSM/t_state1_flop" BEL "PSM/internal_reset_flop" BEL "PSM/run_flop"
-        BEL "PSM/sync_interrupt_flop" BEL "nex/dp_3" BEL "nex/dp_2" BEL
-        "nex/dp_1" BEL "nex/dp_0" BEL "nex/dig0_4" BEL "nex/dig0_3" BEL
-        "nex/dig0_2" BEL "nex/dig0_1" BEL "nex/dig0_0" BEL "nex/dig1_4" BEL
-        "nex/dig1_3" BEL "nex/dig1_2" BEL "nex/dig1_1" BEL "nex/dig1_0" BEL
-        "nex/dig2_4" BEL "nex/dig2_3" BEL "nex/dig2_2" BEL "nex/dig2_1" BEL
-        "nex/dig2_0" BEL "nex/dig3_4" BEL "nex/dig3_3" BEL "nex/dig3_2" BEL
-        "nex/dig3_1" BEL "nex/dig3_0" BEL "nex/motctl_7" BEL "nex/motctl_6"
-        BEL "nex/motctl_5" BEL "nex/motctl_4" BEL "nex/motctl_3" BEL
-        "nex/motctl_2" BEL "nex/motctl_1" BEL "nex/motctl_0" BEL "nex/led_7"
-        BEL "nex/led_6" BEL "nex/led_5" BEL "nex/led_4" BEL "nex/led_3" BEL
-        "nex/led_2" BEL "nex/led_1" BEL "nex/led_0" BEL "nex/in_port_7" BEL
-        "nex/in_port_6" BEL "nex/in_port_5" BEL "nex/in_port_4" BEL
-        "nex/in_port_3" BEL "nex/in_port_2" BEL "nex/in_port_1" BEL
-        "nex/in_port_0" BEL "nex/interrupt" BEL "bot1/WRLDIF/upd_sysregs" BEL
-        "bot1/WRLDIF/load_dist_regs" BEL "bot1/WRLDIF/load_sys_regs" BEL
-        "JA_3_OBUF_BUFG" PIN "bot1/BOTSIMPGM/kcpsm6_rom_pins<28>" PIN
+        "nex/interrupt" BEL "bot1/WRLDIF/upd_sysregs" BEL
+        "bot1/WRLDIF/load_dist_regs" BEL "bot1/WRLDIF/load_sys_regs" PIN
+        "bot1/BOTSIMPGM/kcpsm6_rom_pins<28>" PIN
         "bot_ctrl/ram_1k_generate.s6.kcpsm6_rom_pins<28>" PIN
         "bot1/MAP/MAP/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram_pins<28>"
         PIN
@@ -347,8 +360,7 @@ TIMEGRP sys_clk_pin = BEL "DB/db_count_21" BEL "DB/db_count_20" BEL
         "bot1/MAP/MAP/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram_pins<28>"
         PIN
         "bot1/MAP/MAP/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram_pins<29>"
-        BEL "JA<3>" BEL
-        "PSM/data_path_loop[0].small_spm.small_spm_ram.spm_ram_RAMA" BEL
+        BEL "PSM/data_path_loop[0].small_spm.small_spm_ram.spm_ram_RAMA" BEL
         "PSM/data_path_loop[0].small_spm.small_spm_ram.spm_ram_RAMB" BEL
         "PSM/data_path_loop[0].small_spm.small_spm_ram.spm_ram_RAMC" BEL
         "PSM/data_path_loop[0].small_spm.small_spm_ram.spm_ram_RAMD" BEL
@@ -418,7 +430,29 @@ TIMEGRP sys_clk_pin = BEL "DB/db_count_21" BEL "DB/db_count_20" BEL
         "bot1/BOTSIMCPU/upper_reg_banks_RAMC_D1" BEL
         "bot1/BOTSIMCPU/upper_reg_banks_RAMC" BEL
         "bot1/BOTSIMCPU/upper_reg_banks_RAMD_D1" BEL
-        "bot1/BOTSIMCPU/upper_reg_banks_RAMD";
+        "bot1/BOTSIMCPU/upper_reg_banks_RAMD" BEL "CLK0_BUFG_INST" PIN
+        "SP6_INS_BUFIO2FB_DCM_ML_BUFIO2FB_1_pins<1>" PIN
+        "DCM_SP_inst_pins<2>";
+TIMEGRP clk25 = BEL "colorizer1/out_color_7" BEL "colorizer1/out_color_5" BEL
+        "colorizer1/out_color_4" BEL "colorizer1/out_color_2" BEL
+        "colorizer1/out_color_1" BEL "colorizer1/out_color_0" BEL
+        "icon1/icon_1" BEL "dtg1/pixel_row_9" BEL "dtg1/pixel_row_8" BEL
+        "dtg1/pixel_row_7" BEL "dtg1/pixel_row_6" BEL "dtg1/pixel_row_5" BEL
+        "dtg1/pixel_row_4" BEL "dtg1/pixel_row_3" BEL "dtg1/pixel_row_2" BEL
+        "dtg1/pixel_row_1" BEL "dtg1/pixel_row_0" BEL "dtg1/pixel_column_9"
+        BEL "dtg1/pixel_column_8" BEL "dtg1/pixel_column_7" BEL
+        "dtg1/pixel_column_6" BEL "dtg1/pixel_column_5" BEL
+        "dtg1/pixel_column_4" BEL "dtg1/pixel_column_3" BEL
+        "dtg1/pixel_column_2" BEL "dtg1/pixel_column_1" BEL
+        "dtg1/pixel_column_0" BEL "dtg1/video_on" BEL "dtg1/vert_sync" BEL
+        "dtg1/horiz_sync" BEL "clk25_BUFG";
+PIN SP6_BUFIO_INSERT_ML_BUFIO2_0_pins<0> = BEL "SP6_BUFIO_INSERT_ML_BUFIO2_0"
+        PINNAME DIVCLK;
+PIN DCM_SP_inst_pins<3> = BEL "DCM_SP_inst" PINNAME CLKIN;
+TIMEGRP sys_clk_pin = BEL "JA<3>" PIN "SP6_BUFIO_INSERT_ML_BUFIO2_0_pins<0>"
+        PIN "DCM_SP_inst_pins<3>";
 TS_sys_clk_pin = PERIOD TIMEGRP "sys_clk_pin" 100 MHz HIGH 50%;
+TS_clk25 = PERIOD TIMEGRP "clk25" TS_sys_clk_pin / 4 HIGH 50%;
+TS_clk0_buf = PERIOD TIMEGRP "clk0_buf" TS_sys_clk_pin HIGH 50%;
 SCHEMATIC END;
 

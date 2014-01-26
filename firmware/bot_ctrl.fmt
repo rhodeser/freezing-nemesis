@@ -243,6 +243,8 @@
                 STORE s1, SP_SEM              ;
                 LOAD s1, 00                   ; turn off all of the decimal points
                 CALL SS_wrdpts                ;
+                LOAD s1, STATE                ; initialize to forward state
+                STORE s1, FORWARD_STATE
                 STORE s1, SP_OLDDP            ; and save the value
                 ENABLE INTERRUPT              ; get the ball rolling
                 ; ==================

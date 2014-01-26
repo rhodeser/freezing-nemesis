@@ -1,0 +1,8 @@
+Storage Target: SPI Flash Single FPGA
+4M
+FF
+Untitled
+C:\Users\rhodesej\Documents\PSU\540\ece540_proj1/
+
+MCS
+No

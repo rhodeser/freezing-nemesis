@@ -3,8 +3,8 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 Command Line: D:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\ngdbuild.exe -filter
 iseconfig/filter.filter -intstyle ise -dd _ngo -nt timestamp -uc
-C:/Users/rhodesej/Documents/PSU/540/ece540_proj1/nexys3fpga.ucf -p
-xc6slx16-csg324-3 Nexys3fpga.ngc Nexys3fpga.ngd
+C:/Users/rhodesej/Documents/PSU/540/ece540_proj1/project1_release/constraints/ne
+xys3fpga_withvideo.ucf -p xc6slx16-csg324-3 Nexys3fpga.ngc Nexys3fpga.ngd
 
 Reading NGO file
 "C:/Users/rhodesej/Documents/PSU/540/ece540_proj1/xilinx/Nexys3fpga.ngc" ...
@@ -14,20 +14,38 @@ Gathering constraint information from source properties...
 Done.
 
 Annotating constraints to design from ucf file
-"C:/Users/rhodesej/Documents/PSU/540/ece540_proj1/nexys3fpga.ucf" ...
+"C:/Users/rhodesej/Documents/PSU/540/ece540_proj1/project1_release/constraints/n
+exys3fpga_withvideo.ucf" ...
 Resolving constraint associations...
 Checking Constraint Associations...
+INFO:ConstraintSystem:178 - TNM 'sys_clk_pin', used in period specification
+   'TS_sys_clk_pin', was traced into DCM_SP instance DCM_SP_inst. The following
+   new TNM groups and period specifications were generated at the DCM_SP
+   output(s): 
+   CLK0: <TIMESPEC TS_clk0_buf = PERIOD "clk0_buf" TS_sys_clk_pin HIGH 50%>
+
+INFO:ConstraintSystem:178 - TNM 'sys_clk_pin', used in period specification
+   'TS_sys_clk_pin', was traced into DCM_SP instance DCM_SP_inst. The following
+   new TNM groups and period specifications were generated at the DCM_SP
+   output(s): 
+   CLKDV: <TIMESPEC TS_clk25 = PERIOD "clk25" TS_sys_clk_pin / 4 HIGH 50%>
+
 Done...
 
+INFO:NgdBuild:1222 - Setting CLKIN_PERIOD attribute associated with DCM instance
+   DCM_SP_inst to 10.000000 ns based on the period specification (<TIMESPEC
+   TS_sys_clk_pin = PERIOD sys_clk_pin 100000 kHz;>
+   [C:/Users/rhodesej/Documents/PSU/540/ece540_proj1/project1_release/constraint
+   s/nexys3fpga_withvideo.ucf(14)]).
 Checking expanded design ...
+WARNING:NgdBuild:443 - SFF primitive 'PSM/read_strobe_flop' has unconnected
+   output pin
 WARNING:NgdBuild:443 - SFF primitive 'bot1/BOTSIMCPU/read_strobe_flop' has
    unconnected output pin
 WARNING:NgdBuild:443 - SFF primitive 'bot1/BOTSIMCPU/k_write_strobe_flop' has
    unconnected output pin
 WARNING:NgdBuild:440 - FF primitive 'bot1/BOTSIMCPU/interrupt_ack_flop' has
    unconnected output pin
-WARNING:NgdBuild:443 - SFF primitive 'PSM/read_strobe_flop' has unconnected
-   output pin
 
 Partition Implementation Status
 -------------------------------
@@ -40,10 +58,10 @@ NGDBUILD Design Results Summary:
   Number of errors:     0
   Number of warnings:   4
 
-Total memory usage is 192880 kilobytes
+Total memory usage is 192940 kilobytes
 
 Writing NGD file "Nexys3fpga.ngd" ...
-Total REAL time to NGDBUILD completion:  10 sec
-Total CPU time to NGDBUILD completion:   10 sec
+Total REAL time to NGDBUILD completion:  9 sec
+Total CPU time to NGDBUILD completion:   9 sec
 
 Writing NGDBUILD log file "Nexys3fpga.bld"...
