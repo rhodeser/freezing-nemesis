@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Thu Jan 23 12:33:27 2014
+// Written by: Map P.20131013 on Sat Jan 25 18:04:56 2014
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -43,8 +43,8 @@ COMP "seg<6>" LOCATE = SITE "L14" LEVEL 1;
 COMP "seg<7>" LOCATE = SITE "M13" LEVEL 1;
 PIN bot1/BOTSIMPGM/kcpsm6_rom_pins<28> = BEL "bot1/BOTSIMPGM/kcpsm6_rom"
         PINNAME CLKA;
-PIN bot_ctr/ram_1k_generate.s6.kcpsm6_rom_pins<28> = BEL
-        "bot_ctr/ram_1k_generate.s6.kcpsm6_rom" PINNAME CLKA;
+PIN bot_ctrl/ram_1k_generate.s6.kcpsm6_rom_pins<28> = BEL
+        "bot_ctrl/ram_1k_generate.s6.kcpsm6_rom" PINNAME CLKA;
 PIN
         bot1/MAP/MAP/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram_pins<28>
         = BEL
@@ -339,7 +339,7 @@ TIMEGRP sys_clk_pin = BEL "DB/db_count_21" BEL "DB/db_count_20" BEL
         "nex/in_port_0" BEL "nex/interrupt" BEL "bot1/WRLDIF/upd_sysregs" BEL
         "bot1/WRLDIF/load_dist_regs" BEL "bot1/WRLDIF/load_sys_regs" BEL
         "JA_3_OBUF_BUFG" PIN "bot1/BOTSIMPGM/kcpsm6_rom_pins<28>" PIN
-        "bot_ctr/ram_1k_generate.s6.kcpsm6_rom_pins<28>" PIN
+        "bot_ctrl/ram_1k_generate.s6.kcpsm6_rom_pins<28>" PIN
         "bot1/MAP/MAP/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram_pins<28>"
         PIN
         "bot1/MAP/MAP/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram_pins<29>"
