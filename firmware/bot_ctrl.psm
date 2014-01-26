@@ -612,39 +612,44 @@ next_loc:		LOAD	s0,		LocX				; Dig[3:2] gets X-coordinate
 ; === This version reads the pushbuttons, calculates the new Motor Control   ===
 ; === register value and then writes MotCtl so Rojobot knows what to do      ===  
 ; ==============================================================================
-next_step:		CALL	DEB_rdbtns					; Read the pushbuttons. buttons returned in s0
-				CALL	btn2mot						; and calculate new MotCtl - returned in s1
-				OUTPUT	s1,		PA_MOTCTL_IN		; tell Rojobot what to do
-			
-;;NOTE:  TO REMOVE MODIFIED FUNCTIONALITY AND REVERT TO THE PROJ1DEMO, REMOVE THE FOLLOW COMMAND
-				CALL	test_state
-				;;store previous values and compare here?			
-				RETURN				
 
-					;check which state we are in and call the appropriate function
-test_state:
+; ==============================================================================
+; === next_step() - Tells rojobot what to do next                            ===    
+; === Upon interrupt, checks if we have new information and updates appropriately
+; === Controls bot movement to complete the map
+; ==============================================================================
+
+next_step:		;CALL	DEB_rdbtns					; Read the pushbuttons. buttons returned in s0
+				;CALL	btn2mot						; and calculate new MotCtl - returned in s1
+				;OUTPUT	s1,		PA_MOTCTL_IN		; tell Rojobot what to do
+			
+;;NOTE:  TO REMOVE MODIFIED FUNCTIONALITY AND REVERT TO THE PROJ1DEMO, REMOVE THE FOLLOW COMMANDS 
+;;AND UNCOMMENT THE 3 ABOVE
+
 			LOAD	s0,		00
 			OUTPUT	s0,		PA_MOTCTL_IN		;stop any bot movement
-			FETCH	s0,		STATE				
-			
-next1:		TEST	s0,		FORWARD_STATE
-			JUMP	Z,		next2
+			FETCH	s0,		STATE							
+			TEST	s0,		FORWARD_STATE
+			JUMP	Z,		next
 			CALL	mv_forward
-			RETURN		
+			RETURN				
 			
-next2:		TEST	s0,		BACKWARD_STATE
-			JUMP	Z,		next3
+next:		TEST	s0,		BACKWARD_STATE
+			JUMP	Z,		next1
 			CALL	mv_backward
 			RETURN		
 			
-next3:		TEST	s0,		TURNING_STATE
+next1:		TEST	s0,		TURNING_STATE
 			JUMP	Z,		error
 			CALL	start_turn
 			RETURN		
-
+			
 error:									
 			RETURN				
-	
+
+back_to_main:						;used as unconditional jump to return to main, can delete and use "RETURN"
+			RETURN
+			
 mv_forward:		
 				FETCH	s2,		SP_NEXT_ORIENT		;Clear saved orientation value
 				LOAD	s2,		00
@@ -652,37 +657,29 @@ mv_forward:
 				CALL	chk_obstacle
 				CALL	chk_blk_line
 				COMPARE	s1,		MSK_LN				;See if  on a black line
-				JUMP	NZ,		mv_backward			; if value >0, not ona  black line
+				JUMP	NZ,		mv_backward			; if value >0, not on a  black line
 				LOAD	s2,		SP_LRRR				;load forward constant
 				OUTPUT	s2,		PA_MOTCTL_IN		;start moving forward
 				LOAD	s0,		FORWARD_STATE
-				STORE	s0,		STATE 
-				RETURN						
-				
-clr_counter:				
-				FETCH	s4,		SP_ORI_CNTR
-				LOAD	s4,		00					;if we were moving forward and see a black line
-				STORE	s4,		SP_ORI_CNTR			;clear the counter
-				RETURN
-				
-stop_fwd:		LOAD	s3,		00
-				OUTPUT	s3,		PA_MOTCTL_IN		;stop turning
-				FETCH	s4,		SP_ORI_CNTR				; add one to counter
-				ADD		s4,		01					; done each time we miss to know when to skip
-				STORE	s4,		SP_ORI_CNTR
-				JUMP	mv_backward
+				STORE	s0,		STATE 				;update state
+				RETURN										
 
 mv_backward:				
-				;store current state
+
 				CALL	chk_blk_line				;return line value in s1
 				COMPARE	s1,		MSK_LN				;See if we're on a black line			
 				JUMP	Z,		chk_turn			;if we are, start turning state				
-				LOAD	s2,		MV_BOT_BCK
+				LOAD	s2,		MV_BOT_BCK			
 				OUTPUT	s2,		PA_MOTCTL_IN		;start moving backwards
 				LOAD	s0,		BACKWARD_STATE
-				STORE	s0,		STATE
+				STORE	s0,		STATE				;update state
 				RETURN
-				
+
+; =========================================================================================================
+; ===	chk_turn, turn_45, and turn_90 are only executed when a new state has been reached.  
+; ===	when the next system update occurs, the instructions go straight to start_turn
+; ===   Therefore states aren't updated here
+; =========================================================================================================
 chk_turn:	
 			
 				FETCH	s1, 	SP_ORI_CNTR			;get orientation counter			
@@ -694,13 +691,13 @@ chk_turn:
 				JUMP	Z,		turn_90			    ;if we're at 135 degrees, we need to turn 90 before stopping
 				JUMP	turn_45
 				
-				;if orientation = 45 different (and we want 45), go to forward state.  same thing with 90.  if not, keep turning.  update state where?
+				
 turn_45:		
 				LOAD	s2,		Botinf
 				AND		s2, 	MSKORIENT			;get current orientation
 				ADD		s2, 	01					;get orientation of next
 				AND		s2,		MSKORIENT
-				STORE	s2,		SP_NEXT_ORIENT			;store next orientation to know when to stop
+				STORE	s2,		SP_NEXT_ORIENT		;store next orientation to know when to stop
 				;LOAD	s0,		TURNING_45_STATE
 				;STORE	s0,		STATE				
 				JUMP	start_turn					;orientation of next location passed to start_turn so it knows when to stop	
@@ -726,9 +723,8 @@ start_turn:
 				LOAD	s1,		MV_SRT				;get right turn value
 				OUTPUT	s1,		PA_MOTCTL_IN		;start turning
 				LOAD	s0,		TURNING_STATE
-				STORE	s0,		STATE
-				
-		;;;*&*****************		JUMP	back to main loop somehow
+				STORE	s0,		STATE		
+				JUMP	back_to_main			; possibly just say "RETURN" and goes back to last saved pc?
 
 stop_maze:
 				LOAD	s3,		00

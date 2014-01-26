@@ -12,7 +12,7 @@ Target Device  : xc6slx16
 Target Package : csg324
 Target Speed   : -3
 Mapper Version : spartan6 -- $Revision: 1.55 $
-Mapped Date    : Sat Jan 25 18:04:32 2014
+Mapped Date    : Sun Jan 26 13:38:54 2014
 
 Mapping design into LUTs...
 Running directed packing...
@@ -31,10 +31,10 @@ Phase 2.7  Design Feasibility Check
 INFO:Place:834 - Only a subset of IOs are locked. Out of 54 IOs, 38 are locked
    and 16 are not locked. If you would like to print the names of these IOs,
    please set the environment variable XIL_PAR_DESIGN_CHECK_VERBOSE to 1. 
-Phase 2.7  Design Feasibility Check (Checksum:ed1e59b1) REAL time: 13 secs 
+Phase 2.7  Design Feasibility Check (Checksum:ed1e59b1) REAL time: 12 secs 
 
 Phase 3.31  Local Placement Optimization
-Phase 3.31  Local Placement Optimization (Checksum:6ef2c881) REAL time: 13 secs 
+Phase 3.31  Local Placement Optimization (Checksum:6ef2c881) REAL time: 12 secs 
 
 Phase 4.2  Initial Placement for Architecture Specific Features
 ....
@@ -49,7 +49,7 @@ Phase 6.30  Global Clock Region Assignment (Checksum:8713c711) REAL time: 16 sec
 
 Phase 7.3  Local Placement Optimization
 ....
-Phase 7.3  Local Placement Optimization (Checksum:930ee2a9) REAL time: 17 secs 
+Phase 7.3  Local Placement Optimization (Checksum:930ee2a9) REAL time: 16 secs 
 
 Phase 8.5  Local Placement Optimization
 Phase 8.5  Local Placement Optimization (Checksum:1f000474) REAL time: 17 secs 
@@ -63,15 +63,15 @@ Phase 10.5  Local Placement Optimization
 Phase 10.5  Local Placement Optimization (Checksum:89b3562b) REAL time: 19 secs 
 
 Phase 11.18  Placement Optimization
-Phase 11.18  Placement Optimization (Checksum:1ba54030) REAL time: 22 secs 
+Phase 11.18  Placement Optimization (Checksum:1ba54030) REAL time: 21 secs 
 
 Phase 12.5  Local Placement Optimization
-Phase 12.5  Local Placement Optimization (Checksum:1ba54030) REAL time: 22 secs 
+Phase 12.5  Local Placement Optimization (Checksum:1ba54030) REAL time: 21 secs 
 
 Phase 13.34  Placement Validation
-Phase 13.34  Placement Validation (Checksum:f3574334) REAL time: 22 secs 
+Phase 13.34  Placement Validation (Checksum:f3574334) REAL time: 21 secs 
 
-Total REAL time to Placer completion: 23 secs 
+Total REAL time to Placer completion: 22 secs 
 Total CPU  time to Placer completion: 21 secs 
 Running post-placement packing...
 Writing output files...
@@ -158,7 +158,7 @@ Specific Feature Utilization:
 Average Fanout of Non-Clock Nets:                3.48
 
 Peak Memory Usage:  382 MB
-Total REAL time to MAP completion:  24 secs 
+Total REAL time to MAP completion:  23 secs 
 Total CPU time to MAP completion:   23 secs 
 
 Mapping completed.
