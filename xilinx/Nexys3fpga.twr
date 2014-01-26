@@ -39,7 +39,7 @@ For more information, see Period Analysis in the Timing Closure User Guide (UG61
 Paths for end point nex/dig1_2 (SLICE_X35Y20.CE), 32 paths
 --------------------------------------------------------------------------------
 Slack (setup path):     1.258ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               bot_ctr/ram_1k_generate.s6.kcpsm6_rom (RAM)
+  Source:               bot_ctrl/ram_1k_generate.s6.kcpsm6_rom (RAM)
   Destination:          nex/dig1_2 (FF)
   Requirement:          10.000ns
   Data Path Delay:      8.684ns (Levels of Logic = 3)
@@ -54,12 +54,12 @@ Slack (setup path):     1.258ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: bot_ctr/ram_1k_generate.s6.kcpsm6_rom to nex/dig1_2
+  Maximum Data Path at Slow Process Corner: bot_ctrl/ram_1k_generate.s6.kcpsm6_rom to nex/dig1_2
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    RAMB16_X1Y24.DOA4    Trcko_DOA             1.850   bot_ctr/ram_1k_generate.s6.kcpsm6_rom
-                                                       bot_ctr/ram_1k_generate.s6.kcpsm6_rom
+    RAMB16_X1Y24.DOA4    Trcko_DOA             1.850   bot_ctrl/ram_1k_generate.s6.kcpsm6_rom
+                                                       bot_ctrl/ram_1k_generate.s6.kcpsm6_rom
     SLICE_X26Y41.C1      net (fanout=7)        1.832   instruction<4>
     SLICE_X26Y41.C       Tilo                  0.204   PSM/KCPSM6_REG1
                                                        PSM/upper_reg_banks_RAMC_D1
@@ -78,7 +78,7 @@ Slack (setup path):     1.258ns (requirement - (data path - clock path skew + un
 
 --------------------------------------------------------------------------------
 Slack (setup path):     1.319ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               bot_ctr/ram_1k_generate.s6.kcpsm6_rom (RAM)
+  Source:               bot_ctrl/ram_1k_generate.s6.kcpsm6_rom (RAM)
   Destination:          nex/dig1_2 (FF)
   Requirement:          10.000ns
   Data Path Delay:      8.623ns (Levels of Logic = 3)
@@ -93,12 +93,12 @@ Slack (setup path):     1.319ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: bot_ctr/ram_1k_generate.s6.kcpsm6_rom to nex/dig1_2
+  Maximum Data Path at Slow Process Corner: bot_ctrl/ram_1k_generate.s6.kcpsm6_rom to nex/dig1_2
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    RAMB16_X1Y24.DOA6    Trcko_DOA             1.850   bot_ctr/ram_1k_generate.s6.kcpsm6_rom
-                                                       bot_ctr/ram_1k_generate.s6.kcpsm6_rom
+    RAMB16_X1Y24.DOA6    Trcko_DOA             1.850   bot_ctrl/ram_1k_generate.s6.kcpsm6_rom
+                                                       bot_ctrl/ram_1k_generate.s6.kcpsm6_rom
     SLICE_X26Y41.C3      net (fanout=7)        1.771   instruction<6>
     SLICE_X26Y41.C       Tilo                  0.204   PSM/KCPSM6_REG1
                                                        PSM/upper_reg_banks_RAMC_D1
@@ -117,7 +117,7 @@ Slack (setup path):     1.319ns (requirement - (data path - clock path skew + un
 
 --------------------------------------------------------------------------------
 Slack (setup path):     1.359ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               bot_ctr/ram_1k_generate.s6.kcpsm6_rom (RAM)
+  Source:               bot_ctrl/ram_1k_generate.s6.kcpsm6_rom (RAM)
   Destination:          nex/dig1_2 (FF)
   Requirement:          10.000ns
   Data Path Delay:      8.583ns (Levels of Logic = 3)
@@ -132,12 +132,12 @@ Slack (setup path):     1.359ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: bot_ctr/ram_1k_generate.s6.kcpsm6_rom to nex/dig1_2
+  Maximum Data Path at Slow Process Corner: bot_ctrl/ram_1k_generate.s6.kcpsm6_rom to nex/dig1_2
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    RAMB16_X1Y24.DOA7    Trcko_DOA             1.850   bot_ctr/ram_1k_generate.s6.kcpsm6_rom
-                                                       bot_ctr/ram_1k_generate.s6.kcpsm6_rom
+    RAMB16_X1Y24.DOA7    Trcko_DOA             1.850   bot_ctrl/ram_1k_generate.s6.kcpsm6_rom
+                                                       bot_ctrl/ram_1k_generate.s6.kcpsm6_rom
     SLICE_X26Y41.C4      net (fanout=9)        1.731   instruction<7>
     SLICE_X26Y41.C       Tilo                  0.204   PSM/KCPSM6_REG1
                                                        PSM/upper_reg_banks_RAMC_D1
@@ -159,7 +159,7 @@ Slack (setup path):     1.359ns (requirement - (data path - clock path skew + un
 Paths for end point nex/dig1_1 (SLICE_X35Y20.CE), 32 paths
 --------------------------------------------------------------------------------
 Slack (setup path):     1.274ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               bot_ctr/ram_1k_generate.s6.kcpsm6_rom (RAM)
+  Source:               bot_ctrl/ram_1k_generate.s6.kcpsm6_rom (RAM)
   Destination:          nex/dig1_1 (FF)
   Requirement:          10.000ns
   Data Path Delay:      8.668ns (Levels of Logic = 3)
@@ -174,12 +174,12 @@ Slack (setup path):     1.274ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: bot_ctr/ram_1k_generate.s6.kcpsm6_rom to nex/dig1_1
+  Maximum Data Path at Slow Process Corner: bot_ctrl/ram_1k_generate.s6.kcpsm6_rom to nex/dig1_1
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    RAMB16_X1Y24.DOA4    Trcko_DOA             1.850   bot_ctr/ram_1k_generate.s6.kcpsm6_rom
-                                                       bot_ctr/ram_1k_generate.s6.kcpsm6_rom
+    RAMB16_X1Y24.DOA4    Trcko_DOA             1.850   bot_ctrl/ram_1k_generate.s6.kcpsm6_rom
+                                                       bot_ctrl/ram_1k_generate.s6.kcpsm6_rom
     SLICE_X26Y41.C1      net (fanout=7)        1.832   instruction<4>
     SLICE_X26Y41.C       Tilo                  0.204   PSM/KCPSM6_REG1
                                                        PSM/upper_reg_banks_RAMC_D1
@@ -198,7 +198,7 @@ Slack (setup path):     1.274ns (requirement - (data path - clock path skew + un
 
 --------------------------------------------------------------------------------
 Slack (setup path):     1.335ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               bot_ctr/ram_1k_generate.s6.kcpsm6_rom (RAM)
+  Source:               bot_ctrl/ram_1k_generate.s6.kcpsm6_rom (RAM)
   Destination:          nex/dig1_1 (FF)
   Requirement:          10.000ns
   Data Path Delay:      8.607ns (Levels of Logic = 3)
@@ -213,12 +213,12 @@ Slack (setup path):     1.335ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: bot_ctr/ram_1k_generate.s6.kcpsm6_rom to nex/dig1_1
+  Maximum Data Path at Slow Process Corner: bot_ctrl/ram_1k_generate.s6.kcpsm6_rom to nex/dig1_1
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    RAMB16_X1Y24.DOA6    Trcko_DOA             1.850   bot_ctr/ram_1k_generate.s6.kcpsm6_rom
-                                                       bot_ctr/ram_1k_generate.s6.kcpsm6_rom
+    RAMB16_X1Y24.DOA6    Trcko_DOA             1.850   bot_ctrl/ram_1k_generate.s6.kcpsm6_rom
+                                                       bot_ctrl/ram_1k_generate.s6.kcpsm6_rom
     SLICE_X26Y41.C3      net (fanout=7)        1.771   instruction<6>
     SLICE_X26Y41.C       Tilo                  0.204   PSM/KCPSM6_REG1
                                                        PSM/upper_reg_banks_RAMC_D1
@@ -237,7 +237,7 @@ Slack (setup path):     1.335ns (requirement - (data path - clock path skew + un
 
 --------------------------------------------------------------------------------
 Slack (setup path):     1.375ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               bot_ctr/ram_1k_generate.s6.kcpsm6_rom (RAM)
+  Source:               bot_ctrl/ram_1k_generate.s6.kcpsm6_rom (RAM)
   Destination:          nex/dig1_1 (FF)
   Requirement:          10.000ns
   Data Path Delay:      8.567ns (Levels of Logic = 3)
@@ -252,12 +252,12 @@ Slack (setup path):     1.375ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: bot_ctr/ram_1k_generate.s6.kcpsm6_rom to nex/dig1_1
+  Maximum Data Path at Slow Process Corner: bot_ctrl/ram_1k_generate.s6.kcpsm6_rom to nex/dig1_1
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    RAMB16_X1Y24.DOA7    Trcko_DOA             1.850   bot_ctr/ram_1k_generate.s6.kcpsm6_rom
-                                                       bot_ctr/ram_1k_generate.s6.kcpsm6_rom
+    RAMB16_X1Y24.DOA7    Trcko_DOA             1.850   bot_ctrl/ram_1k_generate.s6.kcpsm6_rom
+                                                       bot_ctrl/ram_1k_generate.s6.kcpsm6_rom
     SLICE_X26Y41.C4      net (fanout=9)        1.731   instruction<7>
     SLICE_X26Y41.C       Tilo                  0.204   PSM/KCPSM6_REG1
                                                        PSM/upper_reg_banks_RAMC_D1
@@ -279,7 +279,7 @@ Slack (setup path):     1.375ns (requirement - (data path - clock path skew + un
 Paths for end point nex/dig1_3 (SLICE_X35Y20.CE), 32 paths
 --------------------------------------------------------------------------------
 Slack (setup path):     1.282ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               bot_ctr/ram_1k_generate.s6.kcpsm6_rom (RAM)
+  Source:               bot_ctrl/ram_1k_generate.s6.kcpsm6_rom (RAM)
   Destination:          nex/dig1_3 (FF)
   Requirement:          10.000ns
   Data Path Delay:      8.660ns (Levels of Logic = 3)
@@ -294,12 +294,12 @@ Slack (setup path):     1.282ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: bot_ctr/ram_1k_generate.s6.kcpsm6_rom to nex/dig1_3
+  Maximum Data Path at Slow Process Corner: bot_ctrl/ram_1k_generate.s6.kcpsm6_rom to nex/dig1_3
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    RAMB16_X1Y24.DOA4    Trcko_DOA             1.850   bot_ctr/ram_1k_generate.s6.kcpsm6_rom
-                                                       bot_ctr/ram_1k_generate.s6.kcpsm6_rom
+    RAMB16_X1Y24.DOA4    Trcko_DOA             1.850   bot_ctrl/ram_1k_generate.s6.kcpsm6_rom
+                                                       bot_ctrl/ram_1k_generate.s6.kcpsm6_rom
     SLICE_X26Y41.C1      net (fanout=7)        1.832   instruction<4>
     SLICE_X26Y41.C       Tilo                  0.204   PSM/KCPSM6_REG1
                                                        PSM/upper_reg_banks_RAMC_D1
@@ -318,7 +318,7 @@ Slack (setup path):     1.282ns (requirement - (data path - clock path skew + un
 
 --------------------------------------------------------------------------------
 Slack (setup path):     1.343ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               bot_ctr/ram_1k_generate.s6.kcpsm6_rom (RAM)
+  Source:               bot_ctrl/ram_1k_generate.s6.kcpsm6_rom (RAM)
   Destination:          nex/dig1_3 (FF)
   Requirement:          10.000ns
   Data Path Delay:      8.599ns (Levels of Logic = 3)
@@ -333,12 +333,12 @@ Slack (setup path):     1.343ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: bot_ctr/ram_1k_generate.s6.kcpsm6_rom to nex/dig1_3
+  Maximum Data Path at Slow Process Corner: bot_ctrl/ram_1k_generate.s6.kcpsm6_rom to nex/dig1_3
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    RAMB16_X1Y24.DOA6    Trcko_DOA             1.850   bot_ctr/ram_1k_generate.s6.kcpsm6_rom
-                                                       bot_ctr/ram_1k_generate.s6.kcpsm6_rom
+    RAMB16_X1Y24.DOA6    Trcko_DOA             1.850   bot_ctrl/ram_1k_generate.s6.kcpsm6_rom
+                                                       bot_ctrl/ram_1k_generate.s6.kcpsm6_rom
     SLICE_X26Y41.C3      net (fanout=7)        1.771   instruction<6>
     SLICE_X26Y41.C       Tilo                  0.204   PSM/KCPSM6_REG1
                                                        PSM/upper_reg_banks_RAMC_D1
@@ -357,7 +357,7 @@ Slack (setup path):     1.343ns (requirement - (data path - clock path skew + un
 
 --------------------------------------------------------------------------------
 Slack (setup path):     1.383ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               bot_ctr/ram_1k_generate.s6.kcpsm6_rom (RAM)
+  Source:               bot_ctrl/ram_1k_generate.s6.kcpsm6_rom (RAM)
   Destination:          nex/dig1_3 (FF)
   Requirement:          10.000ns
   Data Path Delay:      8.559ns (Levels of Logic = 3)
@@ -372,12 +372,12 @@ Slack (setup path):     1.383ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: bot_ctr/ram_1k_generate.s6.kcpsm6_rom to nex/dig1_3
+  Maximum Data Path at Slow Process Corner: bot_ctrl/ram_1k_generate.s6.kcpsm6_rom to nex/dig1_3
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    RAMB16_X1Y24.DOA7    Trcko_DOA             1.850   bot_ctr/ram_1k_generate.s6.kcpsm6_rom
-                                                       bot_ctr/ram_1k_generate.s6.kcpsm6_rom
+    RAMB16_X1Y24.DOA7    Trcko_DOA             1.850   bot_ctrl/ram_1k_generate.s6.kcpsm6_rom
+                                                       bot_ctrl/ram_1k_generate.s6.kcpsm6_rom
     SLICE_X26Y41.C4      net (fanout=9)        1.731   instruction<7>
     SLICE_X26Y41.C       Tilo                  0.204   PSM/KCPSM6_REG1
                                                        PSM/upper_reg_banks_RAMC_D1
@@ -538,7 +538,7 @@ Design statistics:
 ------------------------------------Footnotes-----------------------------------
 1)  The minimum period statistic assumes all single cycle delays.
 
-Analysis completed Thu Jan 23 12:34:08 2014 
+Analysis completed Sat Jan 25 18:05:33 2014 
 --------------------------------------------------------------------------------
 
 Trace Settings:

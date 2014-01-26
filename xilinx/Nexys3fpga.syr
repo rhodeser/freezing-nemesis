@@ -4,13 +4,13 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.36 secs
+Total CPU time to Xst completion: 0.21 secs
  
 --> Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.36 secs
+Total CPU time to Xst completion: 0.21 secs
  
 --> Reading design: Nexys3fpga.prj
 
@@ -120,8 +120,8 @@ Parsing module <sevensegment>.
 Parsing module <Digit>.
 Analyzing Verilog file "C:\Users\rhodesej\Documents\PSU\540\ece540_proj1\nexys3_bot_if.v" into library work
 Parsing module <nexys3_bot_if>.
-Analyzing Verilog file "C:\Users\rhodesej\Documents\PSU\540\ece540_proj1\firmware\bot_control.v" into library work
-Parsing module <bot_control>.
+Analyzing Verilog file "C:\Users\rhodesej\Documents\PSU\540\ece540_proj1\firmware\bot_ctrl.v" into library work
+Parsing module <bot_ctrl>.
 Parsing module <jtag_loader_6>.
 Analyzing Verilog file "C:\Users\rhodesej\Documents\PSU\540\ece540_proj1\debounce.v" into library work
 Parsing module <debounce>.
@@ -231,16 +231,18 @@ Elaborating module <LUT6(INIT=64'b1111111100000000111100001111000011001100110011
 
 Elaborating module <RAM64M(INIT_A=64'b0,INIT_B=64'b0,INIT_C=64'b0,INIT_D=64'b0)>.
 
-Elaborating module <bot_control>.
+Elaborating module <bot_ctrl>.
 
 Elaborating module
-<RAMB16BWER(DATA_WIDTH_A=18,DOA_REG=0,EN_RSTRAM_A="FALSE",INIT_A=9'b0,RST_PRIORITY_A="CE",SRVAL_A=9'b0,WRITE_MODE_A="WRITE_FIRST",DATA_WIDTH_B=18,DOB_REG=0,EN_RSTRAM_B="FALSE",INIT_B=9'b0,RST_PRIORITY_B="CE",SRVAL_B=9'b0,WRITE_MODE_B="WRITE_FIRST",RSTTYPE="SYNC",INIT_FILE="NONE",SIM_COLLISION_CHECK="ALL",SIM_DEVICE="SPARTAN6",INIT_00=256'b010000000010010000000001101000001100000000100001101000000000001000000001110100000100000000010001101011000000000101101100010000010000000000000011111000100100111000000001111011100010001000000001111000100100000000100010000000000000000010111100000000000100111,INIT_01=256'b011101111000000011000000000010010000000010000000011101111000000010111000000010010000000000010000000001000111101100010000010010110000000011011011000100000000000001110000100000000111010110000000111010000000000000001101000000000100111010000000010010101,INIT_02=256'b1110000100000000000100010000001100010000000000011110000100000000000100010000001000010000000000011110000100000000000100010000000000010000000000000101000
-000000000000000001110111100000001101000000001001000000011000000001110111100000001100100000001001000000010,INIT_03=256'b01000000000001111000010000000000010001001000000001000000000001111000010000000000010001001000110001000000000001111000010000000000010001001000100001000000000001111000010000000000010001001000000001000000000001111000010000000000010001000000000001000000000001,INIT_04=256'b01000100000010000100000000000111100001000000000001000100000000000100000000000111100001000000000001000100110000000100000000000111100001000000000001000100110011000100000000000111100001000000000001000100110010000100000000000111100001000000000001000100110000,INIT_05=256'b01000100011000000100000001000001010000000000001010000100100000000000100001000000110001000011110000000100000000000100100000000001010000000000001110000100000000000100010000000000010000000000011110000100000000000100010000001100010000000000011110000100000000,INIT_06=256'b11100001000000000001000100010111000100000000000111100001000000000001000100001111000100000000000111100
-00100000000000100010001011100010000000000011110000100000000000100010001011100010000000000011110000100000000000100010001011100010000000000011110000100000000,INIT_07=256'b01000000000001111000010000000000010001000101110001000000000001111000010000000000010001000101110001000000000001111000010000000000010001000010110001000000000001111000010000000000010001000101110001000000000001111000010000000000010001000101110001000000000001,INIT_08=256'b01001000010000010100000000000011100001000000000001000100011100000100000000000111100001000000000001000100011010000100000000000111100001000000000001000100011011000100000000000111100001000000000001000100011001000100000000000111100001000000000001000100010111,INIT_09=256'b1101000000000000001100000000011100000000110000000101000000000000000010100001000000000000100011110100000000001110010000000000111001000000000011100100000000001110000000001100000001010000000000001010000100100000000000100001000000110001000011110000000100000000,INIT_0A=256'b0101100000000000010101000010010001010000000000011
-0000010110001110100000000001000100000110011000001011000000101000101010000010000010100000000000110000010101011110100000000000100100000110011000001011000000000000101010000000000010100000000000110000010100101,INIT_0B=256'b01010000000010011000001100001111010000000001010010000011001100000101100000000000010101000010000001010000000001011000001011110111010000000001000010000011001100000101100000010100010101000000110001010000000001011000001011011111010000000000110010000011001100,INIT_0C=256'b0101000000000000000001110110000000001000010100000000100101000000000101100000010100010101000000010001010000000011001000001100110000010110000000000001010100000111000101000000001001100000110010011101000000000110001000001100110000010110000001010001010100000010,INIT_0D=256'b0100000000000010000000000111001000000000011100100000000001110010000000000111000110111000011110000011100000000000000001110000000001010000000000100000000001110010000000000111001000000000011100100000000001110001110010000111100001001000000000000000011110000,INIT_0E=256'b
-1101001000000100010100000000000011010000000000100011000011111111000000000001000001010000000000000011000011111111100100000000000101010000000000000011000000011111100100000000000001010000000000001101000100001001000000000101100000000000111001010101000000000000,INIT_0F=256'b01010000000001000000001110111100010010000000001010000101000000000001000001000001010000000000001101000000000111001100000000111100000000000100000101000000000000110000110000000000110011000111110000001100010000100000000010000000010000000001101101000000000000,INIT_10=256'b010100000000000000000000111101111010000101000000000101000000000100000000111011110001001000000011101000010100000000010100000000010000000011101111000100100000001010100001010000000001010000000001000000001110111100010010000000011010000101000000,INIT_11=256'b0,INIT_12=256'b0,INIT_13=256'b0,INIT_14=256'b0,INIT_15=256'b0,INIT_16=256'b0,INIT_17=256'b0,INIT_18=256'b0,INIT_19=256'b0,INIT_1A=256'b0,INIT_1B=256'b0,INIT_1C=256'b0,INIT_1D=256'b0,INIT_1E=256'b0,INIT_1F=256'b0,INIT_20=256'b0,INIT_
-21=256'b0,INIT_22=256'b0,INIT_23=256'b0,INIT_24=256'b0,INIT_25=256'b0,INIT_26=256'b0,INIT_27=256'b0,INIT_28=256'b0,INIT_29=256'b0,INIT_2A=256'b0,INIT_2B=256'b0,INIT_2C=256'b0,INIT_2D=256'b0,INIT_2E=256'b0,INIT_2F=256'b0,INIT_30=256'b1011011000100111111101100010000000010110000000011111010100100100100101010000111111110101001000111001010100001110100111010000110110011100000011001001111000001011100111110000101001100011000011111101011011111111101101100010000011110101001000101111011000100001,INIT_31=256'b0100100000000000110110110001000101011010100100001111101100010011111010110000001110111011000000001,INIT_32=256'b0,INIT_33=256'b0,INIT_34=256'b0,INIT_35=256'b0,INIT_36=256'b0,INIT_37=256'b0,INIT_38=256'b0,INIT_39=256'b0,INIT_3A=256'b0,INIT_3B=256'b0,INIT_3C=256'b0,INIT_3D=256'b0,INIT_3E=256'b0,INIT_3F=256'b01000110000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-0000000000000000000000000000000000000000,INITP_00=256'b0110000110000110000110000110000110000110000110000110000110000110000010000100000010100001100001100001100001100001100001100001100001100001100001100001100001100001100001100001100000101000001000001000001000001010010010100010101010101100101101001010100010001010,INITP_01=256'b0110000000101000001010000001001101101000001000001000001010101010000101010100000000010101010000001000000000000010000000110110000000110110000000110110000000110110000000110110000000110110000000110100001000100101010100100001000000101000011000011000011000011000,INITP_02=256'b0101000011000000110000001100000,INITP_03=256'b0,INITP_04=256'b0,INITP_05=256'b0,INITP_06=256'b010000010100000100110001000000000001100001010,INITP_07=256'b1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000>.
+<RAMB16BWER(DATA_WIDTH_A=18,DOA_REG=0,EN_RSTRAM_A="FALSE",INIT_A=9'b0,RST_PRIORITY_A="CE",SRVAL_A=9'b0,WRITE_MODE_A="WRITE_FIRST",DATA_WIDTH_B=18,DOB_REG=0,EN_RSTRAM_B="FALSE",INIT_B=9'b0,RST_PRIORITY_B="CE",SRVAL_B=9'b0,WRITE_MODE_B="WRITE_FIRST",RSTTYPE="SYNC",INIT_FILE="NONE",SIM_COLLISION_CHECK="ALL",SIM_DEVICE="SPARTAN6",INIT_00=256'b010000000010010000000001101000001100000000100001101000000000001000000010010011100100000000010001101011000000000101101100010000010000000000000011111000100100111000000010011011000010001000000001111000100100000000100010000000000000000010111100000000000100111,INIT_01=256'b0100101110000000011000000000010010000000010000000100101110000000010111000000010010000000000010000000001000111101100010000010010110000000011011011000100000000000001110000100000001001010100000000111010000000000000001101000000000100111010000000010010101,INIT_02=256'b111000010000000000010001000000110001000000000001111000010000000000010001000000100001000000000001111000010000000000010001000000000001000000000000010100
+0000000000000000010010111000000001101000000001001000000011000000010010111000000001100100000001001000000010,INIT_03=256'b01000000000001111000010000000000010001001000000001000000000001111000010000000000010001001000110001000000000001111000010000000000010001001000100001000000000001111000010000000000010001001000000001000000000001111000010000000000010001000000000001000000000001,INIT_04=256'b01000100000010000100000000000111100001000000000001000100000000000100000000000111100001000000000001000100110000000100000000000111100001000000000001000100110011000100000000000111100001000000000001000100110010000100000000000111100001000000000001000100110000,INIT_05=256'b01000100011000000100000001000001010000000000001010000100100000000000100001000000110001000011110000000100000000000100100000000001010000000000001110000100000000000100010000000000010000000000011110000100000000000100010000001100010000000000011110000100000000,INIT_06=256'b1110000100000000000100010001011100010000000000011110000100000000000100010000111100010000000000011110
+000100000000000100010001011100010000000000011110000100000000000100010001011100010000000000011110000100000000000100010001011100010000000000011110000100000000,INIT_07=256'b01000000000001111000010000000000010001000101110001000000000001111000010000000000010001000101110001000000000001111000010000000000010001000010110001000000000001111000010000000000010001000101110001000000000001111000010000000000010001000101110001000000000001,INIT_08=256'b01001000010000010100000000000011100001000000000001000100011100000100000000000111100001000000000001000100011010000100000000000111100001000000000001000100011011000100000000000111100001000000000001000100011001000100000000000111100001000000000001000100010111,INIT_09=256'b1101000000000000001100000000011100000000110000000101000000000000000010100001000000000000100011110100000000001110010000000000111001000000000011100100000000001110000000001100000001010000000000001010000100100000000000100001000000110001000011110000000100000000,INIT_0A=256'b010110000000000001010100001001000101000000000001
+10000010110001110100000000001000100000110011000001011000000101000101010000010000010100000000000110000010101011110100000000000100100000110011000001011000000000000101010000000000010100000000000110000010100101,INIT_0B=256'b01010000000010011000001100001111010000000001010010000011001100000101100000000000010101000010000001010000000001011000001011110111010000000001000010000011001100000101100000010100010101000000110001010000000001011000001011011111010000000000110010000011001100,INIT_0C=256'b0101000000000000000001110110000000001000010100000000100101000000000101100000010100010101000000010001010000000011001000001100110000010110000000000001010100000111000101000000001001100000110010011101000000000110001000001100110000010110000001010001010100000010,INIT_0D=256'b0100000000000010000000000111001000000000011100100000000001110010000000000111000110111000011110000011100000000000000001110000000001010000000000100000000001110010000000000111001000000000011100100000000001110001110010000111100001001000000000000000011110000,INIT_0E=256'
+b01001000100010000000001110100001010000000000000101000000000000001000010010000111010001000110000011000100011000000000011101000001010000000000000011000100000111000000011101000001010000000000001101000100001001000000000101100000000001001001000101000000000000,INIT_0F=256'b1111010000101000000101000000000110110100001010001101001100001001000100110000000001010000000000001111010000101000000101000000000010110100001010000010000011101110010000001111011111010101000000010010000011111011110100010000011100000000111001011101001000001001,INIT_10=256'b01001000000001001100100000011100000010110000000010000100010010110000110001000000010011000001001011000100101000001000010000100111010011000010010001001100000000001000010000000111010001000001110000000011100101110100100000100100010010001000100010000100000001,INIT_11=256'b0101010000000111010011000010010001001100000000011000010001011111000010000000000011000000000111000000001100000011010001000010010001000100001110001000010001011100110010000001110001001000000010001100100000011100000010110
+0000000100001000101110011001000000111,INIT_12=256'b1101000000000000110100100000010001010000000000001101000000000010001100001111111100000000000100000101000000000000001100001111111110010000000000010101000000000000001100000001111110010000000000000101000000000000110100110000100100010011000000000010000011101110,INIT_13=256'b1010000101000000000101000000000100000001001011100001001000000000101000010100000000000100000100000101000000000000110100000000011100110000000011110000000000010000010100000000000011000011000000000011001100011111000000110001000010000000001000000001000000000110,INIT_14=256'b01010000000000000000000100110110101000010100000000010100000000010000000100101110000100100000001110100001010000000001010000000001000000010010111000010010000000101010000101000000000101000000000100000001001011100001001000000001,INIT_15=256'b0,INIT_16=256'b0,INIT_17=256'b0,INIT_18=256'b0,INIT_19=256'b0,INIT_1A=256'b0,INIT_1B=256'b0,INIT_1C=256'b0,INIT_1D=256'b0,INIT_1E=256'b0,INIT_1F=256'b0,INIT_20=256'b0,INIT_21=256'b0,INIT_22=256'b
+0,INIT_23=256'b0,INIT_24=256'b0,INIT_25=256'b0,INIT_26=256'b0,INIT_27=256'b0,INIT_28=256'b0,INIT_29=256'b0,INIT_2A=256'b0,INIT_2B=256'b0,INIT_2C=256'b0,INIT_2D=256'b0,INIT_2E=256'b0,INIT_2F=256'b0,INIT_30=256'b1011011000100111111101100010000000010110000000011111010100100100100101010000111111110101001000111001010100001110100111010000110110011100000011001001111000001011100111110000101001100011000011111101011011111111101101100010000011110101001000101111011000100001,INIT_31=256'b0100100000000000110110110001000101011010100100001111101100010011111010110000001110111011000000001,INIT_32=256'b0,INIT_33=256'b0,INIT_34=256'b0,INIT_35=256'b0,INIT_36=256'b0,INIT_37=256'b0,INIT_38=256'b0,INIT_39=256'b0,INIT_3A=256'b0,INIT_3B=256'b0,INIT_3C=256'b0,INIT_3D=256'b0,INIT_3E=256'b0,INIT_3F=256'b0100011000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+00000000000000000,INITP_00=256'b0110000110000110000110000110000110000110000110000110000110000110000010000100000010100001100001100001100001100001100001100001100001100001100001100001100001100001100001100001100000101000001000001000001000001010010010100010101010101100101101001010100010001010,INITP_01=256'b1001001000101000001011011101101000101010110100001000001010101010000101010100000000010101010000001000000000000010000000110110000000110110000000110110000000110110000000110110000000110110000000110100001000100101010100100001000000101000011000011000011000011000,INITP_02=256'b0101000011000000110000001100000011000000010100000101000000100110110100000100000100000101000100010001101000010001000010000100001000011010000101000110110100010,INITP_03=256'b0,INITP_04=256'b0,INITP_05=256'b0,INITP_06=256'b010000010100000100110001000000000001100001010,INITP_07=256'b10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+00000000000000000000000000000000000000000000000000000000000000000000000000000000000000>.
 
 Elaborating module <jtag_loader_6(C_FAMILY="S6",C_NUM_PICOBLAZE=1,C_JTAG_LOADER_ENABLE=1,C_BRAM_MAX_ADDR_WIDTH=32'sb01010,C_ADDR_WIDTH_0=32'sb01010)>.
 
@@ -283,7 +285,7 @@ WARNING:HDLCompiler:1499 - "C:\Users\rhodesej\Documents\PSU\540\ece540_proj1\xil
 Synthesizing Unit <Nexys3fpga>.
     Related source file is "C:\Users\rhodesej\Documents\PSU\540\ece540_proj1\nexys3fpga.v".
 INFO:Xst:3210 - "C:\Users\rhodesej\Documents\PSU\540\ece540_proj1\nexys3fpga.v" line 103: Output port <digits_out> of the instance <SSB> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "C:\Users\rhodesej\Documents\PSU\540\ece540_proj1\nexys3fpga.v" line 146: Output port <rdl> of the instance <bot_ctr> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:\Users\rhodesej\Documents\PSU\540\ece540_proj1\nexys3fpga.v" line 146: Output port <rdl> of the instance <bot_ctrl> is unconnected or connected to loadless signal.
     Summary:
 	no macro.
 Unit <Nexys3fpga> synthesized.
@@ -580,18 +582,18 @@ Synthesizing Unit <kcpsm6>.
 	no macro.
 Unit <kcpsm6> synthesized.
 
-Synthesizing Unit <bot_control>.
-    Related source file is "C:\Users\rhodesej\Documents\PSU\540\ece540_proj1\firmware\bot_control.v".
+Synthesizing Unit <bot_ctrl>.
+    Related source file is "C:\Users\rhodesej\Documents\PSU\540\ece540_proj1\firmware\bot_ctrl.v".
         C_JTAG_LOADER_ENABLE = 1
         C_FAMILY = "S6"
         C_RAM_SIZE_KWORDS = 1
         BRAM_ADDRESS_WIDTH = 10
     Summary:
 	no macro.
-Unit <bot_control> synthesized.
+Unit <bot_ctrl> synthesized.
 
 Synthesizing Unit <jtag_loader_6>.
-    Related source file is "C:\Users\rhodesej\Documents\PSU\540\ece540_proj1\firmware\bot_control.v".
+    Related source file is "C:\Users\rhodesej\Documents\PSU\540\ece540_proj1\firmware\bot_ctrl.v".
         C_JTAG_LOADER_ENABLE = 1
         C_FAMILY = "S6"
         C_NUM_PICOBLAZE = 1
@@ -1193,14 +1195,14 @@ NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
 
 Clock Information:
 ------------------
---------------------------------------------------+-----------------------------------------------------------------------+-------+
-Clock Signal                                      | Clock buffer(FF name)                                                 | Load  |
---------------------------------------------------+-----------------------------------------------------------------------+-------+
-clk100                                            | IBUF+BUFG                                                             | 532   |
-bot_ctr/jtag_clk                                  | NONE(bot_ctr/instantiate_loader.jtag_loader_6_inst/control_dout_int_7)| 6     |
-bot_ctr/instantiate_loader.jtag_loader_6_inst/drck| BUFG                                                                  | 31    |
-JA_0_OBUF                                         | NONE(bot1/BOTSIMPGM/kcpsm6_rom)                                       | 1     |
---------------------------------------------------+-----------------------------------------------------------------------+-------+
+---------------------------------------------------+------------------------------------------------------------------------+-------+
+Clock Signal                                       | Clock buffer(FF name)                                                  | Load  |
+---------------------------------------------------+------------------------------------------------------------------------+-------+
+clk100                                             | IBUF+BUFG                                                              | 532   |
+bot_ctrl/jtag_clk                                  | NONE(bot_ctrl/instantiate_loader.jtag_loader_6_inst/control_dout_int_7)| 6     |
+bot_ctrl/instantiate_loader.jtag_loader_6_inst/drck| BUFG                                                                   | 31    |
+JA_0_OBUF                                          | NONE(bot1/BOTSIMPGM/kcpsm6_rom)                                        | 1     |
+---------------------------------------------------+------------------------------------------------------------------------+-------+
 INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
 
 Asynchronous Control Signals Information:
@@ -1251,45 +1253,45 @@ Delay:               7.579ns (Levels of Logic = 9)
                                        (61.6% logic, 38.4% route)
 
 =========================================================================
-Timing constraint: Default period analysis for Clock 'bot_ctr/jtag_clk'
+Timing constraint: Default period analysis for Clock 'bot_ctrl/jtag_clk'
   Clock period: 1.713ns (frequency: 583.686MHz)
   Total number of paths / destination ports: 2 / 2
 -------------------------------------------------------------------------
 Delay:               1.713ns (Levels of Logic = 1)
-  Source:            bot_ctr/instantiate_loader.jtag_loader_6_inst/picoblaze_reset_int_0 (FF)
-  Destination:       bot_ctr/instantiate_loader.jtag_loader_6_inst/picoblaze_reset_int_0 (FF)
-  Source Clock:      bot_ctr/jtag_clk rising
-  Destination Clock: bot_ctr/jtag_clk rising
+  Source:            bot_ctrl/instantiate_loader.jtag_loader_6_inst/picoblaze_reset_int_0 (FF)
+  Destination:       bot_ctrl/instantiate_loader.jtag_loader_6_inst/picoblaze_reset_int_0 (FF)
+  Source Clock:      bot_ctrl/jtag_clk rising
+  Destination Clock: bot_ctrl/jtag_clk rising
 
-  Data Path: bot_ctr/instantiate_loader.jtag_loader_6_inst/picoblaze_reset_int_0 to bot_ctr/instantiate_loader.jtag_loader_6_inst/picoblaze_reset_int_0
+  Data Path: bot_ctrl/instantiate_loader.jtag_loader_6_inst/picoblaze_reset_int_0 to bot_ctrl/instantiate_loader.jtag_loader_6_inst/picoblaze_reset_int_0
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FD:C->Q               2   0.447   0.961  bot_ctr/instantiate_loader.jtag_loader_6_inst/picoblaze_reset_int_0 (bot_ctr/instantiate_loader.jtag_loader_6_inst/picoblaze_reset_int_0)
-     LUT5:I0->O            1   0.203   0.000  bot_ctr/instantiate_loader.jtag_loader_6_inst/picoblaze_reset_int_0_rstpot (bot_ctr/instantiate_loader.jtag_loader_6_inst/picoblaze_reset_int_0_rstpot)
-     FD:D                      0.102          bot_ctr/instantiate_loader.jtag_loader_6_inst/picoblaze_reset_int_0
+     FD:C->Q               2   0.447   0.961  bot_ctrl/instantiate_loader.jtag_loader_6_inst/picoblaze_reset_int_0 (bot_ctrl/instantiate_loader.jtag_loader_6_inst/picoblaze_reset_int_0)
+     LUT5:I0->O            1   0.203   0.000  bot_ctrl/instantiate_loader.jtag_loader_6_inst/picoblaze_reset_int_0_rstpot (bot_ctrl/instantiate_loader.jtag_loader_6_inst/picoblaze_reset_int_0_rstpot)
+     FD:D                      0.102          bot_ctrl/instantiate_loader.jtag_loader_6_inst/picoblaze_reset_int_0
     ----------------------------------------
     Total                      1.713ns (0.752ns logic, 0.961ns route)
                                        (43.9% logic, 56.1% route)
 
 =========================================================================
-Timing constraint: Default period analysis for Clock 'bot_ctr/instantiate_loader.jtag_loader_6_inst/drck'
+Timing constraint: Default period analysis for Clock 'bot_ctrl/instantiate_loader.jtag_loader_6_inst/drck'
   Clock period: 3.365ns (frequency: 297.217MHz)
   Total number of paths / destination ports: 85 / 48
 -------------------------------------------------------------------------
 Delay:               3.365ns (Levels of Logic = 1)
-  Source:            bot_ctr/instantiate_loader.jtag_loader_6_inst/bram_ce_0 (FF)
-  Destination:       bot_ctr/instantiate_loader.jtag_loader_6_inst/jtag_din_int_17 (FF)
-  Source Clock:      bot_ctr/instantiate_loader.jtag_loader_6_inst/drck rising
-  Destination Clock: bot_ctr/instantiate_loader.jtag_loader_6_inst/drck rising
+  Source:            bot_ctrl/instantiate_loader.jtag_loader_6_inst/bram_ce_0 (FF)
+  Destination:       bot_ctrl/instantiate_loader.jtag_loader_6_inst/jtag_din_int_17 (FF)
+  Source Clock:      bot_ctrl/instantiate_loader.jtag_loader_6_inst/drck rising
+  Destination Clock: bot_ctrl/instantiate_loader.jtag_loader_6_inst/drck rising
 
-  Data Path: bot_ctr/instantiate_loader.jtag_loader_6_inst/bram_ce_0 to bot_ctr/instantiate_loader.jtag_loader_6_inst/jtag_din_int_17
+  Data Path: bot_ctrl/instantiate_loader.jtag_loader_6_inst/bram_ce_0 to bot_ctrl/instantiate_loader.jtag_loader_6_inst/jtag_din_int_17
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDE:C->Q             21   0.447   1.342  bot_ctr/instantiate_loader.jtag_loader_6_inst/bram_ce_0 (bot_ctr/instantiate_loader.jtag_loader_6_inst/bram_ce_0)
-     LUT4:I1->O           18   0.205   1.049  bot_ctr/instantiate_loader.jtag_loader_6_inst/_n0186_inv1 (bot_ctr/instantiate_loader.jtag_loader_6_inst/_n0186_inv)
-     FDE:CE                    0.322          bot_ctr/instantiate_loader.jtag_loader_6_inst/jtag_din_int_0
+     FDE:C->Q             21   0.447   1.342  bot_ctrl/instantiate_loader.jtag_loader_6_inst/bram_ce_0 (bot_ctrl/instantiate_loader.jtag_loader_6_inst/bram_ce_0)
+     LUT4:I1->O           18   0.205   1.049  bot_ctrl/instantiate_loader.jtag_loader_6_inst/_n0186_inv1 (bot_ctrl/instantiate_loader.jtag_loader_6_inst/_n0186_inv)
+     FDE:CE                    0.322          bot_ctrl/instantiate_loader.jtag_loader_6_inst/jtag_din_int_0
     ----------------------------------------
     Total                      3.365ns (0.974ns logic, 2.391ns route)
                                        (28.9% logic, 71.1% route)
@@ -1335,41 +1337,41 @@ Offset:              1.903ns (Levels of Logic = 1)
                                        (69.6% logic, 30.4% route)
 
 =========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'bot_ctr/jtag_clk'
+Timing constraint: Default OFFSET IN BEFORE for Clock 'bot_ctrl/jtag_clk'
   Total number of paths / destination ports: 6 / 6
 -------------------------------------------------------------------------
 Offset:              2.431ns (Levels of Logic = 1)
-  Source:            bot_ctr/instantiate_loader.jtag_loader_6_inst/jtag_loader_gen.BSCAN_SPARTAN6_gen.BSCAN_BLOCK_inst:SEL (PAD)
-  Destination:       bot_ctr/instantiate_loader.jtag_loader_6_inst/control_dout_int_7 (FF)
-  Destination Clock: bot_ctr/jtag_clk rising
+  Source:            bot_ctrl/instantiate_loader.jtag_loader_6_inst/jtag_loader_gen.BSCAN_SPARTAN6_gen.BSCAN_BLOCK_inst:SEL (PAD)
+  Destination:       bot_ctrl/instantiate_loader.jtag_loader_6_inst/control_dout_int_7 (FF)
+  Destination Clock: bot_ctrl/jtag_clk rising
 
-  Data Path: bot_ctr/instantiate_loader.jtag_loader_6_inst/jtag_loader_gen.BSCAN_SPARTAN6_gen.BSCAN_BLOCK_inst:SEL to bot_ctr/instantiate_loader.jtag_loader_6_inst/control_dout_int_7
+  Data Path: bot_ctrl/instantiate_loader.jtag_loader_6_inst/jtag_loader_gen.BSCAN_SPARTAN6_gen.BSCAN_BLOCK_inst:SEL to bot_ctrl/instantiate_loader.jtag_loader_6_inst/control_dout_int_7
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-    BSCAN_SPARTAN6:SEL    21   0.000   1.114  bot_ctr/instantiate_loader.jtag_loader_6_inst/jtag_loader_gen.BSCAN_SPARTAN6_gen.BSCAN_BLOCK_inst (bot_ctr/instantiate_loader.jtag_loader_6_inst/bram_ce_valid)
-     LUT3:I2->O            4   0.205   0.683  bot_ctr/instantiate_loader.jtag_loader_6_inst/bram_ce_valid_control_reg_ce_AND_11_o_inv1 (bot_ctr/instantiate_loader.jtag_loader_6_inst/bram_ce_valid_control_reg_ce_AND_11_o_inv)
-     FDR:R                     0.430          bot_ctr/instantiate_loader.jtag_loader_6_inst/control_dout_int_0
+    BSCAN_SPARTAN6:SEL    21   0.000   1.114  bot_ctrl/instantiate_loader.jtag_loader_6_inst/jtag_loader_gen.BSCAN_SPARTAN6_gen.BSCAN_BLOCK_inst (bot_ctrl/instantiate_loader.jtag_loader_6_inst/bram_ce_valid)
+     LUT3:I2->O            4   0.205   0.683  bot_ctrl/instantiate_loader.jtag_loader_6_inst/bram_ce_valid_control_reg_ce_AND_11_o_inv1 (bot_ctrl/instantiate_loader.jtag_loader_6_inst/bram_ce_valid_control_reg_ce_AND_11_o_inv)
+     FDR:R                     0.430          bot_ctrl/instantiate_loader.jtag_loader_6_inst/control_dout_int_0
     ----------------------------------------
     Total                      2.431ns (0.635ns logic, 1.796ns route)
                                        (26.1% logic, 73.9% route)
 
 =========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'bot_ctr/instantiate_loader.jtag_loader_6_inst/drck'
+Timing constraint: Default OFFSET IN BEFORE for Clock 'bot_ctrl/instantiate_loader.jtag_loader_6_inst/drck'
   Total number of paths / destination ports: 86 / 50
 -------------------------------------------------------------------------
 Offset:              2.854ns (Levels of Logic = 1)
-  Source:            bot_ctr/instantiate_loader.jtag_loader_6_inst/jtag_loader_gen.BSCAN_SPARTAN6_gen.BSCAN_BLOCK_inst:SHIFT (PAD)
-  Destination:       bot_ctr/instantiate_loader.jtag_loader_6_inst/jtag_din_int_17 (FF)
-  Destination Clock: bot_ctr/instantiate_loader.jtag_loader_6_inst/drck rising
+  Source:            bot_ctrl/instantiate_loader.jtag_loader_6_inst/jtag_loader_gen.BSCAN_SPARTAN6_gen.BSCAN_BLOCK_inst:SHIFT (PAD)
+  Destination:       bot_ctrl/instantiate_loader.jtag_loader_6_inst/jtag_din_int_17 (FF)
+  Destination Clock: bot_ctrl/instantiate_loader.jtag_loader_6_inst/drck rising
 
-  Data Path: bot_ctr/instantiate_loader.jtag_loader_6_inst/jtag_loader_gen.BSCAN_SPARTAN6_gen.BSCAN_BLOCK_inst:SHIFT to bot_ctr/instantiate_loader.jtag_loader_6_inst/jtag_din_int_17
+  Data Path: bot_ctrl/instantiate_loader.jtag_loader_6_inst/jtag_loader_gen.BSCAN_SPARTAN6_gen.BSCAN_BLOCK_inst:SHIFT to bot_ctrl/instantiate_loader.jtag_loader_6_inst/jtag_din_int_17
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-    BSCAN_SPARTAN6:SHIFT   31   0.000   1.278  bot_ctr/instantiate_loader.jtag_loader_6_inst/jtag_loader_gen.BSCAN_SPARTAN6_gen.BSCAN_BLOCK_inst (bot_ctr/instantiate_loader.jtag_loader_6_inst/shift)
-     LUT4:I3->O           18   0.205   1.049  bot_ctr/instantiate_loader.jtag_loader_6_inst/_n0186_inv1 (bot_ctr/instantiate_loader.jtag_loader_6_inst/_n0186_inv)
-     FDE:CE                    0.322          bot_ctr/instantiate_loader.jtag_loader_6_inst/jtag_din_int_0
+    BSCAN_SPARTAN6:SHIFT   31   0.000   1.278  bot_ctrl/instantiate_loader.jtag_loader_6_inst/jtag_loader_gen.BSCAN_SPARTAN6_gen.BSCAN_BLOCK_inst (bot_ctrl/instantiate_loader.jtag_loader_6_inst/shift)
+     LUT4:I3->O           18   0.205   1.049  bot_ctrl/instantiate_loader.jtag_loader_6_inst/_n0186_inv1 (bot_ctrl/instantiate_loader.jtag_loader_6_inst/_n0186_inv)
+     FDE:CE                    0.322          bot_ctrl/instantiate_loader.jtag_loader_6_inst/jtag_din_int_0
     ----------------------------------------
     Total                      2.854ns (0.527ns logic, 2.327ns route)
                                        (18.5% logic, 81.5% route)
@@ -1395,20 +1397,20 @@ Offset:              5.000ns (Levels of Logic = 2)
                                        (88.4% logic, 11.6% route)
 
 =========================================================================
-Timing constraint: Default OFFSET OUT AFTER for Clock 'bot_ctr/instantiate_loader.jtag_loader_6_inst/drck'
+Timing constraint: Default OFFSET OUT AFTER for Clock 'bot_ctrl/instantiate_loader.jtag_loader_6_inst/drck'
   Total number of paths / destination ports: 1 / 1
 -------------------------------------------------------------------------
 Offset:              1.026ns (Levels of Logic = 0)
-  Source:            bot_ctr/instantiate_loader.jtag_loader_6_inst/jtag_din_int_17 (FF)
-  Destination:       bot_ctr/instantiate_loader.jtag_loader_6_inst/jtag_loader_gen.BSCAN_SPARTAN6_gen.BSCAN_BLOCK_inst:TDO (PAD)
-  Source Clock:      bot_ctr/instantiate_loader.jtag_loader_6_inst/drck rising
+  Source:            bot_ctrl/instantiate_loader.jtag_loader_6_inst/jtag_din_int_17 (FF)
+  Destination:       bot_ctrl/instantiate_loader.jtag_loader_6_inst/jtag_loader_gen.BSCAN_SPARTAN6_gen.BSCAN_BLOCK_inst:TDO (PAD)
+  Source Clock:      bot_ctrl/instantiate_loader.jtag_loader_6_inst/drck rising
 
-  Data Path: bot_ctr/instantiate_loader.jtag_loader_6_inst/jtag_din_int_17 to bot_ctr/instantiate_loader.jtag_loader_6_inst/jtag_loader_gen.BSCAN_SPARTAN6_gen.BSCAN_BLOCK_inst:TDO
+  Data Path: bot_ctrl/instantiate_loader.jtag_loader_6_inst/jtag_din_int_17 to bot_ctrl/instantiate_loader.jtag_loader_6_inst/jtag_loader_gen.BSCAN_SPARTAN6_gen.BSCAN_BLOCK_inst:TDO
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDE:C->Q              1   0.447   0.579  bot_ctr/instantiate_loader.jtag_loader_6_inst/jtag_din_int_17 (bot_ctr/instantiate_loader.jtag_loader_6_inst/jtag_din_int_17)
-    BSCAN_SPARTAN6:TDO         0.000          bot_ctr/instantiate_loader.jtag_loader_6_inst/jtag_loader_gen.BSCAN_SPARTAN6_gen.BSCAN_BLOCK_inst
+     FDE:C->Q              1   0.447   0.579  bot_ctrl/instantiate_loader.jtag_loader_6_inst/jtag_din_int_17 (bot_ctrl/instantiate_loader.jtag_loader_6_inst/jtag_din_int_17)
+    BSCAN_SPARTAN6:TDO         0.000          bot_ctrl/instantiate_loader.jtag_loader_6_inst/jtag_loader_gen.BSCAN_SPARTAN6_gen.BSCAN_BLOCK_inst
     ----------------------------------------
     Total                      1.026ns (0.447ns logic, 0.579ns route)
                                        (43.6% logic, 56.4% route)
@@ -1444,23 +1446,23 @@ Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 JA_0_OBUF      |    2.729|         |         |         |
 ---------------+---------+---------+---------+---------+
 
-Clock to Setup on destination clock bot_ctr/instantiate_loader.jtag_loader_6_inst/drck
---------------------------------------------------+---------+---------+---------+---------+
-                                                  | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
-Source Clock                                      |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
---------------------------------------------------+---------+---------+---------+---------+
-bot_ctr/instantiate_loader.jtag_loader_6_inst/drck|    3.365|         |         |         |
-bot_ctr/jtag_clk                                  |    2.982|         |         |         |
---------------------------------------------------+---------+---------+---------+---------+
+Clock to Setup on destination clock bot_ctrl/instantiate_loader.jtag_loader_6_inst/drck
+---------------------------------------------------+---------+---------+---------+---------+
+                                                   | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                                       |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------------------------+---------+---------+---------+---------+
+bot_ctrl/instantiate_loader.jtag_loader_6_inst/drck|    3.365|         |         |         |
+bot_ctrl/jtag_clk                                  |    2.982|         |         |         |
+---------------------------------------------------+---------+---------+---------+---------+
 
-Clock to Setup on destination clock bot_ctr/jtag_clk
---------------------------------------------------+---------+---------+---------+---------+
-                                                  | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
-Source Clock                                      |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
---------------------------------------------------+---------+---------+---------+---------+
-bot_ctr/instantiate_loader.jtag_loader_6_inst/drck|    2.766|         |         |         |
-bot_ctr/jtag_clk                                  |    1.713|         |         |         |
---------------------------------------------------+---------+---------+---------+---------+
+Clock to Setup on destination clock bot_ctrl/jtag_clk
+---------------------------------------------------+---------+---------+---------+---------+
+                                                   | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                                       |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------------------------+---------+---------+---------+---------+
+bot_ctrl/instantiate_loader.jtag_loader_6_inst/drck|    2.766|         |         |         |
+bot_ctrl/jtag_clk                                  |    1.713|         |         |         |
+---------------------------------------------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock clk100
 ---------------+---------+---------+---------+---------+
@@ -1473,12 +1475,12 @@ clk100         |    7.579|         |         |         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 46.00 secs
-Total CPU time to Xst completion: 46.12 secs
+Total REAL time to Xst completion: 28.00 secs
+Total CPU time to Xst completion: 27.86 secs
  
 --> 
 
-Total memory usage is 270060 kilobytes
+Total memory usage is 238636 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   51 (   0 filtered)

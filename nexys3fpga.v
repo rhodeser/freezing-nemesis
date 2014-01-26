@@ -143,7 +143,7 @@ module Nexys3fpga (
 
 // instantiate bot_control instruction memory
 
-	bot_control bot_ctr (
+	bot_ctrl bot_ctrl (
 	.clk(sysclk),
 	.address(address),
 	.instruction(instruction),
