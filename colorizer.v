@@ -52,16 +52,24 @@ always @ (posedge clock) begin
 			out_color <= 8'h0;			
 		end
 		else begin
-			case ({world_pixel,icon})
-				4'b0000 : out_color <= 111_111_11;		// white back ground
-				4'b0100 : out_color <= 000_000_00;		// Black line
-				4'b1000 : out_color <= 111_000_00;		// Dark Red color for Obstruction
-				4'b1100 : out_color <= 100_100_10;		// Grey for Reserved Area
-				4'bxx01	: out_color <= 100_000_00;		// Maroon Color for Icon color 1
-				4'bxx10 : out_color <= 000_111_11;		// Cyan color for Icon color 2
-				4'bxx11 : out_color <= 111_000_11;		// Magenta color for Icon color 3
-				default : out_color <= 000_000_00;
-			endcase
+			if(icon == 2'b10) begin
+				out_color <= 8'b000_111_11;		// Cyan color for Icon color 2
+			end
+			else if (icon == 2'b01) begin
+				out_color <= 8'b100_000_00;		// Maroon Color for Icon color 1
+			end
+			else if(icon == 2'b11) begin
+				out_color <= 8'b111_000_11;		// Magenta color for Icon color 3
+			end
+			else begin
+				case (world_pixel)
+					2'b00 : out_color <= 8'b111_111_11;		// white back ground
+					2'b01 : out_color <= 8'b000_000_00;		// Black line
+					2'b10 : out_color <= 8'b111_000_00;		// Dark Red color for Obstruction
+					2'b11 : out_color <= 8'b100_100_10;		// Grey for Reserved Area
+					default : out_color <= 8'b000_000_00;
+				endcase
+			end	
 		end
 	end
 end
