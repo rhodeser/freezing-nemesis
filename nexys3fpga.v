@@ -43,8 +43,12 @@ module Nexys3fpga (
 	
 	output	[3:0]		JA,						// JA Header
 	
-	input 	[9:0] 		vid_row , vid_col,		// inputs from Video Controller to bot.v
-	output  [1:0]		vid_pixel_out			// output from bot.v to Video Controller
+	output 	wire		Vsync,				// Output from DTG
+	output	wire		Hsync,				// Output from DTG
+	
+	output	wire [2:0]	vgaRed,					// Output from Colorizer
+	output	wire [2:0]	vgaGreen,					// Output from Colorizer
+	output 	wire [1:0]	vgaBlue					// Output from Colorizer
 ); 
 
 	// internal variables
@@ -73,6 +77,13 @@ module Nexys3fpga (
 	wire				write_strobe, k_write_strobe, read_strobe, interrupt, interrupt_ack;
 	wire	[7:0]		MotCtl_in, LocX_reg, LocY_reg, BotInfo_reg, Sensors_reg, LMDist_reg, RMDist_reg;
 	wire 				upd_sysregs;
+	
+	//Internal signals to Video controller
+	wire video_on;
+	wire [9:0] vid_col, vid_row;
+	wire [1:0] icon;
+	wire [1:0] vid_pixel_out;
+	wire            clkfb_in, clk0_buf;
 
 	// set up the display and LEDs
 	/*assign	dig3 = {1'b0,left_pos[7:4]};
@@ -92,7 +103,7 @@ module Nexys3fpga (
 	
 //instantiate the debounce module
 	debounce 	DB (
-		.clk(sysclk),	
+		.clk(clkfb_in),	
 		.pbtn_in({btnl,btnu,btnr,btnd,btns}),
 		.switch_in(sw),
 		.pbtn_db(db_btns),
@@ -111,7 +122,7 @@ module Nexys3fpga (
 		.seg(seg),			
 		.an(an),				
 		// clock and reset signals (100 MHz clock, active high reset)
-		.clk(sysclk),
+		.clk(clkfb_in),
 		.reset(sysreset),
 		// ouput for simulation only
 		.digits_out(digits_out)
@@ -125,7 +136,7 @@ module Nexys3fpga (
 
 // instantiate PicoBlaze CPU
 	kcpsm6 PSM (
-	.clk(sysclk),
+	.clk(clkfb_in),
 	.reset(sysreset),
 	.address(address),
 	.instruction(instruction),
@@ -142,8 +153,17 @@ module Nexys3fpga (
 );
 
 // instantiate bot_control instruction memory
-
+/*
 	bot_control bot_ctr (
+	.clk(clkfb_in),
+	.address(address),
+	.instruction(instruction),
+	.enable(bram_enable),
+	.rdl()
+);
+*/
+
+	proj1demo proj1 (
 	.clk(sysclk),
 	.address(address),
 	.instruction(instruction),
@@ -153,7 +173,7 @@ module Nexys3fpga (
 
 // instantiate interface
 	nexys3_bot_if nex(
-	.clk(sysclk),
+	.clk(clkfb_in),
 	.reset(sysreset),
 	.in_port(in_port),
 	.out_port(out_port),
@@ -184,7 +204,7 @@ module Nexys3fpga (
 	//instantiate bot
 	
 	bot bot1 (
-	.clk(sysclk),
+	.clk(clkfb_in),
 	.reset(sysreset),
 	.MotCtl_in(MotCtl_in),
 	.LocX_reg(LocX_reg),
@@ -198,5 +218,90 @@ module Nexys3fpga (
 	.vid_row(vid_row),
 	.vid_pixel_out(vid_pixel_out)	
 );
-			
+
+// colorizer
+	colorizer colorizer1(
+	.clock (clk25), 
+	.rst (sysreset),
+	.video_on (video_on),
+	.world_pixel(vid_pixel_out),
+	.icon(icon),
+	.red(vgaRed),
+	.green(vgaGreen),
+	.blue(vgaBlue)
+	);
+	
+//icon
+	icon icon1(
+	.clock (clk25), 
+	.rst (sysreset),
+	.LocX_reg(LocX_reg),				
+	.LocY_reg(LocY_reg),	
+	.BotInfo_reg(BotInfo_reg),
+	.Pixel_row(vid_row),
+	.Pixel_column(vid_col),
+	.icon(icon)
+	);
+	
+//dtg
+	dtg dtg1 (
+	.clock (clk25), 
+	.rst (sysreset),
+	.horiz_sync(Hsync), 
+	.vert_sync(Vsync), 
+	.video_on(video_on),		
+	.pixel_row(vid_row), 
+	.pixel_column(vid_col)
+	);
+
+//dcm
+// insert this template into your top-level module to instantiate a DCM_SP and clock feedback buffer. 
+// The DCM is configured to generate a divide-by-two clock output.
+
+   
+   // DCM clock feedback buffer
+   BUFG CLK0_BUFG_INST (.I(clk0_buf), .O(clkfb_in));
+
+// DCM_SP: Digital Clock Manager Circuit
+// Spartan-3E/3A, Spartan-6
+// Xilinx HDL Libraries Guide, version 11.2
+
+DCM_SP #(
+.CLKDV_DIVIDE(4.0), // Divide by: 1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5
+// 7.0,7.5,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0 or 16.0
+.CLKFX_DIVIDE(1), // Can be any integer from 1 to 32
+.CLKFX_MULTIPLY(4), // Can be any integer from 2 to 32
+.CLKIN_DIVIDE_BY_2("FALSE"), // TRUE/FALSE to enable CLKIN divide by two feature
+.CLKIN_PERIOD(10.0), // Specify period of input clock
+.CLKOUT_PHASE_SHIFT("NONE"), // Specify phase shift of NONE, FIXED or VARIABLE
+.CLK_FEEDBACK("1X"), // Specify clock feedback of NONE, 1X or 2X
+.DESKEW_ADJUST("SYSTEM_SYNCHRONOUS"), // SOURCE_SYNCHRONOUS, SYSTEM_SYNCHRONOUS or
+// an integer from 0 to 15
+.DLL_FREQUENCY_MODE("LOW"), // HIGH or LOW frequency mode for DLL
+.DUTY_CYCLE_CORRECTION("TRUE"), // Duty cycle correction, TRUE or FALSE
+.PHASE_SHIFT(0), // Amount of fixed phase shift from -255 to 255
+.STARTUP_WAIT("FALSE") // Delay configuration DONE until DCM LOCK, TRUE/FALSE
+) DCM_SP_inst (
+.CLK0(clk0_buf), // 0 degree DCM CLK output
+.CLK180(), // 180 degree DCM CLK output
+.CLK270(), // 270 degree DCM CLK output
+.CLK2X(), // 2X DCM CLK output
+.CLK2X180(), // 2X, 180 degree DCM CLK out
+.CLK90(), // 90 degree DCM CLK output
+.CLKDV(clk25), // Divided DCM CLK out (CLKDV_DIVIDE)
+.CLKFX(), // DCM CLK synthesis out (M/D)
+.CLKFX180(), // 180 degree CLK synthesis out
+.LOCKED(), // DCM LOCK status output
+.PSDONE(), // Dynamic phase adjust done output
+.STATUS(), // 8-bit DCM status bits output
+.CLKFB(clkfb_in), // DCM clock feedback
+.CLKIN(sysclk), // Clock input (from IBUFG, BUFG or DCM)
+.PSCLK(1'b0), // Dynamic phase adjust clock input
+.PSEN(1'b0), // Dynamic phase adjust enable input
+.PSINCDEC(1'b0), // Dynamic phase adjust increment/decrement
+.RST(1'b0) // DCM asynchronous reset input
+);
+// End of DCM_SP_inst instantiation
+
+	
 endmodule
