@@ -148,7 +148,7 @@ output reg [7:0] motctl
       case (port_id) 
       
         // Read db_btns at port address 00 hex
-        8'h00: in_port <= db_btns;
+        8'h00: in_port <= {db_btns[4],db_btns[3],db_btns[2],db_btns[1]};
 
         // Read db_sw at port address 01 hex
         8'h01 : in_port <= db_sw;
