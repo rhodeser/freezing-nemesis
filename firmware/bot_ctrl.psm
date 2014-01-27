@@ -131,7 +131,7 @@ CONSTANT	MSKLOWNIB,		0F		; Mask out high nibble of byte
 CONSTANT	MSKHIGHNIB,		F0		; Mask out low nibble of byte
 CONSTANT	INVLOWNIB,		0F		; Invert low nibble of byte
 CONSTANT	MSK_LN,			07		; Masks all bits except line sensors
-CONSTANT	MSK_OBS,			18		; Mask bits except for obstacle indicators
+CONSTANT	MSK_OBS,		18		; Mask bits except for obstacle indicators
 ; =============================
 ; === Useful Data Constants ===
 ; =============================
@@ -258,12 +258,10 @@ CONSTANT	OLD_LOCY,		33
 CONSTANT	SP_NEXT_ORIENT,	34
 ;states to keep track of what the bot is currently doing
 
-CONSTANT	START_STATE,			00	
-CONSTANT	FORWARD_STATE,			01
-CONSTANT	BACKWARD_STATE,			02
-CONSTANT	TURNING_45_STATE,		03
-CONSTANT	TURNING_90_STATE,		04
-CONSTANT	TURNING_STATE,			05
+	
+CONSTANT	FORWARD_STATE,			00
+CONSTANT	BACKWARD_STATE,			01
+CONSTANT	TURNING_STATE,			02
 
 
 
@@ -276,11 +274,16 @@ main:			CALL	init_btnluptbl				; initialize button to MotCtl lookup table
 				CALL	init_mvmttbl				; initialize movement to character code lookup table
 				LOAD	s1,		00					; clear the semaphore
 				STORE	s1,		SP_SEM				;
-				LOAD	s1,		00					; turn off all of the decimal points
-				CALL	SS_wrdpts					;
-				LOAD	s1,		STATE				; initialize to forward state
-				STORE	s1,		FORWARD_STATE								
+				LOAD	s1,		01					; turn off all of the decimal points
+				LOAD	s2,		OR_W
+				OUTPUT	s1,		PA_MOTCTL_IN
+													; 04 turns middle dec on
+				CALL	SS_wrdpts					;								
 				STORE	s1,		SP_OLDDP			; and save the value	
+				LOAD	s1,		FORWARD_STATE		; initialize to forward state
+				STORE	s1,		STATE
+				FETCH	s1,		SP_ORI_CNTR
+				STORE	s1,		00	
 				ENABLE	INTERRUPT					; get the ball rolling
 									
 
@@ -305,7 +308,7 @@ main_L2:		CALL	wr_alldigits				;		write all of the digits to the display
 				LOAD	s1,		Sensor				;		update LEDs with new sensor information
 				CALL	LED_wrleds					;															;
 				CALL	next_step					;		tell rojobot what to do next
-				FETCH	s6,		SP_SEM
+ret_main:		FETCH	s6,		SP_SEM
 				SUB		s6,		01					;		decrement semaphore
 				STORE	s6,		SP_SEM				;
 				JUMP	main_L0						;	} // end - main while loop	
@@ -495,18 +498,17 @@ mvmt2cc:		LOAD	s2,		SP_MVMTBASE			; s2 gets base of movement conversion table
 ; === Uses Botinf (Bot Info register) to get movement.                 ===
 ; ========================================================================				
 next_mvmt:		LOAD	s0,		Botinf				; s0[3:0] = Botinf[7:4]
-				
 
-
-
-
-
+				CALL	DEB_rdsw
+				TEST	s0,		02			; only proceed if switch[1] is on
 				SR0		s0							; 
 				SR0		s0							;
 				SR0		s0							;
 				SR0		s0							;
 				CALL	mvmt2cc						; translate movement to char code
 				LOAD	Dig3,	s1					; and move to digit 3
+				LOAD	s1,		08
+				CALL	SS_wrdpts
 				RETURN				
 								
 
@@ -630,18 +632,19 @@ next_step:		;CALL	DEB_rdbtns					; Read the pushbuttons. buttons returned in s0
 
 			LOAD	s0,		00
 			OUTPUT	s0,		PA_MOTCTL_IN		;stop any bot movement
-			FETCH	s0,		STATE							
-			TEST	s0,		FORWARD_STATE
+			FETCH	s0,		STATE
+				
+			COMPARE	s0,		FORWARD_STATE
 			JUMP	Z,		next
 			CALL	mv_forward
 			RETURN				
 			
-next:		TEST	s0,		BACKWARD_STATE
+next:		COMPARE	s0,		BACKWARD_STATE
 			JUMP	Z,		next1
 			CALL	mv_backward
 			RETURN		
 			
-next1:		TEST	s0,		TURNING_STATE
+next1:		COMPARE	s0,		TURNING_STATE
 			JUMP	Z,		error
 			CALL	start_turn
 			RETURN		
@@ -653,14 +656,20 @@ back_to_main:						;used as unconditional jump to return to main, can delete and
 			RETURN
 			
 mv_forward:		
-				FETCH	s2,		SP_NEXT_ORIENT		;Clear saved orientation value
+				FETCH	s2,		SP_ORI_CNTR		;Clear saved orientation value ... or do counter...?????????
 				LOAD	s2,		00
-				STORE	s2,		SP_NEXT_ORIENT
-				CALL	chk_obstacle
-				CALL	chk_blk_line
-				COMPARE	s1,		MSK_LN				;See if  on a black line
-				JUMP	NZ,		mv_backward			; if value >0, not on a  black line
-				LOAD	s2,		SP_LRRR				;load forward constant
+				STORE	s2,		SP_ORI_CNTR
+				CALL	chk_obstacle				;if there's an obstacle
+				COMPARE	s1,		00					;if > 0, stop the course
+				JUMP	NZ,		stop_maze
+				CALL	chk_blk_line				;
+				LOAD	s0,		MSK_LN				;
+				COMPARE	s0, 	s1					; if s1 is 7, like s0, we're on white
+				;JUMP	Z,		stop_maze			;delete this later and uncomment lnie below
+				JUMP	Z,		mv_backward			; if value >0, not on a  black line
+				;LOAD	s0,		FF
+				;OUTPUT	s0,		PA_LEDS
+				LOAD	s2,		SP_LFRF				;load forward constant
 				OUTPUT	s2,		PA_MOTCTL_IN		;start moving forward
 				LOAD	s0,		FORWARD_STATE
 				STORE	s0,		STATE 				;update state
@@ -670,12 +679,12 @@ mv_backward:
 
 				CALL	chk_blk_line				;return line value in s1
 				COMPARE	s1,		MSK_LN				;See if we're on a black line			
-				JUMP	Z,		chk_turn			;if we are, start turning state				
+				JUMP	NZ,		chk_turn			;if we are, start turning state				
 				LOAD	s2,		MV_BOT_BCK			
 				OUTPUT	s2,		PA_MOTCTL_IN		;start moving backwards
 				LOAD	s0,		BACKWARD_STATE
 				STORE	s0,		STATE				;update state
-				RETURN
+				JUMP	ret_main
 
 ; =========================================================================================================
 ; ===	chk_turn, turn_45, and turn_90 are only executed when a new state has been reached.  
@@ -686,7 +695,7 @@ chk_turn:
 			
 				FETCH	s1, 	SP_ORI_CNTR			;get orientation counter			
 				ADD		s1,		01					;increment counter for each turn we're about to make
-				LOAD	s1,		s2					;copy value of counter			###probably not necessary
+				LOAD	s2,		s1					;copy value of counter			###probably not necessary
 				STORE 	s1,		SP_ORI_CNTR
 				LOAD	s3,		04					;see if we've reached the point where we turn 90 (4 turns)
 				COMPARE s3,		s2			
@@ -716,34 +725,40 @@ turn_90:
 				JUMP	start_turn					;call turn function
 											
 start_turn:	
-
+				;;; THE ORIENTATION MIGHT CAUSE THE ROBOT TO NEVER REACH THE ONE ITS SUPPOSED TO GET TO.
 				LOAD	s0,		Botinf				;get current orientation status
 				AND		s0,		MSKORIENT			;mask bits
-				FETCH	s2,		SP_NEXT_ORIENT				
+				FETCH	s2,		SP_NEXT_ORIENT
+				OUTPUT	s0,		PA_LEDS
 				COMPARE	s2,		s0					;check if finished turn
 				JUMP	Z,		mv_forward				
 				LOAD	s1,		MV_SRT				;get right turn value
 				OUTPUT	s1,		PA_MOTCTL_IN		;start turning
 				LOAD	s0,		TURNING_STATE
 				STORE	s0,		STATE		
-				JUMP	back_to_main			; possibly just say "RETURN" and goes back to last saved pc?
+				JUMP	ret_main
 
 stop_maze:
+
 				LOAD	s3,		00
 				OUTPUT	s3,		PA_MOTCTL_IN		;stop turning
+				;OUTPUT	s3,		PA_LEDS
 				RETURN
 				
 chk_blk_line:	
 				LOAD	s1,		Sensor
 				AND		s1,		MSK_LN
 				RETURN				
+
 				
 chk_obstacle:
 				LOAD	s1,		Sensor
-				AND		s1,		MSK_OBS			
-				COMPARE	s1,		MSK_OBS			;see if object directly in front
+				AND		s1,		MSK_OBS	
+
+				
+				;COMPARE	s1,		MSK_OBS			;see if object directly in front
 												;this assumes we don't care about obstacles in diagonal areas
-				JUMP 	Z, 		stop_maze		; if there is an obstacle, stop 
+				;JUMP 	Z, 		stop_maze		; if there is an obstacle, stop 
 												; Do we want to call instead of jump?
 				RETURN
 

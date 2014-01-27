@@ -12,7 +12,7 @@ Target Device  : xc6slx16
 Target Package : csg324
 Target Speed   : -3
 Mapper Version : spartan6 -- $Revision: 1.55 $
-Mapped Date    : Sun Jan 26 15:07:22 2014
+Mapped Date    : Mon Jan 27 00:36:42 2014
 
 Mapping design into LUTs...
 Running directed packing...
@@ -53,10 +53,10 @@ Phase 8.5  Local Placement Optimization (Checksum:d715daa3) REAL time: 16 secs
 Phase 9.8  Global Placement
 ..................
 ........
-Phase 9.8  Global Placement (Checksum:805a73c) REAL time: 17 secs 
+Phase 9.8  Global Placement (Checksum:805a73c) REAL time: 18 secs 
 
 Phase 10.5  Local Placement Optimization
-Phase 10.5  Local Placement Optimization (Checksum:805a73c) REAL time: 17 secs 
+Phase 10.5  Local Placement Optimization (Checksum:805a73c) REAL time: 18 secs 
 
 Phase 11.18  Placement Optimization
 Phase 11.18  Placement Optimization (Checksum:937237c4) REAL time: 20 secs 
