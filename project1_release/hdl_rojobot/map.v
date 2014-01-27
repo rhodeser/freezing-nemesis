@@ -85,7 +85,8 @@ world_map MAP (
 // implement the address latches
 always @(posedge clk) begin
 	wrld_addr <= {wrld_row_addr[6:0], wrld_col_addr[6:0]};
-	vid_addr <= {vid_row[6:0], vid_col[6:0]};
+//	vid_addr <= {vid_row[6:0], vid_col[6:0]};
+	vid_addr <= {vid_row[8:2], vid_col[8:2]};
 end
 	
 endmodule
