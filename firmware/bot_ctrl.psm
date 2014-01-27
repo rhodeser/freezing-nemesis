@@ -274,9 +274,9 @@ main:			CALL	init_btnluptbl				; initialize button to MotCtl lookup table
 				CALL	init_mvmttbl				; initialize movement to character code lookup table
 				LOAD	s1,		00					; clear the semaphore
 				STORE	s1,		SP_SEM				;
-				LOAD	s1,		01					; turn off all of the decimal points
-				LOAD	s2,		OR_W
-				OUTPUT	s1,		PA_MOTCTL_IN
+				LOAD	s1,		00					; turn off all of the decimal points - 00 turns off, 01
+				;LOAD	s2,		OR_W
+				;OUTPUT	s1,		PA_MOTCTL_IN
 													; 04 turns middle dec on
 				CALL	SS_wrdpts					;								
 				STORE	s1,		SP_OLDDP			; and save the value	
@@ -499,16 +499,16 @@ mvmt2cc:		LOAD	s2,		SP_MVMTBASE			; s2 gets base of movement conversion table
 ; ========================================================================				
 next_mvmt:		LOAD	s0,		Botinf				; s0[3:0] = Botinf[7:4]
 
-				CALL	DEB_rdsw
-				TEST	s0,		02			; only proceed if switch[1] is on
+				;CALL	DEB_rdsw
+				;TEST	s0,		02			; only proceed if switch[1] is on
 				SR0		s0							; 
 				SR0		s0							;
 				SR0		s0							;
 				SR0		s0							;
 				CALL	mvmt2cc						; translate movement to char code
 				LOAD	Dig3,	s1					; and move to digit 3
-				LOAD	s1,		08
-				CALL	SS_wrdpts
+				;LOAD	s1,		08
+				;CALL	SS_wrdpts
 				RETURN				
 								
 
@@ -655,6 +655,10 @@ error:
 back_to_main:						;used as unconditional jump to return to main, can delete and use "RETURN"
 			RETURN
 			
+			;= 8? mask it?  
+			;When we find a black line when trying to go forward, the orientation counter should be cleared
+			;when 
+			;How does the 
 mv_forward:		
 				FETCH	s2,		SP_ORI_CNTR		;Clear saved orientation value ... or do counter...?????????
 				LOAD	s2,		00
@@ -664,6 +668,7 @@ mv_forward:
 				JUMP	NZ,		stop_maze
 				CALL	chk_blk_line				;
 				LOAD	s0,		MSK_LN				;
+				OUTPUT	s1,		PA_LEDS
 				COMPARE	s0, 	s1					; if s1 is 7, like s0, we're on white
 				;JUMP	Z,		stop_maze			;delete this later and uncomment lnie below
 				JUMP	Z,		mv_backward			; if value >0, not on a  black line
@@ -729,7 +734,7 @@ start_turn:
 				LOAD	s0,		Botinf				;get current orientation status
 				AND		s0,		MSKORIENT			;mask bits
 				FETCH	s2,		SP_NEXT_ORIENT
-				OUTPUT	s0,		PA_LEDS
+				;OUTPUT	s0,		PA_LEDS
 				COMPARE	s2,		s0					;check if finished turn
 				JUMP	Z,		mv_forward				
 				LOAD	s1,		MV_SRT				;get right turn value

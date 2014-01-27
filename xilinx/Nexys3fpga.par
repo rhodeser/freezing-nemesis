@@ -1,7 +1,7 @@
 Release 14.7 par P.20131013 (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-ERIK::  Mon Jan 27 00:50:41 2014
+ERIK::  Mon Jan 27 02:25:56 2014
 
 par -filter
 C:/Users/rhodesej/Documents/PSU/540/ece540_proj1/xilinx/iseconfig/filter.filter
@@ -106,7 +106,7 @@ Overall effort level (-ol):   High
 Router effort level (-rl):    High 
 
 Starting initial Timing Analysis.  REAL time: 7 secs 
-Finished initial Timing Analysis.  REAL time: 7 secs 
+Finished initial Timing Analysis.  REAL time: 8 secs 
 
 Starting Router
 
