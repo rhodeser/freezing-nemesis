@@ -109,10 +109,10 @@ Analyzing Verilog file "C:\Users\rhodesej\Documents\PSU\540\ece540_proj1\xilinx\
 Parsing module <world_map>.
 Analyzing Verilog file "C:\Users\rhodesej\Documents\PSU\540\ece540_proj1\xilinx\world_if.v" into library work
 Parsing module <world_if>.
-Analyzing Verilog file "C:\Users\rhodesej\Documents\PSU\540\ece540_proj1\xilinx\map.v" into library work
-Parsing module <map>.
 Analyzing Verilog file "C:\Users\rhodesej\Documents\PSU\540\ece540_proj1\xilinx\bot_pgm.v" into library work
 Parsing module <bot_pgm>.
+Analyzing Verilog file "C:\Users\rhodesej\Documents\PSU\540\ece540_proj1\project1_release\hdl_rojobot\map.v" into library work
+Parsing module <map>.
 Analyzing Verilog file "C:\Users\rhodesej\Documents\PSU\540\ece540_proj1\kcpsm6.v" into library work
 Parsing module <kcpsm6>.
 Analyzing Verilog file "C:\Users\rhodesej\Documents\PSU\540\ece540_proj1\sevensegment.v" into library work
@@ -950,11 +950,13 @@ WARNING:Xst:647 - Input <Rd_Strobe> is never used. This port will be preserved a
 Unit <world_if> synthesized.
 
 Synthesizing Unit <map>.
-    Related source file is "C:\Users\rhodesej\Documents\PSU\540\ece540_proj1\xilinx\map.v".
+    Related source file is "C:\Users\rhodesej\Documents\PSU\540\ece540_proj1\project1_release\hdl_rojobot\map.v".
 WARNING:Xst:647 - Input <wrld_col_addr<7:7>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <wrld_row_addr<7:7>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:647 - Input <vid_row<9:7>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:647 - Input <vid_col<9:7>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <vid_row<1:0>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <vid_row<9:9>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <vid_col<1:0>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <vid_col<9:9>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Found 14-bit register for signal <vid_addr>.
     Found 14-bit register for signal <wrld_addr>.
@@ -1597,14 +1599,14 @@ clk100         |    7.579|         |         |         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 29.00 secs
-Total CPU time to Xst completion: 29.13 secs
+Total REAL time to Xst completion: 30.00 secs
+Total CPU time to Xst completion: 30.09 secs
  
 --> 
 
-Total memory usage is 238644 kilobytes
+Total memory usage is 270008 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   56 (   0 filtered)
+Number of warnings :   58 (   0 filtered)
 Number of infos    :    9 (   0 filtered)
 

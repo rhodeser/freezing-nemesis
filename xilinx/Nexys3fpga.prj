@@ -1,7 +1,7 @@
 verilog work "world_map.v"
 verilog work "world_if.v"
-verilog work "map.v"
 verilog work "bot_pgm.v"
+verilog work "../project1_release/hdl_rojobot/map.v"
 verilog work "../kcpsm6.v"
 verilog work "../sevensegment.v"
 verilog work "../project1_release/hdl_video/dtg.v"
