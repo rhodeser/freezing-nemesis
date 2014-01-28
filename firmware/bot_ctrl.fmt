@@ -680,7 +680,7 @@ init_btnluptbl: LOAD s0, SP_BTNBASE         ; s0 gets base of button translation
                 STORE s0, STATE
                 ;LOAD s3,  FF
                 ;OUTPUT s3,  PA_LEDS
-                JUMP ret_main
+                RETURN 
      stop_maze: 
                 LOAD s3, 00
                 OUTPUT s3, PA_MOTCTL_IN     ;stop turning
@@ -693,6 +693,8 @@ init_btnluptbl: LOAD s0, SP_BTNBASE         ; s0 gets base of button translation
   chk_obstacle: 
                 LOAD s1, Sensor
                 AND s1, MSK_OBS
+                COMPARE s1, 00              ;if > 0, stop the course
+                JUMP NZ, mv_backward
                 ;COMPARE s1,  MSK_OBS   ;see if object directly in front
                 ;this assumes we don't care about obstacles in diagonal areas
                 ;JUMP  Z,   stop_maze  ; if there is an obstacle, stop

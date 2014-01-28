@@ -767,7 +767,7 @@ start_turn:
 				STORE	s0,		STATE		
 				;LOAD	s3,		FF
 				;OUTPUT	s3,		PA_LEDS
-				JUMP	ret_main
+				RETURN
 
 stop_maze:
 
@@ -785,7 +785,8 @@ chk_blk_line:
 chk_obstacle:
 				LOAD	s1,		Sensor
 				AND		s1,		MSK_OBS	
-
+				COMPARE	s1,		00					;if > 0, stop the course
+				JUMP	NZ,		mv_backward
 				
 				;COMPARE	s1,		MSK_OBS			;see if object directly in front
 												;this assumes we don't care about obstacles in diagonal areas
