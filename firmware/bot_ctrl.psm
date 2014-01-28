@@ -280,6 +280,7 @@ main:			CALL	init_btnluptbl				; initialize button to MotCtl lookup table
 													; 04 turns middle dec on
 				CALL	SS_wrdpts					;								
 				STORE	s1,		SP_OLDDP			; and save the value	
+				LOAD	s1,		00
 				LOAD	s1,		FORWARD_STATE		; initialize to forward state
 				STORE	s1,		STATE
 				FETCH	s1,		SP_ORI_CNTR
@@ -633,19 +634,19 @@ next_step:		;CALL	DEB_rdbtns					; Read the pushbuttons. buttons returned in s0
 			LOAD	s0,		00
 			OUTPUT	s0,		PA_MOTCTL_IN		;stop any bot movement
 			FETCH	s0,		STATE
-				
+			OUTPUT	s0,		PA_LEDS				;OUTPUT WHICH STATE WE'RE IN	
 			COMPARE	s0,		FORWARD_STATE
-			JUMP	Z,		next
+			JUMP	NZ,		next				;CHANGED FROM Z TO NZ!
 			CALL	mv_forward
 			RETURN				
 			
 next:		COMPARE	s0,		BACKWARD_STATE
-			JUMP	Z,		next1
+			JUMP	NZ,		next1
 			CALL	mv_backward
 			RETURN		
 			
 next1:		COMPARE	s0,		TURNING_STATE
-			JUMP	Z,		error
+			JUMP	NZ,		error
 			CALL	start_turn
 			RETURN		
 			
@@ -734,6 +735,7 @@ start_turn:
 				LOAD	s0,		Botinf				;get current orientation status
 				AND		s0,		MSKORIENT			;mask bits
 				FETCH	s2,		SP_NEXT_ORIENT
+				
 				;OUTPUT	s0,		PA_LEDS
 				COMPARE	s2,		s0					;check if finished turn
 				JUMP	Z,		mv_forward				

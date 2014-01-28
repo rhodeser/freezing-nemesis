@@ -1,7 +1,7 @@
 Release 14.7 par P.20131013 (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-ERIK::  Mon Jan 27 02:25:56 2014
+ERIK::  Mon Jan 27 20:23:11 2014
 
 par -filter
 C:/Users/rhodesej/Documents/PSU/540/ece540_proj1/xilinx/iseconfig/filter.filter
@@ -105,7 +105,7 @@ Specific Feature Utilization:
 Overall effort level (-ol):   High 
 Router effort level (-rl):    High 
 
-Starting initial Timing Analysis.  REAL time: 7 secs 
+Starting initial Timing Analysis.  REAL time: 8 secs 
 Finished initial Timing Analysis.  REAL time: 8 secs 
 
 Starting Router
@@ -115,9 +115,9 @@ Phase  1  : 4002 unrouted;      REAL time: 8 secs
 
 Phase  2  : 3267 unrouted;      REAL time: 9 secs 
 
-Phase  3  : 1379 unrouted;      REAL time: 12 secs 
+Phase  3  : 1379 unrouted;      REAL time: 13 secs 
 
-Phase  4  : 1379 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 13 secs 
+Phase  4  : 1379 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 14 secs 
 
 Updating file: Nexys3fpga.ncd with current fully routed design.
 
@@ -203,8 +203,8 @@ Derived Constraints for TS_sys_clk_pin
 |                               |             |   Direct    | Derivative  |   Direct    | Derivative  |   Direct    | Derivative  |
 +-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
 |TS_sys_clk_pin                 |     10.000ns|      5.340ns|      8.964ns|            0|            0|            0|        27952|
-| TS_clk25                      |     40.000ns|     24.036ns|          N/A|            0|            0|         2555|            0|
 | TS_clk0_buf                   |     10.000ns|      8.964ns|          N/A|            0|            0|        25397|            0|
+| TS_clk25                      |     40.000ns|     24.036ns|          N/A|            0|            0|         2555|            0|
 +-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
 
 All constraints were met.
