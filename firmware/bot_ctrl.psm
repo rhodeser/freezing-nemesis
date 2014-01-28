@@ -630,22 +630,33 @@ next_step:		;CALL	DEB_rdbtns					; Read the pushbuttons. buttons returned in s0
 			
 ;;NOTE:  TO REMOVE MODIFIED FUNCTIONALITY AND REVERT TO THE PROJ1DEMO, REMOVE THE FOLLOW COMMANDS 
 ;;AND UNCOMMENT THE 3 ABOVE
-
+			;Clear flags
+			LOAD	s2,		01
+			LOAD	s3,		00
+			COMPARE	s2,		s3
+			;
 			LOAD	s0,		00
 			OUTPUT	s0,		PA_MOTCTL_IN		;stop any bot movement
 			FETCH	s0,		STATE
-			OUTPUT	s0,		PA_LEDS				;OUTPUT WHICH STATE WE'RE IN	
+			;OUTPUT	s0,		PA_LEDS				;OUTPUT WHICH STATE WE'RE IN
+			;FETCH	s0,		STATE			
 			COMPARE	s0,		FORWARD_STATE
 			JUMP	NZ,		next				;CHANGED FROM Z TO NZ!
 			CALL	mv_forward
 			RETURN				
 			
-next:		COMPARE	s0,		BACKWARD_STATE
+next:		LOAD	s2,		01
+			LOAD	s3,		00
+			COMPARE	s2,		s3		
+			COMPARE	s0,		BACKWARD_STATE
 			JUMP	NZ,		next1
 			CALL	mv_backward
 			RETURN		
 			
-next1:		COMPARE	s0,		TURNING_STATE
+next1:		LOAD	s2,		01
+			LOAD	s3,		00
+			COMPARE	s2,		s3
+			COMPARE	s0,		TURNING_STATE
 			JUMP	NZ,		error
 			CALL	start_turn
 			RETURN		
@@ -669,12 +680,15 @@ mv_forward:
 				JUMP	NZ,		stop_maze
 				CALL	chk_blk_line				;
 				LOAD	s0,		MSK_LN				;
-				OUTPUT	s1,		PA_LEDS
+				;OUTPUT	s1,		PA_LEDS
 				COMPARE	s0, 	s1					; if s1 is 7, like s0, we're on white
 				;JUMP	Z,		stop_maze			;delete this later and uncomment lnie below
 				JUMP	Z,		mv_backward			; if value >0, not on a  black line
 				;LOAD	s0,		FF
 				;OUTPUT	s0,		PA_LEDS
+				LOAD	s3,		Botinf
+				AND		s3,		MSKORIENT
+				OUTPUT	s3,		PA_LEDS
 				LOAD	s2,		SP_LFRF				;load forward constant
 				OUTPUT	s2,		PA_MOTCTL_IN		;start moving forward
 				LOAD	s0,		FORWARD_STATE
@@ -682,15 +696,17 @@ mv_forward:
 				RETURN										
 
 mv_backward:				
-
+				;LOAD	s1,		FF
+				;OUTPUT 	s1,		PA_LEDS
 				CALL	chk_blk_line				;return line value in s1
-				COMPARE	s1,		MSK_LN				;See if we're on a black line			
-				JUMP	NZ,		chk_turn			;if we are, start turning state				
+				;LOAD	s0		MSK_LN
+				COMPARE	s1,		00				;See if we're on a black line
+				JUMP	Z,		chk_turn			;if we are, start turning state				
 				LOAD	s2,		MV_BOT_BCK			
 				OUTPUT	s2,		PA_MOTCTL_IN		;start moving backwards
 				LOAD	s0,		BACKWARD_STATE
 				STORE	s0,		STATE				;update state
-				JUMP	ret_main
+				RETURN
 
 ; =========================================================================================================
 ; ===	chk_turn, turn_45, and turn_90 are only executed when a new state has been reached.  
@@ -698,7 +714,8 @@ mv_backward:
 ; ===   Therefore states aren't updated here
 ; =========================================================================================================
 chk_turn:	
-			
+				LOAD	s1,		FF
+				OUTPUT 	s1,		PA_LEDS
 				FETCH	s1, 	SP_ORI_CNTR			;get orientation counter			
 				ADD		s1,		01					;increment counter for each turn we're about to make
 				LOAD	s2,		s1					;copy value of counter			###probably not necessary
@@ -710,6 +727,8 @@ chk_turn:
 				
 				
 turn_45:		
+				LOAD	s1,		7F
+				OUTPUT 	s1,		PA_LEDS
 				LOAD	s2,		Botinf
 				AND		s2, 	MSKORIENT			;get current orientation
 				ADD		s2, 	01					;get orientation of next
@@ -720,7 +739,8 @@ turn_45:
 				JUMP	start_turn					;orientation of next location passed to start_turn so it knows when to stop	
 							
 turn_90:		
-		
+				LOAD	s1,		3F
+				OUTPUT 	s1,		PA_LEDS		
 				LOAD	s2,		Botinf				
 				AND		s2, 	MSKORIENT			;get current orientation
 				ADD		s2, 	02					;get orientation of next 
@@ -735,14 +755,18 @@ start_turn:
 				LOAD	s0,		Botinf				;get current orientation status
 				AND		s0,		MSKORIENT			;mask bits
 				FETCH	s2,		SP_NEXT_ORIENT
-				
-				;OUTPUT	s0,		PA_LEDS
-				COMPARE	s2,		s0					;check if finished turn
+				LOAD	s1,		s2
+				ADD		s1,		s0
+				;OUTPUT	s1,		PA_LEDS
+				COMPARE	s2,		s0					;check if finished turn				
 				JUMP	Z,		mv_forward				
 				LOAD	s1,		MV_SRT				;get right turn value
 				OUTPUT	s1,		PA_MOTCTL_IN		;start turning
+
 				LOAD	s0,		TURNING_STATE
 				STORE	s0,		STATE		
+				;LOAD	s3,		FF
+				;OUTPUT	s3,		PA_LEDS
 				JUMP	ret_main
 
 stop_maze:

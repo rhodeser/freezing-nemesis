@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Mon Jan 27 20:23:06 2014
+// Written by: Map P.20131013 on Mon Jan 27 23:28:35 2014
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -452,7 +452,7 @@ PIN DCM_SP_inst_pins<3> = BEL "DCM_SP_inst" PINNAME CLKIN;
 TIMEGRP sys_clk_pin = BEL "JA<3>" PIN "SP6_BUFIO_INSERT_ML_BUFIO2_0_pins<0>"
         PIN "DCM_SP_inst_pins<3>";
 TS_sys_clk_pin = PERIOD TIMEGRP "sys_clk_pin" 100 MHz HIGH 50%;
-TS_clk0_buf = PERIOD TIMEGRP "clk0_buf" TS_sys_clk_pin HIGH 50%;
 TS_clk25 = PERIOD TIMEGRP "clk25" TS_sys_clk_pin / 4 HIGH 50%;
+TS_clk0_buf = PERIOD TIMEGRP "clk0_buf" TS_sys_clk_pin HIGH 50%;
 SCHEMATIC END;
 

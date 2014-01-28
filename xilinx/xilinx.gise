@@ -104,7 +104,7 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1390882913" xil_pn:in_ck="-8184433340067791394" xil_pn:name="TRANEXT_xstsynthesize_spartan6" xil_pn:prop_ck="-2617920056481832613" xil_pn:start_ts="1390882877">
+    <transform xil_pn:end_ts="1390894071" xil_pn:in_ck="-8184433340067791394" xil_pn:name="TRANEXT_xstsynthesize_spartan6" xil_pn:prop_ck="-2617920056481832613" xil_pn:start_ts="1390894031">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
@@ -126,7 +126,7 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1390882960" xil_pn:in_ck="-6333253103822380099" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="-3152908664370541331" xil_pn:start_ts="1390882948">
+    <transform xil_pn:end_ts="1390894087" xil_pn:in_ck="-6333253103822380099" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="-3152908664370541331" xil_pn:start_ts="1390894073">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
@@ -136,7 +136,7 @@
       <outfile xil_pn:name="_ngo"/>
       <outfile xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
     </transform>
-    <transform xil_pn:end_ts="1390882989" xil_pn:in_ck="-6333253103822380098" xil_pn:name="TRANEXT_map_spartan6" xil_pn:prop_ck="1463976855095865663" xil_pn:start_ts="1390882960">
+    <transform xil_pn:end_ts="1390894118" xil_pn:in_ck="-6333253103822380098" xil_pn:name="TRANEXT_map_spartan6" xil_pn:prop_ck="1463976855095865663" xil_pn:start_ts="1390894087">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="Nexys3fpga.pcf"/>
@@ -149,7 +149,7 @@
       <outfile xil_pn:name="Nexys3fpga_usage.xml"/>
       <outfile xil_pn:name="_xmsgs/map.xmsgs"/>
     </transform>
-    <transform xil_pn:end_ts="1390883024" xil_pn:in_ck="1569427379582099927" xil_pn:name="TRANEXT_par_spartan6" xil_pn:prop_ck="-1178055513630676559" xil_pn:start_ts="1390882989">
+    <transform xil_pn:end_ts="1390894156" xil_pn:in_ck="1569427379582099927" xil_pn:name="TRANEXT_par_spartan6" xil_pn:prop_ck="-1178055513630676559" xil_pn:start_ts="1390894118">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="Nexys3fpga.ncd"/>
@@ -163,7 +163,7 @@
       <outfile xil_pn:name="Nexys3fpga_par.xrpt"/>
       <outfile xil_pn:name="_xmsgs/par.xmsgs"/>
     </transform>
-    <transform xil_pn:end_ts="1390883071" xil_pn:in_ck="3748174043806603115" xil_pn:name="TRANEXT_bitFile_spartan6" xil_pn:prop_ck="396117104113915555" xil_pn:start_ts="1390883049">
+    <transform xil_pn:end_ts="1390894284" xil_pn:in_ck="3748174043806603115" xil_pn:name="TRANEXT_bitFile_spartan6" xil_pn:prop_ck="396117104113915555" xil_pn:start_ts="1390894258">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="Nexys3fpga.ut"/>
@@ -175,7 +175,7 @@
       <outfile xil_pn:name="webtalk.log"/>
       <outfile xil_pn:name="webtalk_pn.xml"/>
     </transform>
-    <transform xil_pn:end_ts="1390882521" xil_pn:in_ck="-5847929241958246059" xil_pn:name="TRAN_configureTargetDevice" xil_pn:prop_ck="8482462020707587906" xil_pn:start_ts="1390882519">
+    <transform xil_pn:end_ts="1390889571" xil_pn:in_ck="-5847929241958246059" xil_pn:name="TRAN_configureTargetDevice" xil_pn:prop_ck="8482462020707587906" xil_pn:start_ts="1390889373">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
@@ -193,7 +193,7 @@
       <status xil_pn:value="InputChanged"/>
       <status xil_pn:value="InputRemoved"/>
     </transform>
-    <transform xil_pn:end_ts="1390883024" xil_pn:in_ck="-6333253103822380230" xil_pn:name="TRAN_postRouteTrce" xil_pn:prop_ck="445577401284416185" xil_pn:start_ts="1390883012">
+    <transform xil_pn:end_ts="1390894156" xil_pn:in_ck="-6333253103822380230" xil_pn:name="TRAN_postRouteTrce" xil_pn:prop_ck="445577401284416185" xil_pn:start_ts="1390894143">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="Nexys3fpga.twr"/>
