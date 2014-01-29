@@ -4,7 +4,7 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.19 secs
+Total CPU time to Xst completion: 0.18 secs
  
 --> Parameter xsthdpdir set to xst
 
@@ -976,23 +976,25 @@ Synthesizing Unit <icon>.
     Related source file is "C:\Users\rhodesej\Documents\PSU\540\ece540_proj1\icon.v".
 WARNING:Xst:647 - Input <BotInfo_reg<7:3>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Found 2-bit register for signal <icon>.
-    Found 10-bit adder for signal <LocY_reg[7]_GND_63_o_add_202_OUT> created at line 93.
-    Found 10-bit adder for signal <LocX_reg[7]_GND_63_o_add_302_OUT> created at line 99.
-    Found 4-bit subtractor for signal <Pixel_column[9]_LocX_reg[7]_sub_117_OUT<3:0>> created at line 87.
-    Found 4-bit subtractor for signal <LocY_reg[7]_Pixel_row[9]_sub_204_OUT<3:0>> created at line 93.
-    Found 4-bit subtractor for signal <Pixel_row[9]_LocY_reg[7]_sub_302_OUT<3:0>> created at line 99.
-    Found 4-bit subtractor for signal <LocX_reg[7]_Pixel_column[9]_sub_304_OUT<3:0>> created at line 99.
-    Found 2-bit 16-to-1 multiplexer for signal <Pixel_column[9]_Pixel_row[9]_wide_mux_78_OUT> created at line 81.
-    Found 2-bit 16-to-1 multiplexer for signal <LocY_reg[7]_Pixel_column[9]_wide_mux_148_OUT> created at line 87.
-    Found 2-bit 16-to-1 multiplexer for signal <LocX_reg[7]_LocY_reg[7]_wide_mux_250_OUT> created at line 93.
-    Found 2-bit 16-to-1 multiplexer for signal <Pixel_row[9]_LocX_reg[7]_wide_mux_350_OUT> created at line 99.
-    Found 2-bit 8-to-1 multiplexer for signal <BotInfo_reg[2]_Pixel_row[9]_wide_mux_351_OUT> created at line 76.
-    Found 10-bit comparator lessequal for signal <n0002> created at line 75
-    Found 10-bit comparator lessequal for signal <n0004> created at line 75
-    Found 10-bit comparator lessequal for signal <n0007> created at line 75
-    Found 10-bit comparator lessequal for signal <n0010> created at line 75
+    Found 10-bit subtractor for signal <n0320> created at line 76.
+    Found 10-bit subtractor for signal <n0318> created at line 77.
+    Found 10-bit adder for signal <LocY_reg[7]_GND_63_o_add_81_OUT> created at line 88.
+    Found 10-bit adder for signal <LocX_reg[7]_GND_63_o_add_304_OUT> created at line 103.
+    Found 4-bit subtractor for signal <Pixel_column[9]_LocX_reg[7]_sub_14_OUT<3:0>> created at line 82.
+    Found 4-bit subtractor for signal <LocY_reg[7]_Pixel_row[9]_sub_83_OUT<3:0>> created at line 88.
+    Found 4-bit subtractor for signal <Pixel_row[9]_LocY_reg[7]_sub_304_OUT<3:0>> created at line 103.
+    Found 4-bit subtractor for signal <LocX_reg[7]_Pixel_column[9]_sub_306_OUT<3:0>> created at line 103.
+    Found 2-bit 16-to-1 multiplexer for signal <Pixel_column[9]_Pixel_row[9]_wide_mux_80_OUT> created at line 85.
+    Found 2-bit 16-to-1 multiplexer for signal <LocY_reg[7]_Pixel_column[9]_wide_mux_150_OUT> created at line 91.
+    Found 2-bit 16-to-1 multiplexer for signal <LocX_reg[7]_LocY_reg[7]_wide_mux_252_OUT> created at line 97.
+    Found 2-bit 16-to-1 multiplexer for signal <Pixel_row[9]_LocX_reg[7]_wide_mux_352_OUT> created at line 103.
+    Found 2-bit 8-to-1 multiplexer for signal <BotInfo_reg[2]_Pixel_row[9]_wide_mux_353_OUT> created at line 80.
+    Found 10-bit comparator lessequal for signal <n0004> created at line 78
+    Found 10-bit comparator lessequal for signal <n0006> created at line 78
+    Found 10-bit comparator lessequal for signal <n0009> created at line 78
+    Found 10-bit comparator lessequal for signal <n0012> created at line 78
     Summary:
-	inferred   6 Adder/Subtractor(s).
+	inferred   8 Adder/Subtractor(s).
 	inferred   2 D-type flip-flop(s).
 	inferred   4 Comparator(s).
 	inferred  34 Multiplexer(s).
@@ -1035,8 +1037,9 @@ Unit <dtg> synthesized.
 HDL Synthesis Report
 
 Macro Statistics
-# Adders/Subtractors                                   : 10
+# Adders/Subtractors                                   : 12
  10-bit adder                                          : 4
+ 10-bit subtractor                                     : 2
  18-bit adder                                          : 1
  22-bit adder                                          : 1
  4-bit subtractor                                      : 4
@@ -1091,8 +1094,9 @@ Unit <sevensegment> synthesized (advanced).
 Advanced HDL Synthesis Report
 
 Macro Statistics
-# Adders/Subtractors                                   : 6
+# Adders/Subtractors                                   : 8
  10-bit adder                                          : 2
+ 10-bit subtractor                                     : 2
  4-bit subtractor                                      : 4
 # Counters                                             : 4
  10-bit up counter                                     : 2
@@ -1236,17 +1240,17 @@ Top Level Output File Name         : Nexys3fpga.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 759
+# BELS                             : 798
 #      GND                         : 2
-#      INV                         : 6
+#      INV                         : 7
 #      LUT1                        : 41
-#      LUT2                        : 10
-#      LUT3                        : 29
-#      LUT4                        : 36
+#      LUT2                        : 16
+#      LUT3                        : 31
+#      LUT4                        : 46
 #      LUT5                        : 84
-#      LUT6                        : 217
+#      LUT6                        : 226
 #      LUT6_2                      : 100
-#      MUXCY                       : 114
+#      MUXCY                       : 125
 #      MUXF7                       : 4
 #      VCC                         : 2
 #      XORCY                       : 114
@@ -1280,16 +1284,16 @@ Selected Device : 6slx16csg324-3
 
 Slice Logic Utilization: 
  Number of Slice Registers:             582  out of  18224     3%  
- Number of Slice LUTs:                  571  out of   9112     6%  
-    Number used as Logic:               523  out of   9112     5%  
+ Number of Slice LUTs:                  599  out of   9112     6%  
+    Number used as Logic:               551  out of   9112     6%  
     Number used as Memory:               48  out of   2176     2%  
        Number used as RAM:               48
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:    845
-   Number with an unused Flip Flop:     263  out of    845    31%  
-   Number with an unused LUT:           274  out of    845    32%  
-   Number of fully used LUT-FF pairs:   308  out of    845    36%  
+ Number of LUT Flip Flop pairs used:    872
+   Number with an unused Flip Flop:     290  out of    872    33%  
+   Number with an unused LUT:           273  out of    872    31%  
+   Number of fully used LUT-FF pairs:   309  out of    872    35%  
    Number of unique control sets:        34
 
 IO Utilization: 
@@ -1350,7 +1354,7 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clk100'
   Clock period: 7.579ns (frequency: 131.944MHz)
-  Total number of paths / destination ports: 25199 / 1255
+  Total number of paths / destination ports: 25530 / 1255
 -------------------------------------------------------------------------
 Delay:               7.579ns (Levels of Logic = 9)
   Source:            bot_ctrl/ram_1k_generate.s6.kcpsm6_rom (RAM)
@@ -1599,12 +1603,12 @@ clk100         |    7.579|         |         |         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 31.00 secs
-Total CPU time to Xst completion: 31.26 secs
+Total REAL time to Xst completion: 33.00 secs
+Total CPU time to Xst completion: 32.81 secs
  
 --> 
 
-Total memory usage is 270004 kilobytes
+Total memory usage is 270028 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   58 (   0 filtered)

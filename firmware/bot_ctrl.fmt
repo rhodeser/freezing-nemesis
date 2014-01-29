@@ -557,8 +557,6 @@ init_btnluptbl: LOAD s0, SP_BTNBASE         ; s0 gets base of button translation
      next_step: ;CALL DEB_rdbtns     ; Read the pushbuttons. buttons returned in s0
                 ;CALL btn2mot      ; and calculate new MotCtl - returned in s1
                 ;OUTPUT s1,  PA_MOTCTL_IN  ; tell Rojobot what to do
-                ;;NOTE:  TO REMOVE MODIFIED FUNCTIONALITY AND REVERT TO THE PROJ1DEMO, REMOVE THE FOLLOW COMMANDS
-                ;;AND UNCOMMENT THE 3 ABOVE
                 ;Clear flags
                 LOAD s2, 01
                 LOAD s3, 00

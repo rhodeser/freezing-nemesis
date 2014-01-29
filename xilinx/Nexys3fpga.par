@@ -1,7 +1,7 @@
 Release 14.7 par P.20131013 (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-ERIK::  Tue Jan 28 22:07:58 2014
+ERIK::  Tue Jan 28 22:26:29 2014
 
 par -filter
 C:/Users/rhodesej/Documents/PSU/540/ece540_proj1/xilinx/iseconfig/filter.filter
@@ -29,11 +29,11 @@ Slice Logic Utilization:
     Number used as Latches:                      0
     Number used as Latch-thrus:                  0
     Number used as AND/OR logics:                0
-  Number of Slice LUTs:                        557 out of   9,112    6%
-    Number used as logic:                      486 out of   9,112    5%
-      Number using O6 output only:             305
+  Number of Slice LUTs:                        574 out of   9,112    6%
+    Number used as logic:                      502 out of   9,112    5%
+      Number using O6 output only:             309
       Number using O5 output only:              40
-      Number using O5 and O6:                  141
+      Number using O5 and O6:                  153
       Number used as ROM:                        0
     Number used as Memory:                      48 out of   2,176    2%
       Number used as Dual Port RAM:             16
@@ -45,18 +45,18 @@ Slice Logic Utilization:
         Number using O5 output only:             0
         Number using O5 and O6:                 16
       Number used as Shift Register:             0
-    Number used exclusively as route-thrus:     23
-      Number with same-slice register load:     21
+    Number used exclusively as route-thrus:     24
+      Number with same-slice register load:     22
       Number with same-slice carry load:         2
       Number with other load:                    0
 
 Slice Logic Distribution:
-  Number of occupied Slices:                   202 out of   2,278    8%
-  Number of MUXCYs used:                       148 out of   4,556    3%
-  Number of LUT Flip Flop pairs used:          673
-    Number with an unused Flip Flop:           180 out of     673   26%
-    Number with an unused LUT:                 116 out of     673   17%
-    Number of fully used LUT-FF pairs:         377 out of     673   56%
+  Number of occupied Slices:                   217 out of   2,278    9%
+  Number of MUXCYs used:                       164 out of   4,556    3%
+  Number of LUT Flip Flop pairs used:          693
+    Number with an unused Flip Flop:           205 out of     693   29%
+    Number with an unused LUT:                 119 out of     693   17%
+    Number of fully used LUT-FF pairs:         369 out of     693   53%
     Number of slice register sites lost
       to control set restrictions:               0 out of  18,224    0%
 
@@ -111,13 +111,13 @@ Finished initial Timing Analysis.  REAL time: 8 secs
 Starting Router
 
 
-Phase  1  : 3992 unrouted;      REAL time: 8 secs 
+Phase  1  : 4083 unrouted;      REAL time: 8 secs 
 
-Phase  2  : 3263 unrouted;      REAL time: 9 secs 
+Phase  2  : 3335 unrouted;      REAL time: 9 secs 
 
-Phase  3  : 1349 unrouted;      REAL time: 12 secs 
+Phase  3  : 1399 unrouted;      REAL time: 13 secs 
 
-Phase  4  : 1349 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 13 secs 
+Phase  4  : 1399 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 14 secs 
 
 Updating file: Nexys3fpga.ncd with current fully routed design.
 
@@ -131,9 +131,9 @@ Phase  8  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL 
 
 Phase  9  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 18 secs 
 
-Phase 10  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 18 secs 
-Total REAL time to Router completion: 18 secs 
-Total CPU time to Router completion: 18 secs 
+Phase 10  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 19 secs 
+Total REAL time to Router completion: 19 secs 
+Total CPU time to Router completion: 19 secs 
 
 Partition Implementation Status
 -------------------------------
@@ -151,15 +151,15 @@ Generating Clock Report
 +---------------------+--------------+------+------+------------+-------------+
 |        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
 +---------------------+--------------+------+------+------------+-------------+
-|            clkfb_in |  BUFGMUX_X2Y3| No   |  138 |  0.065     |  0.911      |
+|            clkfb_in |  BUFGMUX_X2Y3| No   |  140 |  0.053     |  0.905      |
 +---------------------+--------------+------+------+------------+-------------+
-|          clk25_BUFG | BUFGMUX_X3Y13| No   |   11 |  0.019     |  0.869      |
+|          clk25_BUFG | BUFGMUX_X3Y13| No   |   11 |  0.018     |  0.896      |
 +---------------------+--------------+------+------+------------+-------------+
 |bot_ctrl/instantiate |              |      |      |            |             |
 |_loader.jtag_loader_ |              |      |      |            |             |
-|    6_inst/shift_clk |  BUFGMUX_X2Y2| No   |    9 |  0.016     |  0.907      |
+|    6_inst/shift_clk |  BUFGMUX_X2Y2| No   |   10 |  0.013     |  0.908      |
 +---------------------+--------------+------+------+------------+-------------+
-|   bot_ctrl/jtag_clk |         Local|      |    3 |  0.379     |  1.474      |
+|   bot_ctrl/jtag_clk |         Local|      |    3 |  0.421     |  2.194      |
 +---------------------+--------------+------+------+------------+-------------+
 
 * Net Skew is the difference between the minimum and maximum routing
@@ -181,11 +181,11 @@ Asterisk (*) preceding a constraint indicates it was not met.
   Constraint                                |    Check    | Worst Case |  Best Case | Timing |   Timing   
                                             |             |    Slack   | Achievable | Errors |    Score   
 ----------------------------------------------------------------------------------------------------------
-  TS_clk0_buf = PERIOD TIMEGRP "clk0_buf" T | SETUP       |     1.176ns|     8.824ns|       0|           0
-  S_sys_clk_pin HIGH 50%                    | HOLD        |     0.219ns|            |       0|           0
+  TS_clk0_buf = PERIOD TIMEGRP "clk0_buf" T | SETUP       |     0.595ns|     9.405ns|       0|           0
+  S_sys_clk_pin HIGH 50%                    | HOLD        |     0.255ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  TS_clk25 = PERIOD TIMEGRP "clk25" TS_sys_ | SETUP       |     4.193ns|    23.228ns|       0|           0
-  clk_pin / 4 HIGH 50%                      | HOLD        |     0.469ns|            |       0|           0
+  TS_clk25 = PERIOD TIMEGRP "clk25" TS_sys_ | SETUP       |     3.160ns|    27.360ns|       0|           0
+  clk_pin / 4 HIGH 50%                      | HOLD        |     0.496ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
   TS_sys_clk_pin = PERIOD TIMEGRP "sys_clk_ | MINLOWPULSE |     4.660ns|     5.340ns|       0|           0
   pin" 100 MHz HIGH 50%                     |             |            |            |        |            
@@ -202,9 +202,9 @@ Derived Constraints for TS_sys_clk_pin
 |           Constraint          | Requirement |-------------+-------------|-------------+-------------|-------------+-------------|
 |                               |             |   Direct    | Derivative  |   Direct    | Derivative  |   Direct    | Derivative  |
 +-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
-|TS_sys_clk_pin                 |     10.000ns|      5.340ns|      8.824ns|            0|            0|            0|        27956|
-| TS_clk25                      |     40.000ns|     23.228ns|          N/A|            0|            0|         2559|            0|
-| TS_clk0_buf                   |     10.000ns|      8.824ns|          N/A|            0|            0|        25397|            0|
+|TS_sys_clk_pin                 |     10.000ns|      5.340ns|      9.405ns|            0|            0|            0|        28287|
+| TS_clk25                      |     40.000ns|     27.360ns|          N/A|            0|            0|         2890|            0|
+| TS_clk0_buf                   |     10.000ns|      9.405ns|          N/A|            0|            0|        25397|            0|
 +-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
 
 All constraints were met.
