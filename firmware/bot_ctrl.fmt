@@ -239,20 +239,17 @@
                 LOAD s1, 00                 ; clear the semaphore
                 STORE s1, SP_SEM            ;
                 LOAD s1, 00                 ; turn off all of the decimal points - 00 turns off, 01
-                ;LOAD s2,  OR_W
-                ;OUTPUT s1,  PA_MOTCTL_IN
                 LOAD s1, 40
                 STORE s1, SP_OLD_LOCX
                 LOAD s1, 40
                 STORE s1, SP_OLD_LOCY       ;initialize location to middle of screen as spec indicates
-                ; 04 turns middle dec on
                 CALL SS_wrdpts              ;
                 STORE s1, SP_OLDDP          ; and save the value
                 LOAD s1, 00
                 LOAD s1, FORWARD_STATE      ; initialize to forward state
                 STORE s1, STATE
                 LOAD s2, 00
-                STORE s2, SP_ORI_CNTR
+                STORE s2, SP_ORI_CNTR       ; initialize orientation counter to 0
                 ENABLE INTERRUPT            ; get the ball rolling
                 ; ==================
                 ; === Main  Loop ===
@@ -540,82 +537,53 @@ init_btnluptbl: LOAD s0, SP_BTNBASE         ; s0 gets base of button translation
                 SR0 s0                      ;
                 LOAD Dig1, s0               ;
                 RETURN 
-                ;#########################################
-                ; Modify this function for Project 2 #####
-                ;#########################################
                 ; ==============================================================================
                 ; === next_step() - Tells rojobot what to do next                            ===
-                ; === Registers affected: s0, s1                                             ===
-                ; === This version reads the pushbuttons, calculates the new Motor Control   ===
-                ; === register value and then writes MotCtl so Rojobot knows what to do      ===
+                ; === Upon interrupt, checks for new information and updates appropriately   ===
+                ; === Controls bot movement to complete the map         ===
                 ; ==============================================================================
-                ; ==============================================================================
-                ; === next_step() - Tells rojobot what to do next                            ===
-                ; === Upon interrupt, checks if we have new information and updates appropriately
-                ; === Controls bot movement to complete the map
-                ; ==============================================================================
-     next_step: ;CALL DEB_rdbtns     ; Read the pushbuttons. buttons returned in s0
-                ;CALL btn2mot      ; and calculate new MotCtl - returned in s1
-                ;OUTPUT s1,  PA_MOTCTL_IN  ; tell Rojobot what to do
-                ;Clear flags
-                LOAD s2, 01
-                LOAD s3, 00
-                COMPARE s2, s3
-                ;
+     next_step: 
                 LOAD s0, 00
                 OUTPUT s0, PA_MOTCTL_IN     ;stop any bot movement
                 FETCH s0, STATE
-                ;OUTPUT s0,  PA_LEDS    ;OUTPUT WHICH STATE WE'RE IN
-                ;FETCH s0,  STATE
-                COMPARE s0, FORWARD_STATE
-                JUMP NZ, next               ;CHANGED FROM Z TO NZ!
+                ; ---------- "switch" statement to determine state ----------
+                COMPARE s0, FORWARD_STATE   ;check which state we're in
+                JUMP NZ, back_case
                 CALL mv_forward
                 RETURN 
-          next: LOAD s2, 01
-                LOAD s3, 00
-                COMPARE s2, s3
+     back_case: 
                 COMPARE s0, BACKWARD_STATE
-                JUMP NZ, next1
+                JUMP NZ, turning_case
                 CALL mv_backward
                 RETURN 
-         next1: LOAD s2, 01
-                LOAD s3, 00
-                COMPARE s2, s3
+  turning_case: 
                 COMPARE s0, TURNING_STATE
-                JUMP NZ, error
+                JUMP NZ, invalid_state
                 CALL start_turn
                 RETURN 
-         error: 
+ invalid_state: 
                 RETURN 
-  back_to_main: ;delete
-                RETURN 
+                ; =================================================================================
+                ; === mv_forward() starts the movement of the bot.  When it is no longer over ===
+                ; === a black line it calls mv_backward().  It also checks for obstacles and ===
+                ; === stops the bot if one is detected.  It clears the counter tracking the ===
+                ; === orientation whenever the location of the bot has successfully moved  ===
+                ; === forward on a black line             ===
+                ; =================================================================================
     mv_forward: 
-                ;changed order of when start motor vs clear counter, changed blk line and obs order
-                ;creatd function to clear counter
-                ;make sure
-                ;masks for locX, LocY?
-                ;moved chk_obstacle after
-                CALL chk_blk_line           ;
-                LOAD s0, MSK_LN             ;
-                ;OUTPUT s1,  PA_LEDS
-                COMPARE s0, s1              ; if s1 is 7, like s0, we're on white
-                ;JUMP Z,  stop_maze   ;delete this later and uncomment lnie below
-                JUMP Z, mv_backward         ; if value >0, not on a  black line
-                ;LOAD s0,  FF
-                ;OUTPUT s0,  PA_LEDS
-                ;LOAD s3,  Botinf
-                ;AND  s3,  MSKORIENT
-                ;OUTPUT s3,  PA_LEDS
-                CALL chk_obstacle           ;if there's an obstacle
-                COMPARE s1, MSK_OBS         ;if = 111, stop the course
-                JUMP Z, stop_maze
-                ;clear counter if we've moved locations
+                CALL chk_blk_line
+                LOAD s0, MSK_LN
+                COMPARE s0, s1              ;check if we are on a black line (value 0)
+                JUMP Z, mv_backward         ;if not, start going backwards
+                CALL chk_obstacle           ;check for an obstacle
+                COMPARE s1, MSK_OBS
+                JUMP Z, stop_maze           ;if we're blocked, stop the course
                 LOAD s0, LocX
-                FETCH s1, SP_OLD_LOCX
-                COMPARE s1, s0
-                CALL NZ, clear_counter
+                FETCH s1, SP_OLD_LOCX       ;see if our current location is different
+                COMPARE s1, s0              ;if it is, we must be moving forward on a black line
+                CALL NZ, clear_counter      ;we can clear the orientation counter at this point
                 LOAD s3, LocY
-                FETCH s4, SP_OLD_LOCY       ;MASK AT ALL?
+                FETCH s4, SP_OLD_LOCY       ;check also with the y coordinate
                 COMPARE s4, s3
                 CALL NZ, clear_counter
                 LOAD s2, SP_LFRF            ;load forward constant
@@ -623,15 +591,12 @@ init_btnluptbl: LOAD s0, SP_BTNBASE         ; s0 gets base of button translation
                 LOAD s0, FORWARD_STATE
                 STORE s0, STATE             ;update state
                 RETURN 
- clear_counter: 
-                LOAD s2, 00
-                STORE s2, SP_ORI_CNTR
-                RETURN 
+                ; ===================================================================================
+                ; === mv_backward() moves backwards until the bot is back on the black line   ===
+                ; === Once it's back on the line it initiates the turning by calling chk_turn   ===
+                ; ===================================================================================
    mv_backward: 
-                ;LOAD s1,  FF
-                ;OUTPUT  s1,  PA_LEDS
                 CALL chk_blk_line           ;return line value in s1
-                ;LOAD s0  MSK_LN
                 COMPARE s1, 00              ;See if we're on a black line
                 JUMP Z, chk_turn            ;if we are, start turning state
                 LOAD s2, MV_BOT_BCK
@@ -640,17 +605,19 @@ init_btnluptbl: LOAD s0, SP_BTNBASE         ; s0 gets base of button translation
                 STORE s0, STATE             ;update state
                 RETURN 
                 ; =========================================================================================================
-                ; === chk_turn, turn_45, and turn_90 are only executed when a new state has been reached.
-                ; === when the next system update occurs, the instructions go straight to start_turn
-                ; ===   Therefore states aren't updated here
+                ; === chk_turn() stores the orientation for later use.  It increments the orientation counter and  ===
+                ; === checks if we've reached the point to turn 90 degrees (to avoid backtracking)     ===
+                ; === Depending on the counter, it calls turn_45 or turn_90 which sets the desired new orientation ===
+                ; ===   chk_turn, turn_45, and turn_90 are only executed when a new state has been reached.     ===
+                ; === when the next system update occurs, the instructions go straight to start_turn     ===
+                ; ===   Therefore states aren't updated here               ===
                 ; =========================================================================================================
       chk_turn: 
-                ;in forward, check if location changed (stored prev x,y vs botinf new x,y). if so, clear the counter.
                 STORE LocX, SP_OLD_LOCX
                 STORE LocY, SP_OLD_LOCY     ;store x,y location
                 FETCH s1, SP_ORI_CNTR       ;get orientation counter
                 ADD s1, 01                  ;increment counter for each turn we're about to make
-                LOAD s2, s1                 ;copy value of counter   ###probably not necessary
+                LOAD s2, s1                 ;copy value of counter
                 STORE s1, SP_ORI_CNTR
                 LOAD s3, 04                 ;see if we've reached the point where we turn 90 (4 turns)
                 COMPARE s3, s2
@@ -671,53 +638,36 @@ init_btnluptbl: LOAD s0, SP_BTNBASE         ; s0 gets base of button translation
                 ADD s2, 02                  ;get orientation of next
                 AND s2, MSKORIENT           ;make sure no carry happened *****change function above (add CY?)
                 STORE s2, SP_NEXT_ORIENT    ;save next position of orientation
-                ;LOAD s0,  TURNING_90_STATE
-                ;STORE s0,  STATE
                 JUMP start_turn             ;call turn function
     start_turn: 
-                ;;; THE ORIENTATION MIGHT CAUSE THE ROBOT TO NEVER REACH THE ONE ITS SUPPOSED TO GET TO.
                 LOAD s0, Botinf             ;get current orientation status
                 AND s0, MSKORIENT           ;mask bits
-                FETCH s2, SP_NEXT_ORIENT
-                LOAD s1, s2
-                ADD s1, s0
-                ;OUTPUT s1,  PA_LEDS
+                FETCH s2, SP_NEXT_ORIENT    ;Get the orientation of the next turn to try
                 COMPARE s2, s0              ;check if finished turn
-                JUMP Z, mv_forward
+                JUMP Z, mv_forward          ;if we are done, start moving forward
                 LOAD s1, MV_SRT             ;get right turn value
                 OUTPUT s1, PA_MOTCTL_IN     ;start turning
                 LOAD s0, TURNING_STATE
-                STORE s0, STATE
-                ;LOAD s3,  FF
-                ;OUTPUT s3,  PA_LEDS
+                STORE s0, STATE             ;update state
                 RETURN 
      stop_maze: 
                 LOAD s3, 00
                 OUTPUT s3, PA_MOTCTL_IN     ;stop turning
-                LOAD s4, FF
+                LOAD s4, FF                 ;light all LEDs when done
                 OUTPUT s4, PA_LEDS
+                RETURN 
+ clear_counter: 
+                LOAD s2, 00
+                STORE s2, SP_ORI_CNTR
                 RETURN 
   chk_blk_line: 
                 LOAD s1, Sensor
                 AND s1, MSK_LN
                 RETURN 
   chk_obstacle: 
-                ;LOAD s2,  Botinf
-                ;AND  s2,  MSKORIENT   ;get current orientation
-                ;ADD  s2,  01     ;get orientation of next
-                ;AND  s2,  MSKORIENT
-                ;STORE s2,  SP_NEXT_ORIENT
                 LOAD s1, Sensor
                 AND s1, MSK_OBS
-                ;COMPARE s1,  00     ;if > 0, stop the course
-                ;JUMP NZ,  mv_backward
                 RETURN 
-                ;COMPARE s1,  MSK_OBS   ;see if object directly in front
-                ;this assumes we don't care about obstacles in diagonal areas
-                ;JUMP  Z,   stop_maze  ; if there is an obstacle, stop
-                ; Do we want to call instead of jump?
-                ;;Logic to decide when need to move fwd (obstacles, black lines,
-                ;; based off one piece of info from bot/sensors
                 ;*************************
                 ; Nexys3 I/O Functions
                 ;*************************
