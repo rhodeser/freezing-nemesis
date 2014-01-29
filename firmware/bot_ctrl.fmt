@@ -223,8 +223,8 @@
                 CONSTANT STATE, 29          ;
                 CONSTANT OLD_ORIENT, 30
                 CONSTANT OLD_BOTINF, 31
-                CONSTANT OLD_LOCX, 32
-                CONSTANT OLD_LOCY, 33
+                CONSTANT SP_OLD_LOCX, 32
+                CONSTANT SP_OLD_LOCY, 33
                 CONSTANT SP_NEXT_ORIENT, 34
                 ;states to keep track of what the bot is currently doing
                 CONSTANT FORWARD_STATE, 00
@@ -241,14 +241,18 @@
                 LOAD s1, 00                 ; turn off all of the decimal points - 00 turns off, 01
                 ;LOAD s2,  OR_W
                 ;OUTPUT s1,  PA_MOTCTL_IN
+                LOAD s1, 40
+                STORE s1, SP_OLD_LOCX
+                LOAD s1, 40
+                STORE s1, SP_OLD_LOCY       ;initialize location to middle of screen as spec indicates
                 ; 04 turns middle dec on
                 CALL SS_wrdpts              ;
                 STORE s1, SP_OLDDP          ; and save the value
                 LOAD s1, 00
                 LOAD s1, FORWARD_STATE      ; initialize to forward state
                 STORE s1, STATE
-                FETCH s1, SP_ORI_CNTR
-                STORE s1, 00
+                LOAD s2, 00
+                STORE s2, SP_ORI_CNTR
                 ENABLE INTERRUPT            ; get the ball rolling
                 ; ==================
                 ; === Main  Loop ===
@@ -585,16 +589,14 @@ init_btnluptbl: LOAD s0, SP_BTNBASE         ; s0 gets base of button translation
                 RETURN 
          error: 
                 RETURN 
-  back_to_main: ;used as unconditional jump to return to main, can delete and use "RETURN"
+  back_to_main: ;delete
                 RETURN 
-                ;= 8? mask it?
-                ;When we find a black line when trying to go forward, the orientation counter should be cleared
-                ;when
-                ;How does the
     mv_forward: 
-                CALL chk_obstacle           ;if there's an obstacle
-                COMPARE s1, 00              ;if > 0, stop the course
-                JUMP NZ, stop_maze
+                ;changed order of when start motor vs clear counter, changed blk line and obs order
+                ;creatd function to clear counter
+                ;make sure
+                ;masks for locX, LocY?
+                ;moved chk_obstacle after
                 CALL chk_blk_line           ;
                 LOAD s0, MSK_LN             ;
                 ;OUTPUT s1,  PA_LEDS
@@ -603,16 +605,29 @@ init_btnluptbl: LOAD s0, SP_BTNBASE         ; s0 gets base of button translation
                 JUMP Z, mv_backward         ; if value >0, not on a  black line
                 ;LOAD s0,  FF
                 ;OUTPUT s0,  PA_LEDS
-                LOAD s3, Botinf
+                ;LOAD s3,  Botinf
                 ;AND  s3,  MSKORIENT
                 ;OUTPUT s3,  PA_LEDS
-                FETCH s2, SP_ORI_CNTR       ;Clear saved ori counter
-                LOAD s2, 00
-                STORE s2, SP_ORI_CNTR
+                CALL chk_obstacle           ;if there's an obstacle
+                COMPARE s1, MSK_OBS         ;if = 111, stop the course
+                JUMP Z, stop_maze
+                ;clear counter if we've moved locations
+                LOAD s0, LocX
+                FETCH s1, SP_OLD_LOCX
+                COMPARE s1, s0
+                CALL NZ, clear_counter
+                LOAD s3, LocY
+                FETCH s4, SP_OLD_LOCY       ;MASK AT ALL?
+                COMPARE s4, s3
+                CALL NZ, clear_counter
                 LOAD s2, SP_LFRF            ;load forward constant
                 OUTPUT s2, PA_MOTCTL_IN     ;start moving forward
                 LOAD s0, FORWARD_STATE
                 STORE s0, STATE             ;update state
+                RETURN 
+ clear_counter: 
+                LOAD s2, 00
+                STORE s2, SP_ORI_CNTR
                 RETURN 
    mv_backward: 
                 ;LOAD s1,  FF
@@ -632,6 +647,9 @@ init_btnluptbl: LOAD s0, SP_BTNBASE         ; s0 gets base of button translation
                 ; ===   Therefore states aren't updated here
                 ; =========================================================================================================
       chk_turn: 
+                ;in forward, check if location changed (stored prev x,y vs botinf new x,y). if so, clear the counter.
+                STORE LocX, SP_OLD_LOCX
+                STORE LocY, SP_OLD_LOCY     ;store x,y location
                 FETCH s1, SP_ORI_CNTR       ;get orientation counter
                 ADD s1, 01                  ;increment counter for each turn we're about to make
                 LOAD s2, s1                 ;copy value of counter   ###probably not necessary
@@ -678,27 +696,28 @@ init_btnluptbl: LOAD s0, SP_BTNBASE         ; s0 gets base of button translation
      stop_maze: 
                 LOAD s3, 00
                 OUTPUT s3, PA_MOTCTL_IN     ;stop turning
-                ;OUTPUT s3,  PA_LEDS
+                LOAD s4, FF
+                OUTPUT s4, PA_LEDS
                 RETURN 
   chk_blk_line: 
                 LOAD s1, Sensor
                 AND s1, MSK_LN
                 RETURN 
   chk_obstacle: 
-                LOAD s2, Botinf
-                AND s2, MSKORIENT           ;get current orientation
-                ADD s2, 01                  ;get orientation of next
-                AND s2, MSKORIENT
-                STORE s2, SP_NEXT_ORIENT
+                ;LOAD s2,  Botinf
+                ;AND  s2,  MSKORIENT   ;get current orientation
+                ;ADD  s2,  01     ;get orientation of next
+                ;AND  s2,  MSKORIENT
+                ;STORE s2,  SP_NEXT_ORIENT
                 LOAD s1, Sensor
                 AND s1, MSK_OBS
-                COMPARE s1, 00              ;if > 0, stop the course
-                JUMP NZ, mv_backward
+                ;COMPARE s1,  00     ;if > 0, stop the course
+                ;JUMP NZ,  mv_backward
+                RETURN 
                 ;COMPARE s1,  MSK_OBS   ;see if object directly in front
                 ;this assumes we don't care about obstacles in diagonal areas
                 ;JUMP  Z,   stop_maze  ; if there is an obstacle, stop
                 ; Do we want to call instead of jump?
-                ;RETURN
                 ;;Logic to decide when need to move fwd (obstacles, black lines,
                 ;; based off one piece of info from bot/sensors
                 ;*************************

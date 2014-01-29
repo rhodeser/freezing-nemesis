@@ -1,7 +1,7 @@
 Release 14.7 par P.20131013 (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-ERIK::  Tue Jan 28 01:04:17 2014
+ERIK::  Tue Jan 28 22:07:58 2014
 
 par -filter
 C:/Users/rhodesej/Documents/PSU/540/ece540_proj1/xilinx/iseconfig/filter.filter
@@ -214,7 +214,7 @@ Generating Pad Report.
 
 All signals are completely routed.
 
-Total REAL time to PAR completion: 19 secs 
+Total REAL time to PAR completion: 20 secs 
 Total CPU time to PAR completion: 20 secs 
 
 Peak Memory Usage:  330 MB
