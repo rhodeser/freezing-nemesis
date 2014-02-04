@@ -1,34 +1,25 @@
 ; -----------------------------------------------------------------
-; proj1demo.psm - Demo program for Rojobot "world" emulator
-;
+; bot_ctrl.psm - Program to control Rojobot "world" emulator
+; ECE540 Winter 2014
+; Erik Rhodes and Bhavana Dhulipala
+; 
+; Modified from:
 ; Version:	3.1
 ; Author:	Roy Kravitz
 ; Date:		03-Jan-2014
 ;
-; Revision History
-; ================
-; 11-Jan-07		RK		Created the first version
-; 12-Jan-09		RK		Modified for S3E Starter Board and Seven Segment Emulator
-; 16-Oct-09		RK		Minor changes (comments) for PSU ECE510 
-; 24-Oct-11		RK		Minor changes (comments) 
-; 24-Oct-12		RK		Modified for kcpsm6 and Nexys 3
-; 03-Jan-14		RK		Refactored as Project1 demo for ECE 540 Winter 2014 and later
-;
 ; Description:
 ; ============
-; This program demonstrate the Rojobot world emulator.  It is modelled after
-; the the Verilog Rojobot implemented in the Getting Started application only this demo is based
-; on the full Rojobot emulator (as implemented in bot.v instead of the simplified
-; Rojobot model used in the Getting Started project
+; This code automates a virtual bot from the RojoBot module. 
+; Updates are periodically sent via the sys_reg, and this information is used to control where the bot travels.
+; It receives information about its current location, whether it's on a black line and if there's an obstacle ahead
+; (Sensor register), and the orientation of the bot (Botinf).
+; 
+; The bot is controlled by a state machine which transitions in between forward, backward, and turn modes.
+; If the bot encounters an obstacle and cannot continue it will stop its movement.
+; Otherwise, after it detects it's off the black line, it tries each next path by turning 45 degrees to the right.
+; Once a black line has been found the bot continues on that course.
 ;
-; The demo uses the 4 pushbuttons to control the Rojobot as follows:
-;	btn_left	- Left Motor forward
-; 	btn_up		- Left Motor reverse
-;	btn_right	- Right Motor forward
-;	btn_down	- Right Motor reverse
-; If neither of the two buttons that control each motor is pushed, then the motor is stopped. 
-; If both of the two buttons that control each motor are pushed, the actions cancel each other
-; leaving the motor stopped.
 ;
 ; The demo has two display modes.  When switch[0] is 'off' the program displays the
 ; location of the Rojobot in its "world" on the 4 digits of the 7-segment display. 
@@ -43,11 +34,9 @@
 ; The sensors are displayed on the LEDs in both display modes.
 ; Decimal point 0 toggles on and off every interrupt (~every 100 msec)
 ;
-; NOTE:  NOT ALL THE CODE IN THIS EXAMPLE IS USED.  THE EXAMPLE WAS CREATED TO GIVE YOU, THE
-; STUDENT, AN EXAMPLE OF HOW TO CONTROL THE ROJOBOT AND S3E PERIPHERALS FROM AN EMBEDDED PICOBLAZE
-; CPU. YOU MAY (OR NOT) FIND SOME OF THIS CODE APPLICABLE TO YOUR OTHER PROJECTS
-; -----------------------------------------------------------------	
-
+; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+;
+;
 ; ============================================
 ; === Register Names                       ===
 ; === s6 - s0 registers are not dedicated  ===
@@ -486,15 +475,7 @@ mvmt2cc:		LOAD	s2,		SP_MVMTBASE			; s2 gets base of movement conversion table
 				FETCH	s1,		(s2)				; and fetch the entry
 				RETURN															
 
-				
-;#########################################
-; Modify this function for Project 2 #####	
-;#########################################			
-
-
-; this calculates what the 7 segment display will output
-; It should have the coordinates for the x and y displayed, and be able to switch to the gs project displays
-; 			
+					
 ; ========================================================================
 ; === next_mvmt() - Calculate  digit for motion indicator              ===
 ; === Registers affected: Dig3, s0                                     ===
@@ -619,7 +600,7 @@ next_step:
 			OUTPUT	s0,		PA_MOTCTL_IN		;stop any bot movement
 			FETCH	s0,		STATE					
 			
-			; ----------	"switch" statement to determine state	----------			
+; 			----------	"switch" statement to determine state	----------			
 			
 			COMPARE	s0,		FORWARD_STATE		;check which state we're in
 			JUMP	NZ,		back_case				
@@ -749,16 +730,19 @@ stop_maze:
 				OUTPUT	s4,		PA_LEDS
 				RETURN
 
+				
 clear_counter:
 				LOAD	s2,		00
-				STORE	s2,		SP_ORI_CNTR
+				STORE	s2,		SP_ORI_CNTR			;reset orientation counter to 0
 				RETURN
 				
+; =====================		Returns sensor information in register s1 	====================		
 chk_blk_line:	
 				LOAD	s1,		Sensor
 				AND		s1,		MSK_LN
-				RETURN				
-			
+				RETURN
+
+; =====================		Returns sensor information in register s1 	====================						
 chk_obstacle:
 
 				LOAD	s1,		Sensor
