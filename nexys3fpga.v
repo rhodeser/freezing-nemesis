@@ -1,32 +1,20 @@
 `timescale 1ns / 1ps
-// nexys3fpga.v - Top level module for Nexys3 as used in the ECE 540 Getting Started project
+// nexys3fpga.v - Top level module for Nexys3 as used in the ECE 540 project1
 //
-// Modified from S3E Starter Board files by David Glover, 29-April-2012.
+// Created By:		Bhavana & Erik
+// Last Modified:	3-Feb-2014
+//	
+//	 Revision History
+//	 ----------------
+//	 18-Jan-14		Instantiated all the necessary modules for Getting started Project
+//	 27-Jan-2014	Modified by Instantiating all the necessary modules for Project
+//	 3-Feb-2014		Added comments for better understanding.
 //
-// Copyright Roy Kravitz, 2008, 2009, 2010, 2011, 2012
-// 
-// Created By:		Roy Kravitz
-// Last Modified:	(RK) 17-Nov-2008
-//
-// Revision History:
-// -----------------
-// Nov-2008		RK		Created this module for the S3E Starter Board
-// Apr-2012		DG		Modified for Nexys 3 board
-// Dec-2014		RJ		Cleaned up formatting.  No functional changes
 // Description:
 // ------------
-// Top level module for the ECE 540 Getting Started reference design
+// Top level module for the ECE 540 Project1
 // on the Nexys3 FPGA Board (Xilinx XC6LX16-CS324)
-//
-// Use the pushbuttons to control the Rojobot wheels:
-//	btnl	Left wheel forward
-//	btnu	Left wheel reverse
-//	btnr	Right wheel forward
-//	btnd	Right wheel reverse
-//  btns	System reset
-//
-//	Switches are not used. Compass heading and a turn indicator 
-//	are shown on the seven segment dispay.  LED's display the chase segments.  
+//   
 ///////////////////////////////////////////////////////////////////////////
 
 module Nexys3fpga (
@@ -43,8 +31,8 @@ module Nexys3fpga (
 	
 	output	[3:0]		JA,						// JA Header
 	
-	output 	wire		Vsync,				// Output from DTG
-	output	wire		Hsync,				// Output from DTG
+	output 	wire		Vsync,					// Output from DTG
+	output	wire		Hsync,					// Output from DTG
 	
 	output	wire [2:0]	vgaRed,					// Output from Colorizer
 	output	wire [2:0]	vgaGreen,					// Output from Colorizer
@@ -63,13 +51,10 @@ module Nexys3fpga (
 	wire 	[3:0]		decpts;					// decimal points
 	wire 	[7:0]		chase_segs;				// chase segments from Rojobot (debug)
 
-/******************************************************************/
-/* CHANGE THIS SECTION FOR YOUR LAB 1                             */
-/******************************************************************/		
 	wire	[7:0]		left_pos, right_pos;
 	wire 	[31:0]		digits_out;				// ASCII digits (Only for Simulation)
 	
-	// 	Internal Signals
+	// 	Internal Signals to bot and kcpsm6
 	wire 	[11:0]		address;
 	wire	[17:0]		instruction;
 	wire				bram_enable;
@@ -83,19 +68,10 @@ module Nexys3fpga (
 	wire [9:0] vid_col, vid_row;
 	wire [1:0] icon;
 	wire [1:0] vid_pixel_out;
-	wire            clkfb_in, clk0_buf;
+	
+	// DCM signals
+	wire clkfb_in, clk0_buf;
 
-	// set up the display and LEDs
-	/*assign	dig3 = {1'b0,left_pos[7:4]};
-	assign	dig2 = {1'b0,left_pos[3:0]};
-	assign 	dig1 = {1'b0,right_pos[7:4]};
-	assign	dig0 = {1'b0,right_pos[3:0]};
-	assign	decpts = 4'b0100;					// d2 is on
-	assign	led = db_sw;					// leds show the debounced switches
-*/
-/******************************************************************/
-/* THIS SECTION SHOULDN'T HAVE TO CHANGE FOR LAB 1                */
-/******************************************************************/			
 	// global assigns
 	assign	sysclk = clk100;
 	assign 	sysreset = db_btns[0];
@@ -110,7 +86,7 @@ module Nexys3fpga (
 		.swtch_db(db_sw)
 	);	
 		
-	// instantiate the 7-segment, 4-digit display
+// instantiate the 7-segment, 4-digit display
 	sevensegment SSB (
 		// inputs for control signals
 		.d0(dig0),
@@ -127,12 +103,6 @@ module Nexys3fpga (
 		// ouput for simulation only
 		.digits_out(digits_out)
 	);
-
-/******************************************************************/
-/* CHANGE THIS DEFINITION FOR YOUR LAB 1                          */
-/******************************************************************/							
-			
-
 
 // instantiate PicoBlaze CPU
 	kcpsm6 PSM (
@@ -153,8 +123,6 @@ module Nexys3fpga (
 );
 
 // instantiate bot_control instruction memory
-
-
 	bot_ctrl bot_ctrl (
 	.clk(clkfb_in),
 	.address(address),
@@ -163,16 +131,6 @@ module Nexys3fpga (
 	.rdl()
 );
 
-
-/*
-	proj1demo proj1 (
-	.clk(sysclk),
-	.address(address),
-	.instruction(instruction),
-	.enable(bram_enable),
-	.rdl()
-);
-*/
 // instantiate interface
 	nexys3_bot_if nex(
 	.clk(clkfb_in),
@@ -203,8 +161,7 @@ module Nexys3fpga (
 	.led(led)
 
 );
-	//instantiate bot
-	
+//instantiate bot	
 	bot bot1 (
 	.clk(clkfb_in),
 	.reset(sysreset),
@@ -221,7 +178,7 @@ module Nexys3fpga (
 	.vid_pixel_out(vid_pixel_out)	
 );
 
-// colorizer
+//instantiate colorizer
 	colorizer colorizer1(
 	.clock (clk25), 
 	.rst (sysreset),
@@ -233,7 +190,7 @@ module Nexys3fpga (
 	.blue(vgaBlue)
 	);
 	
-//icon
+//instantiate icon
 	icon icon1(
 	.clock (clk25), 
 	.rst (sysreset),
@@ -245,7 +202,7 @@ module Nexys3fpga (
 	.icon(icon)
 	);
 	
-//dtg
+//instantiate dtg
 	dtg dtg1 (
 	.clock (clk25), 
 	.rst (sysreset),
@@ -256,11 +213,8 @@ module Nexys3fpga (
 	.pixel_column(vid_col)
 	);
 
-//dcm
-// insert this template into your top-level module to instantiate a DCM_SP and clock feedback buffer. 
+//instantiate dcm
 // The DCM is configured to generate a divide-by-two clock output.
-
-   
    // DCM clock feedback buffer
    BUFG CLK0_BUFG_INST (.I(clk0_buf), .O(clkfb_in));
 
@@ -303,7 +257,5 @@ DCM_SP #(
 .PSINCDEC(1'b0), // Dynamic phase adjust increment/decrement
 .RST(1'b0) // DCM asynchronous reset input
 );
-// End of DCM_SP_inst instantiation
-
 	
 endmodule

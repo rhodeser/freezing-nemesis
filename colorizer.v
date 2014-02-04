@@ -1,17 +1,18 @@
 // colorizer Module for Rojobot World Video Controller
 //
 //	Author:			Bhavana & Erik
-//	Last Modified:	25-Jan-2014
+//	Last Modified:	3-Feb-2014
 //	
 //	 Revision History
 //	 ----------------
 //	 25-Jan-14		Added the colorizer Module
-//	 
+//	 3-Feb-2014		Added comments for better understanding.
 //
 //	Description:
 //	------------
-//	 This circuit provides 8-bit output - 3 bits red, green and 2 bits blue. 
-//	 This takes the 2-bit pixel inputs from the Bot and Icon modules.
+//	This module takes the 2-bit pixel inputs from the Bot and Icon modules.	 
+//	8-bit output is produced  of which 3 MSB bits  are red, 
+//	2 LSB bits are blue and remaining 3 bits are green. 
 //	
 //	 Inputs:
 //			clock           - 25MHz Clock
@@ -37,7 +38,7 @@ output reg [1:0] blue
 
 reg [7:0] out_color;
 
-always @ (*) begin
+always @ (*) begin	// assigning out_color to red, green, blue
 	red = out_color[7:5];
 	green = out_color[4:2];
 	blue = out_color[1:0];
@@ -48,7 +49,7 @@ always @ (posedge clock) begin
 		out_color <= 8'h0;
 	end
 	else begin
-		if (video_on == 0) begin
+		if (video_on == 0) begin	// when video_on is 0, the screen will be blank
 			out_color <= 8'h0;			
 		end
 		else begin
